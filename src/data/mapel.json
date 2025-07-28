@@ -1,0 +1,7 @@
+[
+  { "id_mapel": 1, "nama_mapel": "Matematika", "kode_mapel": "MTK01", "id_guru": 1 },
+  { "id_mapel": 2, "nama_mapel": "Bahasa Indonesia", "kode_mapel": "BIN02", "id_guru": 2 },
+  { "id_mapel": 3, "nama_mapel": "Bahasa Inggris", "kode_mapel": "BIG03", "id_guru": 3 },
+  { "id_mapel": 4, "nama_mapel": "Pendidikan Pancasila", "kode_mapel": "PPKN04", "id_guru": 4 },
+  { "id_mapel": 5, "nama_mapel": "Pemrograman Web Dasar", "kode_mapel": "WEB05", "id_guru": 5 }
+]
