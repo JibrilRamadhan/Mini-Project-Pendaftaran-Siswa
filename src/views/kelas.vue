@@ -1,59 +1,7 @@
-<script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
-import ModalForm from '@/components/ModalForm.vue'
-import useJamPelajaran from '@/composables/useJamPelajaran'
-
-const {
-  data,
-  showForm,
-  mode,
-  readonly,
-  form,
-  errors,
-  hariList,
-  mapelList,
-  guruList,
-  kelasList,
-  selectedItem,
-  lihatItem,
-  tambahBaru,
-  editItem,
-  hapusItem,
-  simpan,
-  batal,
-  pilihItem,
-  clearSelected,
-} = useJamPelajaran()
-
-const actionRef = ref(null)
-
-function handleClickOutside(event) {
-  // Jika klik bukan pada tombol aksi atau tabel
-  if (
-    actionRef.value &&
-    !actionRef.value.contains(event.target) &&
-    !event.target.closest('table') &&
-    !event.target.closest('.modal')
-  ) {
-    clearSelected()
-  }
-}
-
-onMounted(() => {
-  document.addEventListener('click', handleClickOutside)
-})
-onBeforeUnmount(() => {
-  document.removeEventListener('click', handleClickOutside)
-})
-</script>
-
 <template>
   <div class="p-2 pb-10 text-gray-800 bg-white dark:bg-gray-900 dark:text-gray-100">
-    <!-- HEADER -->
     <div class="flex justify-between items-center mb-6">
-      <h2 class="text-2xl font-semibold tracking-wide text-black dark:text-gray-100">
-        Data Jam Pelajaran
-      </h2>
+      <h2 class="text-2xl font-semibold tracking-wide text-black dark:text-gray-100">Data Kelas</h2>
       <button
         @click="tambahBaru"
         class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md shadow"
@@ -62,7 +10,6 @@ onBeforeUnmount(() => {
       </button>
     </div>
 
-    <!-- TABEL -->
     <div
       class="overflow-x-auto bg-white dark:bg-gray-900 rounded shadow border border-gray-200 dark:border-gray-700"
     >
@@ -70,39 +17,32 @@ onBeforeUnmount(() => {
         <thead class="bg-gray-100 dark:bg-gray-800 text-left">
           <tr>
             <th class="p-3 border">No</th>
-            <th class="p-3 border">Hari</th>
-            <th class="p-3 border">Jam Mulai</th>
-            <th class="p-3 border">Jam Selesai</th>
-            <th class="p-3 border">Mapel</th>
-            <th class="p-3 border">Guru</th>
-            <th class="p-3 border">Kelas</th>
+            <th class="p-3 border">Nama Kelas</th>
+            <th class="p-3 border">Kode</th>
+            <th class="p-3 border">Kapasitas</th>
           </tr>
         </thead>
         <tbody>
           <tr
             v-for="(item, index) in data"
-            :key="item.id_jam"
+            :key="item.id"
             @click="pilihItem(item)"
             :class="[
               'cursor-pointer transition',
-              selectedItem?.id_jam === item.id_jam
+              selectedItem?.id === item.id
                 ? 'bg-blue-100 dark:bg-blue-900/40'
                 : 'hover:bg-gray-50 dark:hover:bg-gray-800',
             ]"
           >
             <td class="p-3 border">{{ index + 1 }}</td>
-            <td class="p-3 border">{{ item.hari }}</td>
-            <td class="p-3 border">{{ item.jam_mulai }}</td>
-            <td class="p-3 border">{{ item.jam_selesai }}</td>
-            <td class="p-3 border">{{ mapelList[item.id_mapel - 1] }}</td>
-            <td class="p-3 border">{{ guruList[item.id_guru - 1] }}</td>
-            <td class="p-3 border">{{ kelasList[item.id_kelas - 1] }}</td>
+            <td class="p-3 border">{{ item.nama_kelas }}</td>
+            <td class="p-3 border">{{ item.kode_kelas }}</td>
+            <td class="p-3 border">{{ item.kapasitas }}</td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <!-- TOMBOL AKSI -->
     <transition name="fade-slide">
       <div v-if="selectedItem" ref="actionRef" class="mt-4 flex flex-wrap gap-2 items-center">
         <button
@@ -112,7 +52,7 @@ onBeforeUnmount(() => {
           Edit
         </button>
         <button
-          @click="(hapusItem(selectedItem.id_jam), clearSelected())"
+          @click="(hapusItem(selectedItem.id), clearSelected())"
           class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
         >
           Hapus
@@ -132,22 +72,61 @@ onBeforeUnmount(() => {
       </div>
     </transition>
 
-    <!-- MODAL -->
-    <ModalForm
+    <ModalFormKelas
       :show="showForm"
       :mode="mode"
       :readonly="readonly"
       :form="form"
       :errors="errors"
-      :hariList="hariList"
-      :mapelList="mapelList"
-      :guruList="guruList"
-      :kelasList="kelasList"
       @cancel="batal"
       @save="simpan"
     />
   </div>
 </template>
+
+<script setup>
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+import useKelas from '@/composables/useKelas'
+import ModalFormKelas from '@/components/ModalFormKelas.vue'
+
+const {
+  data,
+  showForm,
+  mode,
+  readonly,
+  form,
+  errors,
+  selectedItem,
+  tambahBaru,
+  editItem,
+  lihatItem,
+  hapusItem,
+  simpan,
+  batal,
+  pilihItem,
+  clearSelected,
+} = useKelas()
+
+const actionRef = ref(null)
+
+function handleClickOutside(event) {
+  if (
+    actionRef.value &&
+    !actionRef.value.contains(event.target) &&
+    !event.target.closest('table') &&
+    !event.target.closest('.modal')
+  ) {
+    clearSelected()
+  }
+}
+
+onMounted(() => {
+  document.addEventListener('click', handleClickOutside)
+})
+onBeforeUnmount(() => {
+  document.removeEventListener('click', handleClickOutside)
+})
+</script>
 
 <style scoped>
 .fade-slide-enter-active,
