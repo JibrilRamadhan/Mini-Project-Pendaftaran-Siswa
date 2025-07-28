@@ -4,9 +4,7 @@
   >
     <button class="md:hidden" @click="$emit('toggleSidebar')">☰</button>
     <h1 class="text-lg font-semibold text-blue-800">Sistem Pendaftaran Siswa</h1>
-    <div class="text-sm text-gray-600">
-      👤 {{ currentUser?.username }} ({{ currentUser?.role }})
-    </div>
+    <div class="text-sm text-gray-600">{{ currentUser?.username }} ({{ currentUser?.role }})</div>
   </header>
 </template>
 
