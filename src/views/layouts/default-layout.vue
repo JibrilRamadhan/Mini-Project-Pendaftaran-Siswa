@@ -12,9 +12,9 @@
 </template>
 
 <script setup>
-import Navbar from '@/components/navbar.vue'
-import Sidebar from '@/components/sidebar.vue'
-import Footer from '@/components/footer.vue'
+import Navbar from '@/components/layout/navbar.vue'
+import Sidebar from '@/components/layout/sidebar.vue'
+import Footer from '@/components/layout/footer.vue'
 import { ref, onMounted } from 'vue'
 
 const showSidebar = ref(true)

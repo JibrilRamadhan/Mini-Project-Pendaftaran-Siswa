@@ -1,0 +1,52 @@
+[
+  {
+    "id_guru": 1,
+    "nama_guru": "Oliver Bennett",
+    "nip": "198203150001",
+    "jenis_kelamin": "Laki-laki",
+    "tgl_lahir": "1982-03-15",
+    "alamat": "123 Elm St",
+    "no_telp": "081122334455",
+    "email": "oliver@guru.sch.id"
+  },
+  {
+    "id_guru": 2,
+    "nama_guru": "Sophia Laurent",
+    "nip": "198706280002",
+    "jenis_kelamin": "Perempuan",
+    "tgl_lahir": "1987-06-28",
+    "alamat": "45 Rue Paris",
+    "no_telp": "082233445566",
+    "email": "sophia@guru.sch.id"
+  },
+  {
+    "id_guru": 3,
+    "nama_guru": "Theo Blackwood",
+    "nip": "197912050003",
+    "jenis_kelamin": "Laki-laki",
+    "tgl_lahir": "1979-12-05",
+    "alamat": "78 Oak Ave",
+    "no_telp": "083344556677",
+    "email": "theo@guru.sch.id"
+  },
+  {
+    "id_guru": 4,
+    "nama_guru": "Isabella Strauss",
+    "nip": "198504220004",
+    "jenis_kelamin": "Perempuan",
+    "tgl_lahir": "1985-04-22",
+    "alamat": "9 Vienna",
+    "no_telp": "084455667788",
+    "email": "isabella@guru.sch.id"
+  },
+  {
+    "id_guru": 5,
+    "nama_guru": "Sebastian Whitmore",
+    "nip": "198601170005",
+    "jenis_kelamin": "Laki-laki",
+    "tgl_lahir": "1986-01-17",
+    "alamat": "302 Dublin",
+    "no_telp": "085566778899",
+    "email": "sebastian@guru.sch.id"
+  }
+]

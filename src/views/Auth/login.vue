@@ -42,7 +42,7 @@ function login() {
 
   if (found) {
     // ⬅️ Redirect ke dashboard setelah login berhasil
-    router.push('/siswa')
+    router.push('/guru')
   } else {
     error.value = 'Username atau password salah'
   }
