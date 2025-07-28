@@ -1,0 +1,42 @@
+[
+  {
+    "kode_kelas": "KLS001",
+    "id_guru": "G123",
+    "tanggal": "2025-07-28",
+    "absen": [
+      {
+        "nisn": "1234567890",
+        "nama": "Ahmad",
+        "status": "Hadir"
+      },
+      {
+        "nisn": "2342342",
+        "nama": "Alexan",
+        "status": "Hadir"
+      },
+      {
+        "nisn": "123455",
+        "nama": "Are",
+        "status": "Sakit"
+
+      }
+    ]
+  },
+  {
+    "kode_kelas": "KLS002",
+    "id_guru": "G456",
+    "tanggal": "2025-07-29",
+    "absen": [
+      {
+        "nisn": "1234567890",
+        "nama": "Tule",
+        "status": "Izin"
+      },
+      {
+        "nisn": "2310242",
+        "nama": "Alexis",
+        "status": "Hadir"
+      }
+    ]
+  }
+]
