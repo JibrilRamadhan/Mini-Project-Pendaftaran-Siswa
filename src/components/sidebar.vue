@@ -14,8 +14,13 @@
               to="/siswa"
               class="flex items-center p-2 text-gray-700 rounded-lg hover:bg-blue-100 hover:text-blue-700 transition"
             >
-            
               <span>Siswa</span>
+            </router-link>
+            <router-link
+              to="/absen"
+              class="flex items-center p-2 text-gray-700 rounded-lg hover:bg-blue-100 hover:text-blue-700 transition"
+            >
+              <span>Absen</span>
             </router-link>
           </li>
         </ul>
