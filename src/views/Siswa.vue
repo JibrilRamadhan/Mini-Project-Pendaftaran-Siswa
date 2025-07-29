@@ -60,20 +60,3 @@
     </table>
   </div>
 </template>
-
-<script setup>
-import { useSiswa } from "@/composable/siswa/useSiswa";
-import ModalFormSiswa from "@/components/ModalFormSiswa.vue";
-
-const {
-  showForm,
-  form,
-  siswaList,
-  editIndex,
-  bukaForm,
-  tambahSiswa,
-  editSiswa,
-  hapusSiswa,
-  resetForm,
-} = useSiswa();
-</script>
