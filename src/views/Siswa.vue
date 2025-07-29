@@ -16,7 +16,6 @@
       :tambahSiswa="tambahSiswa"
       :resetForm="resetForm"
     />
-
     <table class="w-full border-collapse shadow-lg">
       <thead class="bg-blue-100">
         <tr>
@@ -60,3 +59,20 @@
     </table>
   </div>
 </template>
+
+<script setup>
+import { useSiswa } from '@/composable/siswa/useSiswa'
+import ModalFormSiswa from '@/components/ModalFormSiswa.vue'
+
+const {
+  showForm,
+  form,
+  siswaList,
+  editIndex,
+  bukaForm,
+  tambahSiswa,
+  editSiswa,
+  hapusSiswa,
+  resetForm,
+} = useSiswa()
+</script>
