@@ -5,7 +5,7 @@
       <!-- Header -->
       <div class="flex items-center justify-between mb-12">
         <h1 class="text-5xl md:text-6xl font-extrabold text-gray-800 tracking-tight">
-          📚 Data Mata Pelajaran
+          📚 DATA MATA PELAJARAN
         </h1>
         <ButtonAdd class="text-xl px-8 py-4 shadow-md hover:shadow-lg" @click="openModal">
           + Tambah Mapel
