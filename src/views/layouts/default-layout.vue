@@ -1,9 +1,9 @@
 <template>
   <div class="min-h-screen flex flex-col">
     <Navbar :currentUser="user" @toggleSidebar="toggleSidebar" />
-    <div class="flex flex-1 pt-16">
+    <div class="flex flex-1">
       <Sidebar v-if="showSidebar" />
-      <main class="flex-1 bg-white dark:bg-gray-900 p-6 ml-0 md:ml-64">
+      <main class="flex-1 bg-white dark:bg-gray-900 p-1 ml-0 md:ml-64">
         <router-view />
       </main>
     </div>

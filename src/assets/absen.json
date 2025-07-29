@@ -1,0 +1,3202 @@
+[
+  {
+    "id": 1,
+    "tanggal": "2025-07-01",
+    "id_kelas": 1,
+    "id_siswa": 1,
+    "id_wali": 1,
+    "status": "Sakit"
+  },
+  {
+    "id": 2,
+    "tanggal": "2025-07-01",
+    "id_kelas": 1,
+    "id_siswa": 2,
+    "id_wali": 1,
+    "status": "Hadir"
+  },
+  {
+    "id": 3,
+    "tanggal": "2025-07-01",
+    "id_kelas": 1,
+    "id_siswa": 3,
+    "id_wali": 1,
+    "status": "Alpha"
+  },
+  {
+    "id": 4,
+    "tanggal": "2025-07-01",
+    "id_kelas": 1,
+    "id_siswa": 4,
+    "id_wali": 1,
+    "status": "Hadir"
+  },
+  {
+    "id": 5,
+    "tanggal": "2025-07-01",
+    "id_kelas": 1,
+    "id_siswa": 5,
+    "id_wali": 1,
+    "status": "Alpha"
+  },
+  {
+    "id": 6,
+    "tanggal": "2025-07-01",
+    "id_kelas": 1,
+    "id_siswa": 6,
+    "id_wali": 1,
+    "status": "Alpha"
+  },
+  {
+    "id": 7,
+    "tanggal": "2025-07-01",
+    "id_kelas": 1,
+    "id_siswa": 7,
+    "id_wali": 1,
+    "status": "Izin"
+  },
+  {
+    "id": 8,
+    "tanggal": "2025-07-01",
+    "id_kelas": 1,
+    "id_siswa": 8,
+    "id_wali": 1,
+    "status": "Hadir"
+  },
+  {
+    "id": 9,
+    "tanggal": "2025-07-01",
+    "id_kelas": 1,
+    "id_siswa": 9,
+    "id_wali": 1,
+    "status": "Alpha"
+  },
+  {
+    "id": 10,
+    "tanggal": "2025-07-01",
+    "id_kelas": 1,
+    "id_siswa": 10,
+    "id_wali": 1,
+    "status": "Izin"
+  },
+  {
+    "id": 11,
+    "tanggal": "2025-07-01",
+    "id_kelas": 2,
+    "id_siswa": 11,
+    "id_wali": 2,
+    "status": "Izin"
+  },
+  {
+    "id": 12,
+    "tanggal": "2025-07-01",
+    "id_kelas": 2,
+    "id_siswa": 12,
+    "id_wali": 2,
+    "status": "Alpha"
+  },
+  {
+    "id": 13,
+    "tanggal": "2025-07-01",
+    "id_kelas": 2,
+    "id_siswa": 13,
+    "id_wali": 2,
+    "status": "Hadir"
+  },
+  {
+    "id": 14,
+    "tanggal": "2025-07-01",
+    "id_kelas": 2,
+    "id_siswa": 14,
+    "id_wali": 2,
+    "status": "Sakit"
+  },
+  {
+    "id": 15,
+    "tanggal": "2025-07-01",
+    "id_kelas": 2,
+    "id_siswa": 15,
+    "id_wali": 2,
+    "status": "Hadir"
+  },
+  {
+    "id": 16,
+    "tanggal": "2025-07-01",
+    "id_kelas": 2,
+    "id_siswa": 16,
+    "id_wali": 2,
+    "status": "Hadir"
+  },
+  {
+    "id": 17,
+    "tanggal": "2025-07-01",
+    "id_kelas": 2,
+    "id_siswa": 17,
+    "id_wali": 2,
+    "status": "Sakit"
+  },
+  {
+    "id": 18,
+    "tanggal": "2025-07-01",
+    "id_kelas": 2,
+    "id_siswa": 18,
+    "id_wali": 2,
+    "status": "Hadir"
+  },
+  {
+    "id": 19,
+    "tanggal": "2025-07-01",
+    "id_kelas": 2,
+    "id_siswa": 19,
+    "id_wali": 2,
+    "status": "Alpha"
+  },
+  {
+    "id": 20,
+    "tanggal": "2025-07-01",
+    "id_kelas": 2,
+    "id_siswa": 20,
+    "id_wali": 2,
+    "status": "Alpha"
+  },
+  {
+    "id": 21,
+    "tanggal": "2025-07-01",
+    "id_kelas": 3,
+    "id_siswa": 21,
+    "id_wali": 3,
+    "status": "Sakit"
+  },
+  {
+    "id": 22,
+    "tanggal": "2025-07-01",
+    "id_kelas": 3,
+    "id_siswa": 22,
+    "id_wali": 3,
+    "status": "Sakit"
+  },
+  {
+    "id": 23,
+    "tanggal": "2025-07-01",
+    "id_kelas": 3,
+    "id_siswa": 23,
+    "id_wali": 3,
+    "status": "Sakit"
+  },
+  {
+    "id": 24,
+    "tanggal": "2025-07-01",
+    "id_kelas": 3,
+    "id_siswa": 24,
+    "id_wali": 3,
+    "status": "Sakit"
+  },
+  {
+    "id": 25,
+    "tanggal": "2025-07-01",
+    "id_kelas": 3,
+    "id_siswa": 25,
+    "id_wali": 3,
+    "status": "Izin"
+  },
+  {
+    "id": 26,
+    "tanggal": "2025-07-01",
+    "id_kelas": 3,
+    "id_siswa": 26,
+    "id_wali": 3,
+    "status": "Hadir"
+  },
+  {
+    "id": 27,
+    "tanggal": "2025-07-01",
+    "id_kelas": 3,
+    "id_siswa": 27,
+    "id_wali": 3,
+    "status": "Alpha"
+  },
+  {
+    "id": 28,
+    "tanggal": "2025-07-01",
+    "id_kelas": 3,
+    "id_siswa": 28,
+    "id_wali": 3,
+    "status": "Hadir"
+  },
+  {
+    "id": 29,
+    "tanggal": "2025-07-01",
+    "id_kelas": 3,
+    "id_siswa": 29,
+    "id_wali": 3,
+    "status": "Hadir"
+  },
+  {
+    "id": 30,
+    "tanggal": "2025-07-01",
+    "id_kelas": 3,
+    "id_siswa": 30,
+    "id_wali": 3,
+    "status": "Alpha"
+  },
+  {
+    "id": 31,
+    "tanggal": "2025-07-01",
+    "id_kelas": 4,
+    "id_siswa": 31,
+    "id_wali": 4,
+    "status": "Sakit"
+  },
+  {
+    "id": 32,
+    "tanggal": "2025-07-01",
+    "id_kelas": 4,
+    "id_siswa": 32,
+    "id_wali": 4,
+    "status": "Sakit"
+  },
+  {
+    "id": 33,
+    "tanggal": "2025-07-01",
+    "id_kelas": 4,
+    "id_siswa": 33,
+    "id_wali": 4,
+    "status": "Sakit"
+  },
+  {
+    "id": 34,
+    "tanggal": "2025-07-01",
+    "id_kelas": 4,
+    "id_siswa": 34,
+    "id_wali": 4,
+    "status": "Sakit"
+  },
+  {
+    "id": 35,
+    "tanggal": "2025-07-01",
+    "id_kelas": 4,
+    "id_siswa": 35,
+    "id_wali": 4,
+    "status": "Sakit"
+  },
+  {
+    "id": 36,
+    "tanggal": "2025-07-01",
+    "id_kelas": 4,
+    "id_siswa": 36,
+    "id_wali": 4,
+    "status": "Hadir"
+  },
+  {
+    "id": 37,
+    "tanggal": "2025-07-01",
+    "id_kelas": 4,
+    "id_siswa": 37,
+    "id_wali": 4,
+    "status": "Hadir"
+  },
+  {
+    "id": 38,
+    "tanggal": "2025-07-01",
+    "id_kelas": 4,
+    "id_siswa": 38,
+    "id_wali": 4,
+    "status": "Sakit"
+  },
+  {
+    "id": 39,
+    "tanggal": "2025-07-01",
+    "id_kelas": 4,
+    "id_siswa": 39,
+    "id_wali": 4,
+    "status": "Sakit"
+  },
+  {
+    "id": 40,
+    "tanggal": "2025-07-01",
+    "id_kelas": 4,
+    "id_siswa": 40,
+    "id_wali": 4,
+    "status": "Alpha"
+  },
+  {
+    "id": 41,
+    "tanggal": "2025-07-01",
+    "id_kelas": 5,
+    "id_siswa": 41,
+    "id_wali": 5,
+    "status": "Sakit"
+  },
+  {
+    "id": 42,
+    "tanggal": "2025-07-01",
+    "id_kelas": 5,
+    "id_siswa": 42,
+    "id_wali": 5,
+    "status": "Sakit"
+  },
+  {
+    "id": 43,
+    "tanggal": "2025-07-01",
+    "id_kelas": 5,
+    "id_siswa": 43,
+    "id_wali": 5,
+    "status": "Hadir"
+  },
+  {
+    "id": 44,
+    "tanggal": "2025-07-01",
+    "id_kelas": 5,
+    "id_siswa": 44,
+    "id_wali": 5,
+    "status": "Alpha"
+  },
+  {
+    "id": 45,
+    "tanggal": "2025-07-01",
+    "id_kelas": 5,
+    "id_siswa": 45,
+    "id_wali": 5,
+    "status": "Izin"
+  },
+  {
+    "id": 46,
+    "tanggal": "2025-07-01",
+    "id_kelas": 5,
+    "id_siswa": 46,
+    "id_wali": 5,
+    "status": "Alpha"
+  },
+  {
+    "id": 47,
+    "tanggal": "2025-07-01",
+    "id_kelas": 5,
+    "id_siswa": 47,
+    "id_wali": 5,
+    "status": "Alpha"
+  },
+  {
+    "id": 48,
+    "tanggal": "2025-07-01",
+    "id_kelas": 5,
+    "id_siswa": 48,
+    "id_wali": 5,
+    "status": "Izin"
+  },
+  {
+    "id": 49,
+    "tanggal": "2025-07-01",
+    "id_kelas": 5,
+    "id_siswa": 49,
+    "id_wali": 5,
+    "status": "Izin"
+  },
+  {
+    "id": 50,
+    "tanggal": "2025-07-01",
+    "id_kelas": 5,
+    "id_siswa": 50,
+    "id_wali": 5,
+    "status": "Hadir"
+  },
+  {
+    "id": 51,
+    "tanggal": "2025-07-01",
+    "id_kelas": 6,
+    "id_siswa": 51,
+    "id_wali": 1,
+    "status": "Izin"
+  },
+  {
+    "id": 52,
+    "tanggal": "2025-07-01",
+    "id_kelas": 6,
+    "id_siswa": 52,
+    "id_wali": 1,
+    "status": "Sakit"
+  },
+  {
+    "id": 53,
+    "tanggal": "2025-07-01",
+    "id_kelas": 6,
+    "id_siswa": 53,
+    "id_wali": 1,
+    "status": "Izin"
+  },
+  {
+    "id": 54,
+    "tanggal": "2025-07-01",
+    "id_kelas": 6,
+    "id_siswa": 54,
+    "id_wali": 1,
+    "status": "Hadir"
+  },
+  {
+    "id": 55,
+    "tanggal": "2025-07-01",
+    "id_kelas": 6,
+    "id_siswa": 55,
+    "id_wali": 1,
+    "status": "Sakit"
+  },
+  {
+    "id": 56,
+    "tanggal": "2025-07-01",
+    "id_kelas": 6,
+    "id_siswa": 56,
+    "id_wali": 1,
+    "status": "Hadir"
+  },
+  {
+    "id": 57,
+    "tanggal": "2025-07-01",
+    "id_kelas": 6,
+    "id_siswa": 57,
+    "id_wali": 1,
+    "status": "Sakit"
+  },
+  {
+    "id": 58,
+    "tanggal": "2025-07-01",
+    "id_kelas": 6,
+    "id_siswa": 58,
+    "id_wali": 1,
+    "status": "Sakit"
+  },
+  {
+    "id": 59,
+    "tanggal": "2025-07-01",
+    "id_kelas": 6,
+    "id_siswa": 59,
+    "id_wali": 1,
+    "status": "Alpha"
+  },
+  {
+    "id": 60,
+    "tanggal": "2025-07-01",
+    "id_kelas": 6,
+    "id_siswa": 60,
+    "id_wali": 1,
+    "status": "Sakit"
+  },
+  {
+    "id": 61,
+    "tanggal": "2025-07-01",
+    "id_kelas": 7,
+    "id_siswa": 61,
+    "id_wali": 2,
+    "status": "Hadir"
+  },
+  {
+    "id": 62,
+    "tanggal": "2025-07-01",
+    "id_kelas": 7,
+    "id_siswa": 62,
+    "id_wali": 2,
+    "status": "Izin"
+  },
+  {
+    "id": 63,
+    "tanggal": "2025-07-01",
+    "id_kelas": 7,
+    "id_siswa": 63,
+    "id_wali": 2,
+    "status": "Izin"
+  },
+  {
+    "id": 64,
+    "tanggal": "2025-07-01",
+    "id_kelas": 7,
+    "id_siswa": 64,
+    "id_wali": 2,
+    "status": "Izin"
+  },
+  {
+    "id": 65,
+    "tanggal": "2025-07-01",
+    "id_kelas": 7,
+    "id_siswa": 65,
+    "id_wali": 2,
+    "status": "Izin"
+  },
+  {
+    "id": 66,
+    "tanggal": "2025-07-01",
+    "id_kelas": 7,
+    "id_siswa": 66,
+    "id_wali": 2,
+    "status": "Hadir"
+  },
+  {
+    "id": 67,
+    "tanggal": "2025-07-01",
+    "id_kelas": 7,
+    "id_siswa": 67,
+    "id_wali": 2,
+    "status": "Izin"
+  },
+  {
+    "id": 68,
+    "tanggal": "2025-07-01",
+    "id_kelas": 7,
+    "id_siswa": 68,
+    "id_wali": 2,
+    "status": "Sakit"
+  },
+  {
+    "id": 69,
+    "tanggal": "2025-07-01",
+    "id_kelas": 7,
+    "id_siswa": 69,
+    "id_wali": 2,
+    "status": "Sakit"
+  },
+  {
+    "id": 70,
+    "tanggal": "2025-07-01",
+    "id_kelas": 7,
+    "id_siswa": 70,
+    "id_wali": 2,
+    "status": "Izin"
+  },
+  {
+    "id": 71,
+    "tanggal": "2025-07-01",
+    "id_kelas": 8,
+    "id_siswa": 71,
+    "id_wali": 3,
+    "status": "Izin"
+  },
+  {
+    "id": 72,
+    "tanggal": "2025-07-01",
+    "id_kelas": 8,
+    "id_siswa": 72,
+    "id_wali": 3,
+    "status": "Izin"
+  },
+  {
+    "id": 73,
+    "tanggal": "2025-07-01",
+    "id_kelas": 8,
+    "id_siswa": 73,
+    "id_wali": 3,
+    "status": "Sakit"
+  },
+  {
+    "id": 74,
+    "tanggal": "2025-07-01",
+    "id_kelas": 8,
+    "id_siswa": 74,
+    "id_wali": 3,
+    "status": "Izin"
+  },
+  {
+    "id": 75,
+    "tanggal": "2025-07-01",
+    "id_kelas": 8,
+    "id_siswa": 75,
+    "id_wali": 3,
+    "status": "Sakit"
+  },
+  {
+    "id": 76,
+    "tanggal": "2025-07-01",
+    "id_kelas": 8,
+    "id_siswa": 76,
+    "id_wali": 3,
+    "status": "Hadir"
+  },
+  {
+    "id": 77,
+    "tanggal": "2025-07-01",
+    "id_kelas": 8,
+    "id_siswa": 77,
+    "id_wali": 3,
+    "status": "Alpha"
+  },
+  {
+    "id": 78,
+    "tanggal": "2025-07-01",
+    "id_kelas": 8,
+    "id_siswa": 78,
+    "id_wali": 3,
+    "status": "Hadir"
+  },
+  {
+    "id": 79,
+    "tanggal": "2025-07-01",
+    "id_kelas": 8,
+    "id_siswa": 79,
+    "id_wali": 3,
+    "status": "Sakit"
+  },
+  {
+    "id": 80,
+    "tanggal": "2025-07-01",
+    "id_kelas": 8,
+    "id_siswa": 80,
+    "id_wali": 3,
+    "status": "Alpha"
+  },
+  {
+    "id": 81,
+    "tanggal": "2025-07-02",
+    "id_kelas": 1,
+    "id_siswa": 81,
+    "id_wali": 1,
+    "status": "Sakit"
+  },
+  {
+    "id": 82,
+    "tanggal": "2025-07-02",
+    "id_kelas": 1,
+    "id_siswa": 82,
+    "id_wali": 1,
+    "status": "Alpha"
+  },
+  {
+    "id": 83,
+    "tanggal": "2025-07-02",
+    "id_kelas": 1,
+    "id_siswa": 83,
+    "id_wali": 1,
+    "status": "Sakit"
+  },
+  {
+    "id": 84,
+    "tanggal": "2025-07-02",
+    "id_kelas": 1,
+    "id_siswa": 84,
+    "id_wali": 1,
+    "status": "Sakit"
+  },
+  {
+    "id": 85,
+    "tanggal": "2025-07-02",
+    "id_kelas": 1,
+    "id_siswa": 85,
+    "id_wali": 1,
+    "status": "Hadir"
+  },
+  {
+    "id": 86,
+    "tanggal": "2025-07-02",
+    "id_kelas": 1,
+    "id_siswa": 86,
+    "id_wali": 1,
+    "status": "Izin"
+  },
+  {
+    "id": 87,
+    "tanggal": "2025-07-02",
+    "id_kelas": 1,
+    "id_siswa": 87,
+    "id_wali": 1,
+    "status": "Alpha"
+  },
+  {
+    "id": 88,
+    "tanggal": "2025-07-02",
+    "id_kelas": 1,
+    "id_siswa": 88,
+    "id_wali": 1,
+    "status": "Alpha"
+  },
+  {
+    "id": 89,
+    "tanggal": "2025-07-02",
+    "id_kelas": 1,
+    "id_siswa": 89,
+    "id_wali": 1,
+    "status": "Izin"
+  },
+  {
+    "id": 90,
+    "tanggal": "2025-07-02",
+    "id_kelas": 1,
+    "id_siswa": 90,
+    "id_wali": 1,
+    "status": "Alpha"
+  },
+  {
+    "id": 91,
+    "tanggal": "2025-07-02",
+    "id_kelas": 2,
+    "id_siswa": 91,
+    "id_wali": 2,
+    "status": "Alpha"
+  },
+  {
+    "id": 92,
+    "tanggal": "2025-07-02",
+    "id_kelas": 2,
+    "id_siswa": 92,
+    "id_wali": 2,
+    "status": "Alpha"
+  },
+  {
+    "id": 93,
+    "tanggal": "2025-07-02",
+    "id_kelas": 2,
+    "id_siswa": 93,
+    "id_wali": 2,
+    "status": "Izin"
+  },
+  {
+    "id": 94,
+    "tanggal": "2025-07-02",
+    "id_kelas": 2,
+    "id_siswa": 94,
+    "id_wali": 2,
+    "status": "Hadir"
+  },
+  {
+    "id": 95,
+    "tanggal": "2025-07-02",
+    "id_kelas": 2,
+    "id_siswa": 95,
+    "id_wali": 2,
+    "status": "Alpha"
+  },
+  {
+    "id": 96,
+    "tanggal": "2025-07-02",
+    "id_kelas": 2,
+    "id_siswa": 96,
+    "id_wali": 2,
+    "status": "Hadir"
+  },
+  {
+    "id": 97,
+    "tanggal": "2025-07-02",
+    "id_kelas": 2,
+    "id_siswa": 97,
+    "id_wali": 2,
+    "status": "Izin"
+  },
+  {
+    "id": 98,
+    "tanggal": "2025-07-02",
+    "id_kelas": 2,
+    "id_siswa": 98,
+    "id_wali": 2,
+    "status": "Hadir"
+  },
+  {
+    "id": 99,
+    "tanggal": "2025-07-02",
+    "id_kelas": 2,
+    "id_siswa": 99,
+    "id_wali": 2,
+    "status": "Izin"
+  },
+  {
+    "id": 100,
+    "tanggal": "2025-07-02",
+    "id_kelas": 2,
+    "id_siswa": 100,
+    "id_wali": 2,
+    "status": "Izin"
+  },
+  {
+    "id": 101,
+    "tanggal": "2025-07-02",
+    "id_kelas": 3,
+    "id_siswa": 101,
+    "id_wali": 3,
+    "status": "Hadir"
+  },
+  {
+    "id": 102,
+    "tanggal": "2025-07-02",
+    "id_kelas": 3,
+    "id_siswa": 102,
+    "id_wali": 3,
+    "status": "Hadir"
+  },
+  {
+    "id": 103,
+    "tanggal": "2025-07-02",
+    "id_kelas": 3,
+    "id_siswa": 103,
+    "id_wali": 3,
+    "status": "Sakit"
+  },
+  {
+    "id": 104,
+    "tanggal": "2025-07-02",
+    "id_kelas": 3,
+    "id_siswa": 104,
+    "id_wali": 3,
+    "status": "Alpha"
+  },
+  {
+    "id": 105,
+    "tanggal": "2025-07-02",
+    "id_kelas": 3,
+    "id_siswa": 105,
+    "id_wali": 3,
+    "status": "Hadir"
+  },
+  {
+    "id": 106,
+    "tanggal": "2025-07-02",
+    "id_kelas": 3,
+    "id_siswa": 106,
+    "id_wali": 3,
+    "status": "Sakit"
+  },
+  {
+    "id": 107,
+    "tanggal": "2025-07-02",
+    "id_kelas": 3,
+    "id_siswa": 107,
+    "id_wali": 3,
+    "status": "Izin"
+  },
+  {
+    "id": 108,
+    "tanggal": "2025-07-02",
+    "id_kelas": 3,
+    "id_siswa": 108,
+    "id_wali": 3,
+    "status": "Hadir"
+  },
+  {
+    "id": 109,
+    "tanggal": "2025-07-02",
+    "id_kelas": 3,
+    "id_siswa": 109,
+    "id_wali": 3,
+    "status": "Hadir"
+  },
+  {
+    "id": 110,
+    "tanggal": "2025-07-02",
+    "id_kelas": 3,
+    "id_siswa": 110,
+    "id_wali": 3,
+    "status": "Izin"
+  },
+  {
+    "id": 111,
+    "tanggal": "2025-07-02",
+    "id_kelas": 4,
+    "id_siswa": 111,
+    "id_wali": 4,
+    "status": "Alpha"
+  },
+  {
+    "id": 112,
+    "tanggal": "2025-07-02",
+    "id_kelas": 4,
+    "id_siswa": 112,
+    "id_wali": 4,
+    "status": "Sakit"
+  },
+  {
+    "id": 113,
+    "tanggal": "2025-07-02",
+    "id_kelas": 4,
+    "id_siswa": 113,
+    "id_wali": 4,
+    "status": "Alpha"
+  },
+  {
+    "id": 114,
+    "tanggal": "2025-07-02",
+    "id_kelas": 4,
+    "id_siswa": 114,
+    "id_wali": 4,
+    "status": "Izin"
+  },
+  {
+    "id": 115,
+    "tanggal": "2025-07-02",
+    "id_kelas": 4,
+    "id_siswa": 115,
+    "id_wali": 4,
+    "status": "Alpha"
+  },
+  {
+    "id": 116,
+    "tanggal": "2025-07-02",
+    "id_kelas": 4,
+    "id_siswa": 116,
+    "id_wali": 4,
+    "status": "Sakit"
+  },
+  {
+    "id": 117,
+    "tanggal": "2025-07-02",
+    "id_kelas": 4,
+    "id_siswa": 117,
+    "id_wali": 4,
+    "status": "Alpha"
+  },
+  {
+    "id": 118,
+    "tanggal": "2025-07-02",
+    "id_kelas": 4,
+    "id_siswa": 118,
+    "id_wali": 4,
+    "status": "Sakit"
+  },
+  {
+    "id": 119,
+    "tanggal": "2025-07-02",
+    "id_kelas": 4,
+    "id_siswa": 119,
+    "id_wali": 4,
+    "status": "Sakit"
+  },
+  {
+    "id": 120,
+    "tanggal": "2025-07-02",
+    "id_kelas": 4,
+    "id_siswa": 120,
+    "id_wali": 4,
+    "status": "Hadir"
+  },
+  {
+    "id": 121,
+    "tanggal": "2025-07-02",
+    "id_kelas": 5,
+    "id_siswa": 121,
+    "id_wali": 5,
+    "status": "Alpha"
+  },
+  {
+    "id": 122,
+    "tanggal": "2025-07-02",
+    "id_kelas": 5,
+    "id_siswa": 122,
+    "id_wali": 5,
+    "status": "Alpha"
+  },
+  {
+    "id": 123,
+    "tanggal": "2025-07-02",
+    "id_kelas": 5,
+    "id_siswa": 123,
+    "id_wali": 5,
+    "status": "Alpha"
+  },
+  {
+    "id": 124,
+    "tanggal": "2025-07-02",
+    "id_kelas": 5,
+    "id_siswa": 124,
+    "id_wali": 5,
+    "status": "Izin"
+  },
+  {
+    "id": 125,
+    "tanggal": "2025-07-02",
+    "id_kelas": 5,
+    "id_siswa": 125,
+    "id_wali": 5,
+    "status": "Izin"
+  },
+  {
+    "id": 126,
+    "tanggal": "2025-07-02",
+    "id_kelas": 5,
+    "id_siswa": 126,
+    "id_wali": 5,
+    "status": "Sakit"
+  },
+  {
+    "id": 127,
+    "tanggal": "2025-07-02",
+    "id_kelas": 5,
+    "id_siswa": 127,
+    "id_wali": 5,
+    "status": "Izin"
+  },
+  {
+    "id": 128,
+    "tanggal": "2025-07-02",
+    "id_kelas": 5,
+    "id_siswa": 128,
+    "id_wali": 5,
+    "status": "Sakit"
+  },
+  {
+    "id": 129,
+    "tanggal": "2025-07-02",
+    "id_kelas": 5,
+    "id_siswa": 129,
+    "id_wali": 5,
+    "status": "Hadir"
+  },
+  {
+    "id": 130,
+    "tanggal": "2025-07-02",
+    "id_kelas": 5,
+    "id_siswa": 130,
+    "id_wali": 5,
+    "status": "Izin"
+  },
+  {
+    "id": 131,
+    "tanggal": "2025-07-02",
+    "id_kelas": 6,
+    "id_siswa": 131,
+    "id_wali": 1,
+    "status": "Izin"
+  },
+  {
+    "id": 132,
+    "tanggal": "2025-07-02",
+    "id_kelas": 6,
+    "id_siswa": 132,
+    "id_wali": 1,
+    "status": "Izin"
+  },
+  {
+    "id": 133,
+    "tanggal": "2025-07-02",
+    "id_kelas": 6,
+    "id_siswa": 133,
+    "id_wali": 1,
+    "status": "Izin"
+  },
+  {
+    "id": 134,
+    "tanggal": "2025-07-02",
+    "id_kelas": 6,
+    "id_siswa": 134,
+    "id_wali": 1,
+    "status": "Hadir"
+  },
+  {
+    "id": 135,
+    "tanggal": "2025-07-02",
+    "id_kelas": 6,
+    "id_siswa": 135,
+    "id_wali": 1,
+    "status": "Alpha"
+  },
+  {
+    "id": 136,
+    "tanggal": "2025-07-02",
+    "id_kelas": 6,
+    "id_siswa": 136,
+    "id_wali": 1,
+    "status": "Sakit"
+  },
+  {
+    "id": 137,
+    "tanggal": "2025-07-02",
+    "id_kelas": 6,
+    "id_siswa": 137,
+    "id_wali": 1,
+    "status": "Izin"
+  },
+  {
+    "id": 138,
+    "tanggal": "2025-07-02",
+    "id_kelas": 6,
+    "id_siswa": 138,
+    "id_wali": 1,
+    "status": "Izin"
+  },
+  {
+    "id": 139,
+    "tanggal": "2025-07-02",
+    "id_kelas": 6,
+    "id_siswa": 139,
+    "id_wali": 1,
+    "status": "Izin"
+  },
+  {
+    "id": 140,
+    "tanggal": "2025-07-02",
+    "id_kelas": 6,
+    "id_siswa": 140,
+    "id_wali": 1,
+    "status": "Izin"
+  },
+  {
+    "id": 141,
+    "tanggal": "2025-07-02",
+    "id_kelas": 7,
+    "id_siswa": 141,
+    "id_wali": 2,
+    "status": "Izin"
+  },
+  {
+    "id": 142,
+    "tanggal": "2025-07-02",
+    "id_kelas": 7,
+    "id_siswa": 142,
+    "id_wali": 2,
+    "status": "Izin"
+  },
+  {
+    "id": 143,
+    "tanggal": "2025-07-02",
+    "id_kelas": 7,
+    "id_siswa": 143,
+    "id_wali": 2,
+    "status": "Izin"
+  },
+  {
+    "id": 144,
+    "tanggal": "2025-07-02",
+    "id_kelas": 7,
+    "id_siswa": 144,
+    "id_wali": 2,
+    "status": "Hadir"
+  },
+  {
+    "id": 145,
+    "tanggal": "2025-07-02",
+    "id_kelas": 7,
+    "id_siswa": 145,
+    "id_wali": 2,
+    "status": "Alpha"
+  },
+  {
+    "id": 146,
+    "tanggal": "2025-07-02",
+    "id_kelas": 7,
+    "id_siswa": 146,
+    "id_wali": 2,
+    "status": "Izin"
+  },
+  {
+    "id": 147,
+    "tanggal": "2025-07-02",
+    "id_kelas": 7,
+    "id_siswa": 147,
+    "id_wali": 2,
+    "status": "Alpha"
+  },
+  {
+    "id": 148,
+    "tanggal": "2025-07-02",
+    "id_kelas": 7,
+    "id_siswa": 148,
+    "id_wali": 2,
+    "status": "Sakit"
+  },
+  {
+    "id": 149,
+    "tanggal": "2025-07-02",
+    "id_kelas": 7,
+    "id_siswa": 149,
+    "id_wali": 2,
+    "status": "Hadir"
+  },
+  {
+    "id": 150,
+    "tanggal": "2025-07-02",
+    "id_kelas": 7,
+    "id_siswa": 150,
+    "id_wali": 2,
+    "status": "Alpha"
+  },
+  {
+    "id": 151,
+    "tanggal": "2025-07-02",
+    "id_kelas": 8,
+    "id_siswa": 151,
+    "id_wali": 3,
+    "status": "Alpha"
+  },
+  {
+    "id": 152,
+    "tanggal": "2025-07-02",
+    "id_kelas": 8,
+    "id_siswa": 152,
+    "id_wali": 3,
+    "status": "Sakit"
+  },
+  {
+    "id": 153,
+    "tanggal": "2025-07-02",
+    "id_kelas": 8,
+    "id_siswa": 153,
+    "id_wali": 3,
+    "status": "Alpha"
+  },
+  {
+    "id": 154,
+    "tanggal": "2025-07-02",
+    "id_kelas": 8,
+    "id_siswa": 154,
+    "id_wali": 3,
+    "status": "Izin"
+  },
+  {
+    "id": 155,
+    "tanggal": "2025-07-02",
+    "id_kelas": 8,
+    "id_siswa": 155,
+    "id_wali": 3,
+    "status": "Izin"
+  },
+  {
+    "id": 156,
+    "tanggal": "2025-07-02",
+    "id_kelas": 8,
+    "id_siswa": 156,
+    "id_wali": 3,
+    "status": "Sakit"
+  },
+  {
+    "id": 157,
+    "tanggal": "2025-07-02",
+    "id_kelas": 8,
+    "id_siswa": 157,
+    "id_wali": 3,
+    "status": "Hadir"
+  },
+  {
+    "id": 158,
+    "tanggal": "2025-07-02",
+    "id_kelas": 8,
+    "id_siswa": 158,
+    "id_wali": 3,
+    "status": "Sakit"
+  },
+  {
+    "id": 159,
+    "tanggal": "2025-07-02",
+    "id_kelas": 8,
+    "id_siswa": 159,
+    "id_wali": 3,
+    "status": "Izin"
+  },
+  {
+    "id": 160,
+    "tanggal": "2025-07-02",
+    "id_kelas": 8,
+    "id_siswa": 160,
+    "id_wali": 3,
+    "status": "Sakit"
+  },
+  {
+    "id": 161,
+    "tanggal": "2025-07-03",
+    "id_kelas": 1,
+    "id_siswa": 161,
+    "id_wali": 1,
+    "status": "Sakit"
+  },
+  {
+    "id": 162,
+    "tanggal": "2025-07-03",
+    "id_kelas": 1,
+    "id_siswa": 162,
+    "id_wali": 1,
+    "status": "Sakit"
+  },
+  {
+    "id": 163,
+    "tanggal": "2025-07-03",
+    "id_kelas": 1,
+    "id_siswa": 163,
+    "id_wali": 1,
+    "status": "Hadir"
+  },
+  {
+    "id": 164,
+    "tanggal": "2025-07-03",
+    "id_kelas": 1,
+    "id_siswa": 164,
+    "id_wali": 1,
+    "status": "Sakit"
+  },
+  {
+    "id": 165,
+    "tanggal": "2025-07-03",
+    "id_kelas": 1,
+    "id_siswa": 165,
+    "id_wali": 1,
+    "status": "Sakit"
+  },
+  {
+    "id": 166,
+    "tanggal": "2025-07-03",
+    "id_kelas": 1,
+    "id_siswa": 166,
+    "id_wali": 1,
+    "status": "Hadir"
+  },
+  {
+    "id": 167,
+    "tanggal": "2025-07-03",
+    "id_kelas": 1,
+    "id_siswa": 167,
+    "id_wali": 1,
+    "status": "Izin"
+  },
+  {
+    "id": 168,
+    "tanggal": "2025-07-03",
+    "id_kelas": 1,
+    "id_siswa": 168,
+    "id_wali": 1,
+    "status": "Izin"
+  },
+  {
+    "id": 169,
+    "tanggal": "2025-07-03",
+    "id_kelas": 1,
+    "id_siswa": 169,
+    "id_wali": 1,
+    "status": "Hadir"
+  },
+  {
+    "id": 170,
+    "tanggal": "2025-07-03",
+    "id_kelas": 1,
+    "id_siswa": 170,
+    "id_wali": 1,
+    "status": "Hadir"
+  },
+  {
+    "id": 171,
+    "tanggal": "2025-07-03",
+    "id_kelas": 2,
+    "id_siswa": 171,
+    "id_wali": 2,
+    "status": "Alpha"
+  },
+  {
+    "id": 172,
+    "tanggal": "2025-07-03",
+    "id_kelas": 2,
+    "id_siswa": 172,
+    "id_wali": 2,
+    "status": "Alpha"
+  },
+  {
+    "id": 173,
+    "tanggal": "2025-07-03",
+    "id_kelas": 2,
+    "id_siswa": 173,
+    "id_wali": 2,
+    "status": "Izin"
+  },
+  {
+    "id": 174,
+    "tanggal": "2025-07-03",
+    "id_kelas": 2,
+    "id_siswa": 174,
+    "id_wali": 2,
+    "status": "Izin"
+  },
+  {
+    "id": 175,
+    "tanggal": "2025-07-03",
+    "id_kelas": 2,
+    "id_siswa": 175,
+    "id_wali": 2,
+    "status": "Alpha"
+  },
+  {
+    "id": 176,
+    "tanggal": "2025-07-03",
+    "id_kelas": 2,
+    "id_siswa": 176,
+    "id_wali": 2,
+    "status": "Sakit"
+  },
+  {
+    "id": 177,
+    "tanggal": "2025-07-03",
+    "id_kelas": 2,
+    "id_siswa": 177,
+    "id_wali": 2,
+    "status": "Alpha"
+  },
+  {
+    "id": 178,
+    "tanggal": "2025-07-03",
+    "id_kelas": 2,
+    "id_siswa": 178,
+    "id_wali": 2,
+    "status": "Alpha"
+  },
+  {
+    "id": 179,
+    "tanggal": "2025-07-03",
+    "id_kelas": 2,
+    "id_siswa": 179,
+    "id_wali": 2,
+    "status": "Alpha"
+  },
+  {
+    "id": 180,
+    "tanggal": "2025-07-03",
+    "id_kelas": 2,
+    "id_siswa": 180,
+    "id_wali": 2,
+    "status": "Hadir"
+  },
+  {
+    "id": 181,
+    "tanggal": "2025-07-03",
+    "id_kelas": 3,
+    "id_siswa": 181,
+    "id_wali": 3,
+    "status": "Alpha"
+  },
+  {
+    "id": 182,
+    "tanggal": "2025-07-03",
+    "id_kelas": 3,
+    "id_siswa": 182,
+    "id_wali": 3,
+    "status": "Sakit"
+  },
+  {
+    "id": 183,
+    "tanggal": "2025-07-03",
+    "id_kelas": 3,
+    "id_siswa": 183,
+    "id_wali": 3,
+    "status": "Sakit"
+  },
+  {
+    "id": 184,
+    "tanggal": "2025-07-03",
+    "id_kelas": 3,
+    "id_siswa": 184,
+    "id_wali": 3,
+    "status": "Izin"
+  },
+  {
+    "id": 185,
+    "tanggal": "2025-07-03",
+    "id_kelas": 3,
+    "id_siswa": 185,
+    "id_wali": 3,
+    "status": "Izin"
+  },
+  {
+    "id": 186,
+    "tanggal": "2025-07-03",
+    "id_kelas": 3,
+    "id_siswa": 186,
+    "id_wali": 3,
+    "status": "Hadir"
+  },
+  {
+    "id": 187,
+    "tanggal": "2025-07-03",
+    "id_kelas": 3,
+    "id_siswa": 187,
+    "id_wali": 3,
+    "status": "Izin"
+  },
+  {
+    "id": 188,
+    "tanggal": "2025-07-03",
+    "id_kelas": 3,
+    "id_siswa": 188,
+    "id_wali": 3,
+    "status": "Alpha"
+  },
+  {
+    "id": 189,
+    "tanggal": "2025-07-03",
+    "id_kelas": 3,
+    "id_siswa": 189,
+    "id_wali": 3,
+    "status": "Hadir"
+  },
+  {
+    "id": 190,
+    "tanggal": "2025-07-03",
+    "id_kelas": 3,
+    "id_siswa": 190,
+    "id_wali": 3,
+    "status": "Sakit"
+  },
+  {
+    "id": 191,
+    "tanggal": "2025-07-03",
+    "id_kelas": 4,
+    "id_siswa": 191,
+    "id_wali": 4,
+    "status": "Alpha"
+  },
+  {
+    "id": 192,
+    "tanggal": "2025-07-03",
+    "id_kelas": 4,
+    "id_siswa": 192,
+    "id_wali": 4,
+    "status": "Alpha"
+  },
+  {
+    "id": 193,
+    "tanggal": "2025-07-03",
+    "id_kelas": 4,
+    "id_siswa": 193,
+    "id_wali": 4,
+    "status": "Alpha"
+  },
+  {
+    "id": 194,
+    "tanggal": "2025-07-03",
+    "id_kelas": 4,
+    "id_siswa": 194,
+    "id_wali": 4,
+    "status": "Alpha"
+  },
+  {
+    "id": 195,
+    "tanggal": "2025-07-03",
+    "id_kelas": 4,
+    "id_siswa": 195,
+    "id_wali": 4,
+    "status": "Izin"
+  },
+  {
+    "id": 196,
+    "tanggal": "2025-07-03",
+    "id_kelas": 4,
+    "id_siswa": 196,
+    "id_wali": 4,
+    "status": "Sakit"
+  },
+  {
+    "id": 197,
+    "tanggal": "2025-07-03",
+    "id_kelas": 4,
+    "id_siswa": 197,
+    "id_wali": 4,
+    "status": "Alpha"
+  },
+  {
+    "id": 198,
+    "tanggal": "2025-07-03",
+    "id_kelas": 4,
+    "id_siswa": 198,
+    "id_wali": 4,
+    "status": "Hadir"
+  },
+  {
+    "id": 199,
+    "tanggal": "2025-07-03",
+    "id_kelas": 4,
+    "id_siswa": 199,
+    "id_wali": 4,
+    "status": "Alpha"
+  },
+  {
+    "id": 200,
+    "tanggal": "2025-07-03",
+    "id_kelas": 4,
+    "id_siswa": 200,
+    "id_wali": 4,
+    "status": "Alpha"
+  },
+  {
+    "id": 201,
+    "tanggal": "2025-07-03",
+    "id_kelas": 5,
+    "id_siswa": 201,
+    "id_wali": 5,
+    "status": "Alpha"
+  },
+  {
+    "id": 202,
+    "tanggal": "2025-07-03",
+    "id_kelas": 5,
+    "id_siswa": 202,
+    "id_wali": 5,
+    "status": "Izin"
+  },
+  {
+    "id": 203,
+    "tanggal": "2025-07-03",
+    "id_kelas": 5,
+    "id_siswa": 203,
+    "id_wali": 5,
+    "status": "Alpha"
+  },
+  {
+    "id": 204,
+    "tanggal": "2025-07-03",
+    "id_kelas": 5,
+    "id_siswa": 204,
+    "id_wali": 5,
+    "status": "Izin"
+  },
+  {
+    "id": 205,
+    "tanggal": "2025-07-03",
+    "id_kelas": 5,
+    "id_siswa": 205,
+    "id_wali": 5,
+    "status": "Izin"
+  },
+  {
+    "id": 206,
+    "tanggal": "2025-07-03",
+    "id_kelas": 5,
+    "id_siswa": 206,
+    "id_wali": 5,
+    "status": "Alpha"
+  },
+  {
+    "id": 207,
+    "tanggal": "2025-07-03",
+    "id_kelas": 5,
+    "id_siswa": 207,
+    "id_wali": 5,
+    "status": "Sakit"
+  },
+  {
+    "id": 208,
+    "tanggal": "2025-07-03",
+    "id_kelas": 5,
+    "id_siswa": 208,
+    "id_wali": 5,
+    "status": "Alpha"
+  },
+  {
+    "id": 209,
+    "tanggal": "2025-07-03",
+    "id_kelas": 5,
+    "id_siswa": 209,
+    "id_wali": 5,
+    "status": "Alpha"
+  },
+  {
+    "id": 210,
+    "tanggal": "2025-07-03",
+    "id_kelas": 5,
+    "id_siswa": 210,
+    "id_wali": 5,
+    "status": "Sakit"
+  },
+  {
+    "id": 211,
+    "tanggal": "2025-07-03",
+    "id_kelas": 6,
+    "id_siswa": 211,
+    "id_wali": 1,
+    "status": "Hadir"
+  },
+  {
+    "id": 212,
+    "tanggal": "2025-07-03",
+    "id_kelas": 6,
+    "id_siswa": 212,
+    "id_wali": 1,
+    "status": "Hadir"
+  },
+  {
+    "id": 213,
+    "tanggal": "2025-07-03",
+    "id_kelas": 6,
+    "id_siswa": 213,
+    "id_wali": 1,
+    "status": "Alpha"
+  },
+  {
+    "id": 214,
+    "tanggal": "2025-07-03",
+    "id_kelas": 6,
+    "id_siswa": 214,
+    "id_wali": 1,
+    "status": "Izin"
+  },
+  {
+    "id": 215,
+    "tanggal": "2025-07-03",
+    "id_kelas": 6,
+    "id_siswa": 215,
+    "id_wali": 1,
+    "status": "Hadir"
+  },
+  {
+    "id": 216,
+    "tanggal": "2025-07-03",
+    "id_kelas": 6,
+    "id_siswa": 216,
+    "id_wali": 1,
+    "status": "Izin"
+  },
+  {
+    "id": 217,
+    "tanggal": "2025-07-03",
+    "id_kelas": 6,
+    "id_siswa": 217,
+    "id_wali": 1,
+    "status": "Alpha"
+  },
+  {
+    "id": 218,
+    "tanggal": "2025-07-03",
+    "id_kelas": 6,
+    "id_siswa": 218,
+    "id_wali": 1,
+    "status": "Izin"
+  },
+  {
+    "id": 219,
+    "tanggal": "2025-07-03",
+    "id_kelas": 6,
+    "id_siswa": 219,
+    "id_wali": 1,
+    "status": "Alpha"
+  },
+  {
+    "id": 220,
+    "tanggal": "2025-07-03",
+    "id_kelas": 6,
+    "id_siswa": 220,
+    "id_wali": 1,
+    "status": "Alpha"
+  },
+  {
+    "id": 221,
+    "tanggal": "2025-07-03",
+    "id_kelas": 7,
+    "id_siswa": 221,
+    "id_wali": 2,
+    "status": "Hadir"
+  },
+  {
+    "id": 222,
+    "tanggal": "2025-07-03",
+    "id_kelas": 7,
+    "id_siswa": 222,
+    "id_wali": 2,
+    "status": "Hadir"
+  },
+  {
+    "id": 223,
+    "tanggal": "2025-07-03",
+    "id_kelas": 7,
+    "id_siswa": 223,
+    "id_wali": 2,
+    "status": "Sakit"
+  },
+  {
+    "id": 224,
+    "tanggal": "2025-07-03",
+    "id_kelas": 7,
+    "id_siswa": 224,
+    "id_wali": 2,
+    "status": "Izin"
+  },
+  {
+    "id": 225,
+    "tanggal": "2025-07-03",
+    "id_kelas": 7,
+    "id_siswa": 225,
+    "id_wali": 2,
+    "status": "Hadir"
+  },
+  {
+    "id": 226,
+    "tanggal": "2025-07-03",
+    "id_kelas": 7,
+    "id_siswa": 226,
+    "id_wali": 2,
+    "status": "Hadir"
+  },
+  {
+    "id": 227,
+    "tanggal": "2025-07-03",
+    "id_kelas": 7,
+    "id_siswa": 227,
+    "id_wali": 2,
+    "status": "Izin"
+  },
+  {
+    "id": 228,
+    "tanggal": "2025-07-03",
+    "id_kelas": 7,
+    "id_siswa": 228,
+    "id_wali": 2,
+    "status": "Alpha"
+  },
+  {
+    "id": 229,
+    "tanggal": "2025-07-03",
+    "id_kelas": 7,
+    "id_siswa": 229,
+    "id_wali": 2,
+    "status": "Hadir"
+  },
+  {
+    "id": 230,
+    "tanggal": "2025-07-03",
+    "id_kelas": 7,
+    "id_siswa": 230,
+    "id_wali": 2,
+    "status": "Izin"
+  },
+  {
+    "id": 231,
+    "tanggal": "2025-07-03",
+    "id_kelas": 8,
+    "id_siswa": 231,
+    "id_wali": 3,
+    "status": "Alpha"
+  },
+  {
+    "id": 232,
+    "tanggal": "2025-07-03",
+    "id_kelas": 8,
+    "id_siswa": 232,
+    "id_wali": 3,
+    "status": "Izin"
+  },
+  {
+    "id": 233,
+    "tanggal": "2025-07-03",
+    "id_kelas": 8,
+    "id_siswa": 233,
+    "id_wali": 3,
+    "status": "Sakit"
+  },
+  {
+    "id": 234,
+    "tanggal": "2025-07-03",
+    "id_kelas": 8,
+    "id_siswa": 234,
+    "id_wali": 3,
+    "status": "Sakit"
+  },
+  {
+    "id": 235,
+    "tanggal": "2025-07-03",
+    "id_kelas": 8,
+    "id_siswa": 235,
+    "id_wali": 3,
+    "status": "Sakit"
+  },
+  {
+    "id": 236,
+    "tanggal": "2025-07-03",
+    "id_kelas": 8,
+    "id_siswa": 236,
+    "id_wali": 3,
+    "status": "Alpha"
+  },
+  {
+    "id": 237,
+    "tanggal": "2025-07-03",
+    "id_kelas": 8,
+    "id_siswa": 237,
+    "id_wali": 3,
+    "status": "Sakit"
+  },
+  {
+    "id": 238,
+    "tanggal": "2025-07-03",
+    "id_kelas": 8,
+    "id_siswa": 238,
+    "id_wali": 3,
+    "status": "Alpha"
+  },
+  {
+    "id": 239,
+    "tanggal": "2025-07-03",
+    "id_kelas": 8,
+    "id_siswa": 239,
+    "id_wali": 3,
+    "status": "Izin"
+  },
+  {
+    "id": 240,
+    "tanggal": "2025-07-03",
+    "id_kelas": 8,
+    "id_siswa": 240,
+    "id_wali": 3,
+    "status": "Izin"
+  },
+  {
+    "id": 241,
+    "tanggal": "2025-07-04",
+    "id_kelas": 1,
+    "id_siswa": 241,
+    "id_wali": 1,
+    "status": "Sakit"
+  },
+  {
+    "id": 242,
+    "tanggal": "2025-07-04",
+    "id_kelas": 1,
+    "id_siswa": 242,
+    "id_wali": 1,
+    "status": "Hadir"
+  },
+  {
+    "id": 243,
+    "tanggal": "2025-07-04",
+    "id_kelas": 1,
+    "id_siswa": 243,
+    "id_wali": 1,
+    "status": "Izin"
+  },
+  {
+    "id": 244,
+    "tanggal": "2025-07-04",
+    "id_kelas": 1,
+    "id_siswa": 244,
+    "id_wali": 1,
+    "status": "Alpha"
+  },
+  {
+    "id": 245,
+    "tanggal": "2025-07-04",
+    "id_kelas": 1,
+    "id_siswa": 245,
+    "id_wali": 1,
+    "status": "Hadir"
+  },
+  {
+    "id": 246,
+    "tanggal": "2025-07-04",
+    "id_kelas": 1,
+    "id_siswa": 246,
+    "id_wali": 1,
+    "status": "Hadir"
+  },
+  {
+    "id": 247,
+    "tanggal": "2025-07-04",
+    "id_kelas": 1,
+    "id_siswa": 247,
+    "id_wali": 1,
+    "status": "Hadir"
+  },
+  {
+    "id": 248,
+    "tanggal": "2025-07-04",
+    "id_kelas": 1,
+    "id_siswa": 248,
+    "id_wali": 1,
+    "status": "Izin"
+  },
+  {
+    "id": 249,
+    "tanggal": "2025-07-04",
+    "id_kelas": 1,
+    "id_siswa": 249,
+    "id_wali": 1,
+    "status": "Sakit"
+  },
+  {
+    "id": 250,
+    "tanggal": "2025-07-04",
+    "id_kelas": 1,
+    "id_siswa": 250,
+    "id_wali": 1,
+    "status": "Sakit"
+  },
+  {
+    "id": 251,
+    "tanggal": "2025-07-04",
+    "id_kelas": 2,
+    "id_siswa": 251,
+    "id_wali": 2,
+    "status": "Izin"
+  },
+  {
+    "id": 252,
+    "tanggal": "2025-07-04",
+    "id_kelas": 2,
+    "id_siswa": 252,
+    "id_wali": 2,
+    "status": "Sakit"
+  },
+  {
+    "id": 253,
+    "tanggal": "2025-07-04",
+    "id_kelas": 2,
+    "id_siswa": 253,
+    "id_wali": 2,
+    "status": "Sakit"
+  },
+  {
+    "id": 254,
+    "tanggal": "2025-07-04",
+    "id_kelas": 2,
+    "id_siswa": 254,
+    "id_wali": 2,
+    "status": "Alpha"
+  },
+  {
+    "id": 255,
+    "tanggal": "2025-07-04",
+    "id_kelas": 2,
+    "id_siswa": 255,
+    "id_wali": 2,
+    "status": "Hadir"
+  },
+  {
+    "id": 256,
+    "tanggal": "2025-07-04",
+    "id_kelas": 2,
+    "id_siswa": 256,
+    "id_wali": 2,
+    "status": "Alpha"
+  },
+  {
+    "id": 257,
+    "tanggal": "2025-07-04",
+    "id_kelas": 2,
+    "id_siswa": 257,
+    "id_wali": 2,
+    "status": "Alpha"
+  },
+  {
+    "id": 258,
+    "tanggal": "2025-07-04",
+    "id_kelas": 2,
+    "id_siswa": 258,
+    "id_wali": 2,
+    "status": "Izin"
+  },
+  {
+    "id": 259,
+    "tanggal": "2025-07-04",
+    "id_kelas": 2,
+    "id_siswa": 259,
+    "id_wali": 2,
+    "status": "Sakit"
+  },
+  {
+    "id": 260,
+    "tanggal": "2025-07-04",
+    "id_kelas": 2,
+    "id_siswa": 260,
+    "id_wali": 2,
+    "status": "Alpha"
+  },
+  {
+    "id": 261,
+    "tanggal": "2025-07-04",
+    "id_kelas": 3,
+    "id_siswa": 261,
+    "id_wali": 3,
+    "status": "Hadir"
+  },
+  {
+    "id": 262,
+    "tanggal": "2025-07-04",
+    "id_kelas": 3,
+    "id_siswa": 262,
+    "id_wali": 3,
+    "status": "Hadir"
+  },
+  {
+    "id": 263,
+    "tanggal": "2025-07-04",
+    "id_kelas": 3,
+    "id_siswa": 263,
+    "id_wali": 3,
+    "status": "Alpha"
+  },
+  {
+    "id": 264,
+    "tanggal": "2025-07-04",
+    "id_kelas": 3,
+    "id_siswa": 264,
+    "id_wali": 3,
+    "status": "Alpha"
+  },
+  {
+    "id": 265,
+    "tanggal": "2025-07-04",
+    "id_kelas": 3,
+    "id_siswa": 265,
+    "id_wali": 3,
+    "status": "Alpha"
+  },
+  {
+    "id": 266,
+    "tanggal": "2025-07-04",
+    "id_kelas": 3,
+    "id_siswa": 266,
+    "id_wali": 3,
+    "status": "Sakit"
+  },
+  {
+    "id": 267,
+    "tanggal": "2025-07-04",
+    "id_kelas": 3,
+    "id_siswa": 267,
+    "id_wali": 3,
+    "status": "Sakit"
+  },
+  {
+    "id": 268,
+    "tanggal": "2025-07-04",
+    "id_kelas": 3,
+    "id_siswa": 268,
+    "id_wali": 3,
+    "status": "Sakit"
+  },
+  {
+    "id": 269,
+    "tanggal": "2025-07-04",
+    "id_kelas": 3,
+    "id_siswa": 269,
+    "id_wali": 3,
+    "status": "Izin"
+  },
+  {
+    "id": 270,
+    "tanggal": "2025-07-04",
+    "id_kelas": 3,
+    "id_siswa": 270,
+    "id_wali": 3,
+    "status": "Hadir"
+  },
+  {
+    "id": 271,
+    "tanggal": "2025-07-04",
+    "id_kelas": 4,
+    "id_siswa": 271,
+    "id_wali": 4,
+    "status": "Hadir"
+  },
+  {
+    "id": 272,
+    "tanggal": "2025-07-04",
+    "id_kelas": 4,
+    "id_siswa": 272,
+    "id_wali": 4,
+    "status": "Hadir"
+  },
+  {
+    "id": 273,
+    "tanggal": "2025-07-04",
+    "id_kelas": 4,
+    "id_siswa": 273,
+    "id_wali": 4,
+    "status": "Izin"
+  },
+  {
+    "id": 274,
+    "tanggal": "2025-07-04",
+    "id_kelas": 4,
+    "id_siswa": 274,
+    "id_wali": 4,
+    "status": "Sakit"
+  },
+  {
+    "id": 275,
+    "tanggal": "2025-07-04",
+    "id_kelas": 4,
+    "id_siswa": 275,
+    "id_wali": 4,
+    "status": "Alpha"
+  },
+  {
+    "id": 276,
+    "tanggal": "2025-07-04",
+    "id_kelas": 4,
+    "id_siswa": 276,
+    "id_wali": 4,
+    "status": "Hadir"
+  },
+  {
+    "id": 277,
+    "tanggal": "2025-07-04",
+    "id_kelas": 4,
+    "id_siswa": 277,
+    "id_wali": 4,
+    "status": "Izin"
+  },
+  {
+    "id": 278,
+    "tanggal": "2025-07-04",
+    "id_kelas": 4,
+    "id_siswa": 278,
+    "id_wali": 4,
+    "status": "Hadir"
+  },
+  {
+    "id": 279,
+    "tanggal": "2025-07-04",
+    "id_kelas": 4,
+    "id_siswa": 279,
+    "id_wali": 4,
+    "status": "Alpha"
+  },
+  {
+    "id": 280,
+    "tanggal": "2025-07-04",
+    "id_kelas": 4,
+    "id_siswa": 280,
+    "id_wali": 4,
+    "status": "Izin"
+  },
+  {
+    "id": 281,
+    "tanggal": "2025-07-04",
+    "id_kelas": 5,
+    "id_siswa": 281,
+    "id_wali": 5,
+    "status": "Izin"
+  },
+  {
+    "id": 282,
+    "tanggal": "2025-07-04",
+    "id_kelas": 5,
+    "id_siswa": 282,
+    "id_wali": 5,
+    "status": "Izin"
+  },
+  {
+    "id": 283,
+    "tanggal": "2025-07-04",
+    "id_kelas": 5,
+    "id_siswa": 283,
+    "id_wali": 5,
+    "status": "Izin"
+  },
+  {
+    "id": 284,
+    "tanggal": "2025-07-04",
+    "id_kelas": 5,
+    "id_siswa": 284,
+    "id_wali": 5,
+    "status": "Hadir"
+  },
+  {
+    "id": 285,
+    "tanggal": "2025-07-04",
+    "id_kelas": 5,
+    "id_siswa": 285,
+    "id_wali": 5,
+    "status": "Sakit"
+  },
+  {
+    "id": 286,
+    "tanggal": "2025-07-04",
+    "id_kelas": 5,
+    "id_siswa": 286,
+    "id_wali": 5,
+    "status": "Alpha"
+  },
+  {
+    "id": 287,
+    "tanggal": "2025-07-04",
+    "id_kelas": 5,
+    "id_siswa": 287,
+    "id_wali": 5,
+    "status": "Izin"
+  },
+  {
+    "id": 288,
+    "tanggal": "2025-07-04",
+    "id_kelas": 5,
+    "id_siswa": 288,
+    "id_wali": 5,
+    "status": "Sakit"
+  },
+  {
+    "id": 289,
+    "tanggal": "2025-07-04",
+    "id_kelas": 5,
+    "id_siswa": 289,
+    "id_wali": 5,
+    "status": "Sakit"
+  },
+  {
+    "id": 290,
+    "tanggal": "2025-07-04",
+    "id_kelas": 5,
+    "id_siswa": 290,
+    "id_wali": 5,
+    "status": "Alpha"
+  },
+  {
+    "id": 291,
+    "tanggal": "2025-07-04",
+    "id_kelas": 6,
+    "id_siswa": 291,
+    "id_wali": 1,
+    "status": "Alpha"
+  },
+  {
+    "id": 292,
+    "tanggal": "2025-07-04",
+    "id_kelas": 6,
+    "id_siswa": 292,
+    "id_wali": 1,
+    "status": "Sakit"
+  },
+  {
+    "id": 293,
+    "tanggal": "2025-07-04",
+    "id_kelas": 6,
+    "id_siswa": 293,
+    "id_wali": 1,
+    "status": "Alpha"
+  },
+  {
+    "id": 294,
+    "tanggal": "2025-07-04",
+    "id_kelas": 6,
+    "id_siswa": 294,
+    "id_wali": 1,
+    "status": "Alpha"
+  },
+  {
+    "id": 295,
+    "tanggal": "2025-07-04",
+    "id_kelas": 6,
+    "id_siswa": 295,
+    "id_wali": 1,
+    "status": "Sakit"
+  },
+  {
+    "id": 296,
+    "tanggal": "2025-07-04",
+    "id_kelas": 6,
+    "id_siswa": 296,
+    "id_wali": 1,
+    "status": "Alpha"
+  },
+  {
+    "id": 297,
+    "tanggal": "2025-07-04",
+    "id_kelas": 6,
+    "id_siswa": 297,
+    "id_wali": 1,
+    "status": "Alpha"
+  },
+  {
+    "id": 298,
+    "tanggal": "2025-07-04",
+    "id_kelas": 6,
+    "id_siswa": 298,
+    "id_wali": 1,
+    "status": "Alpha"
+  },
+  {
+    "id": 299,
+    "tanggal": "2025-07-04",
+    "id_kelas": 6,
+    "id_siswa": 299,
+    "id_wali": 1,
+    "status": "Sakit"
+  },
+  {
+    "id": 300,
+    "tanggal": "2025-07-04",
+    "id_kelas": 6,
+    "id_siswa": 300,
+    "id_wali": 1,
+    "status": "Hadir"
+  },
+  {
+    "id": 301,
+    "tanggal": "2025-07-04",
+    "id_kelas": 7,
+    "id_siswa": 301,
+    "id_wali": 2,
+    "status": "Sakit"
+  },
+  {
+    "id": 302,
+    "tanggal": "2025-07-04",
+    "id_kelas": 7,
+    "id_siswa": 302,
+    "id_wali": 2,
+    "status": "Izin"
+  },
+  {
+    "id": 303,
+    "tanggal": "2025-07-04",
+    "id_kelas": 7,
+    "id_siswa": 303,
+    "id_wali": 2,
+    "status": "Hadir"
+  },
+  {
+    "id": 304,
+    "tanggal": "2025-07-04",
+    "id_kelas": 7,
+    "id_siswa": 304,
+    "id_wali": 2,
+    "status": "Sakit"
+  },
+  {
+    "id": 305,
+    "tanggal": "2025-07-04",
+    "id_kelas": 7,
+    "id_siswa": 305,
+    "id_wali": 2,
+    "status": "Sakit"
+  },
+  {
+    "id": 306,
+    "tanggal": "2025-07-04",
+    "id_kelas": 7,
+    "id_siswa": 306,
+    "id_wali": 2,
+    "status": "Izin"
+  },
+  {
+    "id": 307,
+    "tanggal": "2025-07-04",
+    "id_kelas": 7,
+    "id_siswa": 307,
+    "id_wali": 2,
+    "status": "Izin"
+  },
+  {
+    "id": 308,
+    "tanggal": "2025-07-04",
+    "id_kelas": 7,
+    "id_siswa": 308,
+    "id_wali": 2,
+    "status": "Izin"
+  },
+  {
+    "id": 309,
+    "tanggal": "2025-07-04",
+    "id_kelas": 7,
+    "id_siswa": 309,
+    "id_wali": 2,
+    "status": "Hadir"
+  },
+  {
+    "id": 310,
+    "tanggal": "2025-07-04",
+    "id_kelas": 7,
+    "id_siswa": 310,
+    "id_wali": 2,
+    "status": "Hadir"
+  },
+  {
+    "id": 311,
+    "tanggal": "2025-07-04",
+    "id_kelas": 8,
+    "id_siswa": 311,
+    "id_wali": 3,
+    "status": "Izin"
+  },
+  {
+    "id": 312,
+    "tanggal": "2025-07-04",
+    "id_kelas": 8,
+    "id_siswa": 312,
+    "id_wali": 3,
+    "status": "Alpha"
+  },
+  {
+    "id": 313,
+    "tanggal": "2025-07-04",
+    "id_kelas": 8,
+    "id_siswa": 313,
+    "id_wali": 3,
+    "status": "Alpha"
+  },
+  {
+    "id": 314,
+    "tanggal": "2025-07-04",
+    "id_kelas": 8,
+    "id_siswa": 314,
+    "id_wali": 3,
+    "status": "Alpha"
+  },
+  {
+    "id": 315,
+    "tanggal": "2025-07-04",
+    "id_kelas": 8,
+    "id_siswa": 315,
+    "id_wali": 3,
+    "status": "Sakit"
+  },
+  {
+    "id": 316,
+    "tanggal": "2025-07-04",
+    "id_kelas": 8,
+    "id_siswa": 316,
+    "id_wali": 3,
+    "status": "Hadir"
+  },
+  {
+    "id": 317,
+    "tanggal": "2025-07-04",
+    "id_kelas": 8,
+    "id_siswa": 317,
+    "id_wali": 3,
+    "status": "Hadir"
+  },
+  {
+    "id": 318,
+    "tanggal": "2025-07-04",
+    "id_kelas": 8,
+    "id_siswa": 318,
+    "id_wali": 3,
+    "status": "Alpha"
+  },
+  {
+    "id": 319,
+    "tanggal": "2025-07-04",
+    "id_kelas": 8,
+    "id_siswa": 319,
+    "id_wali": 3,
+    "status": "Izin"
+  },
+  {
+    "id": 320,
+    "tanggal": "2025-07-04",
+    "id_kelas": 8,
+    "id_siswa": 320,
+    "id_wali": 3,
+    "status": "Alpha"
+  },
+  {
+    "id": 321,
+    "tanggal": "2025-07-05",
+    "id_kelas": 1,
+    "id_siswa": 321,
+    "id_wali": 1,
+    "status": "Izin"
+  },
+  {
+    "id": 322,
+    "tanggal": "2025-07-05",
+    "id_kelas": 1,
+    "id_siswa": 322,
+    "id_wali": 1,
+    "status": "Izin"
+  },
+  {
+    "id": 323,
+    "tanggal": "2025-07-05",
+    "id_kelas": 1,
+    "id_siswa": 323,
+    "id_wali": 1,
+    "status": "Sakit"
+  },
+  {
+    "id": 324,
+    "tanggal": "2025-07-05",
+    "id_kelas": 1,
+    "id_siswa": 324,
+    "id_wali": 1,
+    "status": "Alpha"
+  },
+  {
+    "id": 325,
+    "tanggal": "2025-07-05",
+    "id_kelas": 1,
+    "id_siswa": 325,
+    "id_wali": 1,
+    "status": "Hadir"
+  },
+  {
+    "id": 326,
+    "tanggal": "2025-07-05",
+    "id_kelas": 1,
+    "id_siswa": 326,
+    "id_wali": 1,
+    "status": "Sakit"
+  },
+  {
+    "id": 327,
+    "tanggal": "2025-07-05",
+    "id_kelas": 1,
+    "id_siswa": 327,
+    "id_wali": 1,
+    "status": "Alpha"
+  },
+  {
+    "id": 328,
+    "tanggal": "2025-07-05",
+    "id_kelas": 1,
+    "id_siswa": 328,
+    "id_wali": 1,
+    "status": "Sakit"
+  },
+  {
+    "id": 329,
+    "tanggal": "2025-07-05",
+    "id_kelas": 1,
+    "id_siswa": 329,
+    "id_wali": 1,
+    "status": "Alpha"
+  },
+  {
+    "id": 330,
+    "tanggal": "2025-07-05",
+    "id_kelas": 1,
+    "id_siswa": 330,
+    "id_wali": 1,
+    "status": "Hadir"
+  },
+  {
+    "id": 331,
+    "tanggal": "2025-07-05",
+    "id_kelas": 2,
+    "id_siswa": 331,
+    "id_wali": 2,
+    "status": "Hadir"
+  },
+  {
+    "id": 332,
+    "tanggal": "2025-07-05",
+    "id_kelas": 2,
+    "id_siswa": 332,
+    "id_wali": 2,
+    "status": "Sakit"
+  },
+  {
+    "id": 333,
+    "tanggal": "2025-07-05",
+    "id_kelas": 2,
+    "id_siswa": 333,
+    "id_wali": 2,
+    "status": "Izin"
+  },
+  {
+    "id": 334,
+    "tanggal": "2025-07-05",
+    "id_kelas": 2,
+    "id_siswa": 334,
+    "id_wali": 2,
+    "status": "Alpha"
+  },
+  {
+    "id": 335,
+    "tanggal": "2025-07-05",
+    "id_kelas": 2,
+    "id_siswa": 335,
+    "id_wali": 2,
+    "status": "Hadir"
+  },
+  {
+    "id": 336,
+    "tanggal": "2025-07-05",
+    "id_kelas": 2,
+    "id_siswa": 336,
+    "id_wali": 2,
+    "status": "Sakit"
+  },
+  {
+    "id": 337,
+    "tanggal": "2025-07-05",
+    "id_kelas": 2,
+    "id_siswa": 337,
+    "id_wali": 2,
+    "status": "Izin"
+  },
+  {
+    "id": 338,
+    "tanggal": "2025-07-05",
+    "id_kelas": 2,
+    "id_siswa": 338,
+    "id_wali": 2,
+    "status": "Alpha"
+  },
+  {
+    "id": 339,
+    "tanggal": "2025-07-05",
+    "id_kelas": 2,
+    "id_siswa": 339,
+    "id_wali": 2,
+    "status": "Hadir"
+  },
+  {
+    "id": 340,
+    "tanggal": "2025-07-05",
+    "id_kelas": 2,
+    "id_siswa": 340,
+    "id_wali": 2,
+    "status": "Alpha"
+  },
+  {
+    "id": 341,
+    "tanggal": "2025-07-05",
+    "id_kelas": 3,
+    "id_siswa": 341,
+    "id_wali": 3,
+    "status": "Hadir"
+  },
+  {
+    "id": 342,
+    "tanggal": "2025-07-05",
+    "id_kelas": 3,
+    "id_siswa": 342,
+    "id_wali": 3,
+    "status": "Sakit"
+  },
+  {
+    "id": 343,
+    "tanggal": "2025-07-05",
+    "id_kelas": 3,
+    "id_siswa": 343,
+    "id_wali": 3,
+    "status": "Izin"
+  },
+  {
+    "id": 344,
+    "tanggal": "2025-07-05",
+    "id_kelas": 3,
+    "id_siswa": 344,
+    "id_wali": 3,
+    "status": "Hadir"
+  },
+  {
+    "id": 345,
+    "tanggal": "2025-07-05",
+    "id_kelas": 3,
+    "id_siswa": 345,
+    "id_wali": 3,
+    "status": "Izin"
+  },
+  {
+    "id": 346,
+    "tanggal": "2025-07-05",
+    "id_kelas": 3,
+    "id_siswa": 346,
+    "id_wali": 3,
+    "status": "Alpha"
+  },
+  {
+    "id": 347,
+    "tanggal": "2025-07-05",
+    "id_kelas": 3,
+    "id_siswa": 347,
+    "id_wali": 3,
+    "status": "Alpha"
+  },
+  {
+    "id": 348,
+    "tanggal": "2025-07-05",
+    "id_kelas": 3,
+    "id_siswa": 348,
+    "id_wali": 3,
+    "status": "Alpha"
+  },
+  {
+    "id": 349,
+    "tanggal": "2025-07-05",
+    "id_kelas": 3,
+    "id_siswa": 349,
+    "id_wali": 3,
+    "status": "Sakit"
+  },
+  {
+    "id": 350,
+    "tanggal": "2025-07-05",
+    "id_kelas": 3,
+    "id_siswa": 350,
+    "id_wali": 3,
+    "status": "Hadir"
+  },
+  {
+    "id": 351,
+    "tanggal": "2025-07-05",
+    "id_kelas": 4,
+    "id_siswa": 351,
+    "id_wali": 4,
+    "status": "Alpha"
+  },
+  {
+    "id": 352,
+    "tanggal": "2025-07-05",
+    "id_kelas": 4,
+    "id_siswa": 352,
+    "id_wali": 4,
+    "status": "Sakit"
+  },
+  {
+    "id": 353,
+    "tanggal": "2025-07-05",
+    "id_kelas": 4,
+    "id_siswa": 353,
+    "id_wali": 4,
+    "status": "Sakit"
+  },
+  {
+    "id": 354,
+    "tanggal": "2025-07-05",
+    "id_kelas": 4,
+    "id_siswa": 354,
+    "id_wali": 4,
+    "status": "Izin"
+  },
+  {
+    "id": 355,
+    "tanggal": "2025-07-05",
+    "id_kelas": 4,
+    "id_siswa": 355,
+    "id_wali": 4,
+    "status": "Alpha"
+  },
+  {
+    "id": 356,
+    "tanggal": "2025-07-05",
+    "id_kelas": 4,
+    "id_siswa": 356,
+    "id_wali": 4,
+    "status": "Hadir"
+  },
+  {
+    "id": 357,
+    "tanggal": "2025-07-05",
+    "id_kelas": 4,
+    "id_siswa": 357,
+    "id_wali": 4,
+    "status": "Hadir"
+  },
+  {
+    "id": 358,
+    "tanggal": "2025-07-05",
+    "id_kelas": 4,
+    "id_siswa": 358,
+    "id_wali": 4,
+    "status": "Izin"
+  },
+  {
+    "id": 359,
+    "tanggal": "2025-07-05",
+    "id_kelas": 4,
+    "id_siswa": 359,
+    "id_wali": 4,
+    "status": "Izin"
+  },
+  {
+    "id": 360,
+    "tanggal": "2025-07-05",
+    "id_kelas": 4,
+    "id_siswa": 360,
+    "id_wali": 4,
+    "status": "Hadir"
+  },
+  {
+    "id": 361,
+    "tanggal": "2025-07-05",
+    "id_kelas": 5,
+    "id_siswa": 361,
+    "id_wali": 5,
+    "status": "Hadir"
+  },
+  {
+    "id": 362,
+    "tanggal": "2025-07-05",
+    "id_kelas": 5,
+    "id_siswa": 362,
+    "id_wali": 5,
+    "status": "Izin"
+  },
+  {
+    "id": 363,
+    "tanggal": "2025-07-05",
+    "id_kelas": 5,
+    "id_siswa": 363,
+    "id_wali": 5,
+    "status": "Izin"
+  },
+  {
+    "id": 364,
+    "tanggal": "2025-07-05",
+    "id_kelas": 5,
+    "id_siswa": 364,
+    "id_wali": 5,
+    "status": "Alpha"
+  },
+  {
+    "id": 365,
+    "tanggal": "2025-07-05",
+    "id_kelas": 5,
+    "id_siswa": 365,
+    "id_wali": 5,
+    "status": "Sakit"
+  },
+  {
+    "id": 366,
+    "tanggal": "2025-07-05",
+    "id_kelas": 5,
+    "id_siswa": 366,
+    "id_wali": 5,
+    "status": "Sakit"
+  },
+  {
+    "id": 367,
+    "tanggal": "2025-07-05",
+    "id_kelas": 5,
+    "id_siswa": 367,
+    "id_wali": 5,
+    "status": "Hadir"
+  },
+  {
+    "id": 368,
+    "tanggal": "2025-07-05",
+    "id_kelas": 5,
+    "id_siswa": 368,
+    "id_wali": 5,
+    "status": "Izin"
+  },
+  {
+    "id": 369,
+    "tanggal": "2025-07-05",
+    "id_kelas": 5,
+    "id_siswa": 369,
+    "id_wali": 5,
+    "status": "Izin"
+  },
+  {
+    "id": 370,
+    "tanggal": "2025-07-05",
+    "id_kelas": 5,
+    "id_siswa": 370,
+    "id_wali": 5,
+    "status": "Alpha"
+  },
+  {
+    "id": 371,
+    "tanggal": "2025-07-05",
+    "id_kelas": 6,
+    "id_siswa": 371,
+    "id_wali": 1,
+    "status": "Sakit"
+  },
+  {
+    "id": 372,
+    "tanggal": "2025-07-05",
+    "id_kelas": 6,
+    "id_siswa": 372,
+    "id_wali": 1,
+    "status": "Hadir"
+  },
+  {
+    "id": 373,
+    "tanggal": "2025-07-05",
+    "id_kelas": 6,
+    "id_siswa": 373,
+    "id_wali": 1,
+    "status": "Hadir"
+  },
+  {
+    "id": 374,
+    "tanggal": "2025-07-05",
+    "id_kelas": 6,
+    "id_siswa": 374,
+    "id_wali": 1,
+    "status": "Izin"
+  },
+  {
+    "id": 375,
+    "tanggal": "2025-07-05",
+    "id_kelas": 6,
+    "id_siswa": 375,
+    "id_wali": 1,
+    "status": "Alpha"
+  },
+  {
+    "id": 376,
+    "tanggal": "2025-07-05",
+    "id_kelas": 6,
+    "id_siswa": 376,
+    "id_wali": 1,
+    "status": "Sakit"
+  },
+  {
+    "id": 377,
+    "tanggal": "2025-07-05",
+    "id_kelas": 6,
+    "id_siswa": 377,
+    "id_wali": 1,
+    "status": "Sakit"
+  },
+  {
+    "id": 378,
+    "tanggal": "2025-07-05",
+    "id_kelas": 6,
+    "id_siswa": 378,
+    "id_wali": 1,
+    "status": "Sakit"
+  },
+  {
+    "id": 379,
+    "tanggal": "2025-07-05",
+    "id_kelas": 6,
+    "id_siswa": 379,
+    "id_wali": 1,
+    "status": "Hadir"
+  },
+  {
+    "id": 380,
+    "tanggal": "2025-07-05",
+    "id_kelas": 6,
+    "id_siswa": 380,
+    "id_wali": 1,
+    "status": "Sakit"
+  },
+  {
+    "id": 381,
+    "tanggal": "2025-07-05",
+    "id_kelas": 7,
+    "id_siswa": 381,
+    "id_wali": 2,
+    "status": "Sakit"
+  },
+  {
+    "id": 382,
+    "tanggal": "2025-07-05",
+    "id_kelas": 7,
+    "id_siswa": 382,
+    "id_wali": 2,
+    "status": "Hadir"
+  },
+  {
+    "id": 383,
+    "tanggal": "2025-07-05",
+    "id_kelas": 7,
+    "id_siswa": 383,
+    "id_wali": 2,
+    "status": "Hadir"
+  },
+  {
+    "id": 384,
+    "tanggal": "2025-07-05",
+    "id_kelas": 7,
+    "id_siswa": 384,
+    "id_wali": 2,
+    "status": "Hadir"
+  },
+  {
+    "id": 385,
+    "tanggal": "2025-07-05",
+    "id_kelas": 7,
+    "id_siswa": 385,
+    "id_wali": 2,
+    "status": "Sakit"
+  },
+  {
+    "id": 386,
+    "tanggal": "2025-07-05",
+    "id_kelas": 7,
+    "id_siswa": 386,
+    "id_wali": 2,
+    "status": "Hadir"
+  },
+  {
+    "id": 387,
+    "tanggal": "2025-07-05",
+    "id_kelas": 7,
+    "id_siswa": 387,
+    "id_wali": 2,
+    "status": "Izin"
+  },
+  {
+    "id": 388,
+    "tanggal": "2025-07-05",
+    "id_kelas": 7,
+    "id_siswa": 388,
+    "id_wali": 2,
+    "status": "Alpha"
+  },
+  {
+    "id": 389,
+    "tanggal": "2025-07-05",
+    "id_kelas": 7,
+    "id_siswa": 389,
+    "id_wali": 2,
+    "status": "Hadir"
+  },
+  {
+    "id": 390,
+    "tanggal": "2025-07-05",
+    "id_kelas": 7,
+    "id_siswa": 390,
+    "id_wali": 2,
+    "status": "Hadir"
+  },
+  {
+    "id": 391,
+    "tanggal": "2025-07-05",
+    "id_kelas": 8,
+    "id_siswa": 391,
+    "id_wali": 3,
+    "status": "Izin"
+  },
+  {
+    "id": 392,
+    "tanggal": "2025-07-05",
+    "id_kelas": 8,
+    "id_siswa": 392,
+    "id_wali": 3,
+    "status": "Hadir"
+  },
+  {
+    "id": 393,
+    "tanggal": "2025-07-05",
+    "id_kelas": 8,
+    "id_siswa": 393,
+    "id_wali": 3,
+    "status": "Sakit"
+  },
+  {
+    "id": 394,
+    "tanggal": "2025-07-05",
+    "id_kelas": 8,
+    "id_siswa": 394,
+    "id_wali": 3,
+    "status": "Sakit"
+  },
+  {
+    "id": 395,
+    "tanggal": "2025-07-05",
+    "id_kelas": 8,
+    "id_siswa": 395,
+    "id_wali": 3,
+    "status": "Alpha"
+  },
+  {
+    "id": 396,
+    "tanggal": "2025-07-05",
+    "id_kelas": 8,
+    "id_siswa": 396,
+    "id_wali": 3,
+    "status": "Izin"
+  },
+  {
+    "id": 397,
+    "tanggal": "2025-07-05",
+    "id_kelas": 8,
+    "id_siswa": 397,
+    "id_wali": 3,
+    "status": "Alpha"
+  },
+  {
+    "id": 398,
+    "tanggal": "2025-07-05",
+    "id_kelas": 8,
+    "id_siswa": 398,
+    "id_wali": 3,
+    "status": "Izin"
+  },
+  {
+    "id": 399,
+    "tanggal": "2025-07-05",
+    "id_kelas": 8,
+    "id_siswa": 399,
+    "id_wali": 3,
+    "status": "Sakit"
+  },
+  {
+    "id": 400,
+    "tanggal": "2025-07-05",
+    "id_kelas": 8,
+    "id_siswa": 400,
+    "id_wali": 3,
+    "status": "Sakit"
+  }
+]

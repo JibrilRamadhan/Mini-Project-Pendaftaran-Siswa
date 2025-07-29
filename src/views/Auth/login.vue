@@ -195,6 +195,7 @@ const card = ref(null)
 const users = [
   { username: 'admin', password: 'admin123', role: 'admin' },
   { username: 'user', password: 'user123', role: 'user' },
+  { username: ' ', password: ' ', role: 'user' },
 ]
 
 function login() {

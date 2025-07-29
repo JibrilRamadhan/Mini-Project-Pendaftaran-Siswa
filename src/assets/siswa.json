@@ -1,203 +1,802 @@
 [
-    {
-      "id": 1,
-      "nisn": "0042112001",
-      "nama": "Alya Putri",
-      "alamat": "Surabaya",
-      "tgl_lahir": "2007-05-12",
-      "jk": "P",
-      "no_tlp": "081234567890",
-      "nama_wali": "Budi Santoso"
-    },
-    {
-      "id": 2,
-      "nisn": "0042112002",
-      "nama": "Raka Pratama",
-      "alamat": "Surabaya",
-      "tgl_lahir": "2006-11-02",
-      "jk": "L",
-      "no_tlp": "081298765432",
-      "nama_wali": "Siti Aminah"
-    },
-    {
-      "id": 3,
-      "nisn": "0042112003",
-      "nama": "Dewi Anjani",
-      "alamat": "Surabaya",
-      "tgl_lahir": "2007-01-19",
-      "jk": "P",
-      "no_tlp": "082134567891",
-      "nama_wali": "Fauzan Hadi"
-    },
-    {
-      "id": 4,
-      "nisn": "0042112004",
-      "nama": "Bayu Nugraha",
-      "alamat": "Surabaya",
-      "tgl_lahir": "2006-08-23",
-      "jk": "L",
-      "no_tlp": "082112345678",
-      "nama_wali": "Dian Kartika"
-    },
-    {
-      "id": 5,
-      "nisn": "0042112005",
-      "nama": "Intan Permata",
-      "alamat": "Surabaya",
-      "tgl_lahir": "2007-03-09",
-      "jk": "P",
-      "no_tlp": "081345678901",
-      "nama_wali": "Agus Riyanto"
-    },
-    {
-      "id": 6,
-      "nisn": "0042112006",
-      "nama": "Fikri Hidayat",
-      "alamat": "Surabaya",
-      "tgl_lahir": "2006-10-12",
-      "jk": "L",
-      "no_tlp": "085212345678",
-      "nama_wali": "Ratna Sari"
-    },
-    {
-      "id": 7,
-      "nisn": "0042112007",
-      "nama": "Nadya Lestari",
-      "alamat": "Surabaya",
-      "tgl_lahir": "2007-06-20",
-      "jk": "P",
-      "no_tlp": "081222334455",
-      "nama_wali": "Teguh Prasetyo"
-    },
-    {
-      "id": 8,
-      "nisn": "0042112008",
-      "nama": "Andi Saputra",
-      "alamat": "Surabaya",
-      "tgl_lahir": "2006-09-14",
-      "jk": "L",
-      "no_tlp": "085678912345",
-      "nama_wali": "Desi Maharani"
-    },
-    {
-      "id": 9,
-      "nisn": "0042112009",
-      "nama": "Rizka Amelia",
-      "alamat": "Surabaya",
-      "tgl_lahir": "2007-02-18",
-      "jk": "P",
-      "no_tlp": "082113344556",
-      "nama_wali": "Yusuf Hadi"
-    },
-    {
-      "id": 10,
-      "nisn": "0042112010",
-      "nama": "Iqbal Ramadhan",
-      "alamat": "Surabaya",
-      "tgl_lahir": "2006-07-01",
-      "jk": "L",
-      "no_tlp": "081445566778",
-      "nama_wali": "Yanti Susanti"
-    },
-    {
-      "id": 11,
-      "nisn": "0042112011",
-      "nama": "Salsabila Nur",
-      "alamat": "Surabaya",
-      "tgl_lahir": "2007-04-04",
-      "jk": "P",
-      "no_tlp": "082167895432",
-      "nama_wali": "Imam Subekti"
-    },
-    {
-      "id": 12,
-      "nisn": "0042112012",
-      "nama": "Rendi Alfian",
-      "alamat": "Surabaya",
-      "tgl_lahir": "2006-12-12",
-      "jk": "L",
-      "no_tlp": "081278912345",
-      "nama_wali": "Dewi Yuliani"
-    },
-    {
-      "id": 13,
-      "nisn": "0042112013",
-      "nama": "Anisa Rahma",
-      "alamat": "Surabaya",
-      "tgl_lahir": "2007-03-25",
-      "jk": "P",
-      "no_tlp": "082156789034",
-      "nama_wali": "Eko Saputra"
-    },
-    {
-      "id": 14,
-      "nisn": "0042112014",
-      "nama": "Rizky Maulana",
-      "alamat": "Surabaya",
-      "tgl_lahir": "2006-06-15",
-      "jk": "L",
-      "no_tlp": "081267894321",
-      "nama_wali": "Sri Harnani"
-    },
-    {
-      "id": 15,
-      "nisn": "0042112015",
-      "nama": "Citra Ayu",
-      "alamat": "Surabaya",
-      "tgl_lahir": "2007-08-28",
-      "jk": "P",
-      "no_tlp": "082188899900",
-      "nama_wali": "Andri Kurniawan"
-    },
-    {
-      "id": 16,
-      "nisn": "0042112016",
-      "nama": "Dika Putra",
-      "alamat": "Surabaya",
-      "tgl_lahir": "2006-02-08",
-      "jk": "L",
-      "no_tlp": "081255667788",
-      "nama_wali": "Herlina Setiawan"
-    },
-    {
-      "id": 17,
-      "nisn": "0042112017",
-      "nama": "Melati Zahra",
-      "alamat": "Surabaya",
-      "tgl_lahir": "2007-10-06",
-      "jk": "P",
-      "no_tlp": "081388899900",
-      "nama_wali": "Fajar Prakoso"
-    },
-    {
-      "id": 18,
-      "nisn": "0042112018",
-      "nama": "Yoga Prasetya",
-      "alamat": "Surabaya",
-      "tgl_lahir": "2006-05-22",
-      "jk": "L",
-      "no_tlp": "085212398745",
-      "nama_wali": "Linda Aisyah"
-    },
-    {
-      "id": 19,
-      "nisn": "0042112019",
-      "nama": "Shinta Maharani",
-      "alamat": "Surabaya",
-      "tgl_lahir": "2007-12-10",
-      "jk": "P",
-      "no_tlp": "081234569876",
-      "nama_wali": "Adi Kusuma"
-    },
-    {
-      "id": 20,
-      "nisn": "0042112020",
-      "nama": "Fajar Rizky",
-      "alamat": "Surabaya",
-      "tgl_lahir": "2006-03-03",
-      "jk": "L",
-      "no_tlp": "082199887766",
-      "nama_wali": "Tina Marlina"
-    }
-  ]
-  
+  {
+    "id": 1,
+    "nisn": "0042112001",
+    "nama": "Alya Putri",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2007-05-12",
+    "jk": "P",
+    "no_tlp": "081234567890",
+    "nama_wali": "Budi Santoso"
+  },
+  {
+    "id": 2,
+    "nisn": "0042112002",
+    "nama": "Raka Pratama",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2006-11-02",
+    "jk": "L",
+    "no_tlp": "081298765432",
+    "nama_wali": "Siti Aminah"
+  },
+  {
+    "id": 3,
+    "nisn": "0042112003",
+    "nama": "Dewi Anjani",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2007-01-19",
+    "jk": "P",
+    "no_tlp": "082134567891",
+    "nama_wali": "Fauzan Hadi"
+  },
+  {
+    "id": 4,
+    "nisn": "0042112004",
+    "nama": "Bayu Nugraha",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2006-08-23",
+    "jk": "L",
+    "no_tlp": "082112345678",
+    "nama_wali": "Dian Kartika"
+  },
+  {
+    "id": 5,
+    "nisn": "0042112005",
+    "nama": "Intan Permata",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2007-03-09",
+    "jk": "P",
+    "no_tlp": "081345678901",
+    "nama_wali": "Agus Riyanto"
+  },
+  {
+    "id": 6,
+    "nisn": "0042112006",
+    "nama": "Fikri Hidayat",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2006-10-12",
+    "jk": "L",
+    "no_tlp": "085212345678",
+    "nama_wali": "Ratna Sari"
+  },
+  {
+    "id": 7,
+    "nisn": "0042112007",
+    "nama": "Nadya Lestari",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2007-06-20",
+    "jk": "P",
+    "no_tlp": "081222334455",
+    "nama_wali": "Teguh Prasetyo"
+  },
+  {
+    "id": 8,
+    "nisn": "0042112008",
+    "nama": "Andi Saputra",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2006-09-14",
+    "jk": "L",
+    "no_tlp": "085678912345",
+    "nama_wali": "Desi Maharani"
+  },
+  {
+    "id": 9,
+    "nisn": "0042112009",
+    "nama": "Rizka Amelia",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2007-02-18",
+    "jk": "P",
+    "no_tlp": "082113344556",
+    "nama_wali": "Yusuf Hadi"
+  },
+  {
+    "id": 10,
+    "nisn": "0042112010",
+    "nama": "Iqbal Ramadhan",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2006-07-01",
+    "jk": "L",
+    "no_tlp": "081445566778",
+    "nama_wali": "Yanti Susanti"
+  },
+  {
+    "id": 11,
+    "nisn": "0042112011",
+    "nama": "Salsabila Nur",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2007-04-04",
+    "jk": "P",
+    "no_tlp": "082167895432",
+    "nama_wali": "Imam Subekti"
+  },
+  {
+    "id": 12,
+    "nisn": "0042112012",
+    "nama": "Rendi Alfian",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2006-12-12",
+    "jk": "L",
+    "no_tlp": "081278912345",
+    "nama_wali": "Dewi Yuliani"
+  },
+  {
+    "id": 13,
+    "nisn": "0042112013",
+    "nama": "Anisa Rahma",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2007-03-25",
+    "jk": "P",
+    "no_tlp": "082156789034",
+    "nama_wali": "Eko Saputra"
+  },
+  {
+    "id": 14,
+    "nisn": "0042112014",
+    "nama": "Rizky Maulana",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2006-06-15",
+    "jk": "L",
+    "no_tlp": "081267894321",
+    "nama_wali": "Sri Harnani"
+  },
+  {
+    "id": 15,
+    "nisn": "0042112015",
+    "nama": "Citra Ayu",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2007-08-28",
+    "jk": "P",
+    "no_tlp": "082188899900",
+    "nama_wali": "Andri Kurniawan"
+  },
+  {
+    "id": 16,
+    "nisn": "0042112016",
+    "nama": "Dika Putra",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2006-02-08",
+    "jk": "L",
+    "no_tlp": "081255667788",
+    "nama_wali": "Herlina Setiawan"
+  },
+  {
+    "id": 17,
+    "nisn": "0042112017",
+    "nama": "Melati Zahra",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2007-10-06",
+    "jk": "P",
+    "no_tlp": "081388899900",
+    "nama_wali": "Fajar Prakoso"
+  },
+  {
+    "id": 18,
+    "nisn": "0042112018",
+    "nama": "Yoga Prasetya",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2006-05-22",
+    "jk": "L",
+    "no_tlp": "085212398745",
+    "nama_wali": "Linda Aisyah"
+  },
+  {
+    "id": 19,
+    "nisn": "0042112019",
+    "nama": "Shinta Maharani",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2007-12-10",
+    "jk": "P",
+    "no_tlp": "081234569876",
+    "nama_wali": "Adi Kusuma"
+  },
+  {
+    "id": 20,
+    "nisn": "0042112020",
+    "nama": "Fajar Rizky",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2006-03-03",
+    "jk": "L",
+    "no_tlp": "082199887766",
+    "nama_wali": "Tina Marlina"
+  },
+  {
+    "id": 21,
+    "nisn": "0042112021",
+    "nama": "Aldi Wijaya",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2007-04-20",
+    "jk": "L",
+    "no_tlp": "081957565627",
+    "nama_wali": "Hendra Gunawan"
+  },
+  {
+    "id": 22,
+    "nisn": "0042112022",
+    "nama": "Dina Safitri",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2006-09-03",
+    "jk": "P",
+    "no_tlp": "085228005959",
+    "nama_wali": "Rina Wulandari"
+  },
+  {
+    "id": 23,
+    "nisn": "0042112023",
+    "nama": "Hadi Susanto",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2007-07-19",
+    "jk": "L",
+    "no_tlp": "082979378319",
+    "nama_wali": "Bambang Sutrisno"
+  },
+  {
+    "id": 24,
+    "nisn": "0042112024",
+    "nama": "Lina Marlina",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2007-07-08",
+    "jk": "P",
+    "no_tlp": "088964950942",
+    "nama_wali": "Joko Widodo"
+  },
+  {
+    "id": 25,
+    "nisn": "0042112025",
+    "nama": "Putri Wulandari",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2007-05-25",
+    "jk": "P",
+    "no_tlp": "089155328682",
+    "nama_wali": "Ahmad Yani"
+  },
+  {
+    "id": 26,
+    "nisn": "0042112026",
+    "nama": "Arif Rahman",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2008-07-01",
+    "jk": "L",
+    "no_tlp": "083194636614",
+    "nama_wali": "Siti Nurhaliza"
+  },
+  {
+    "id": 27,
+    "nisn": "0042112027",
+    "nama": "Doni Setiawan",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2008-08-16",
+    "jk": "L",
+    "no_tlp": "084696285040",
+    "nama_wali": "Rudi Hartono"
+  },
+  {
+    "id": 28,
+    "nisn": "0042112028",
+    "nama": "Maya Indah",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2007-08-16",
+    "jk": "P",
+    "no_tlp": "082439542519",
+    "nama_wali": "Dewi Sartika"
+  },
+  {
+    "id": 29,
+    "nisn": "0042112029",
+    "nama": "Nina Agustina",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2008-06-14",
+    "jk": "P",
+    "no_tlp": "084189040671",
+    "nama_wali": "Tono Sugiarto"
+  },
+  {
+    "id": 30,
+    "nisn": "0042112030",
+    "nama": "Rudi Hermawan",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2006-03-09",
+    "jk": "L",
+    "no_tlp": "086131907531",
+    "nama_wali": "Susi Susanti"
+  },
+  {
+    "id": 31,
+    "nisn": "0042112031",
+    "nama": "Siti Rahayu",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2006-02-27",
+    "jk": "P",
+    "no_tlp": "089717423973",
+    "nama_wali": "Haryanto"
+  },
+  {
+    "id": 32,
+    "nisn": "0042112032",
+    "nama": "Tina Novianti",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2007-03-01",
+    "jk": "P",
+    "no_tlp": "089890401708",
+    "nama_wali": "Budiarto"
+  },
+  {
+    "id": 33,
+    "nisn": "0042112033",
+    "nama": "Wahyu Kurniawan",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2006-08-07",
+    "jk": "L",
+    "no_tlp": "087269159450",
+    "nama_wali": "Ani Lestari"
+  },
+  {
+    "id": 34,
+    "nisn": "0042112034",
+    "nama": "Yuni Astuti",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2008-01-31",
+    "jk": "P",
+    "no_tlp": "088938388522",
+    "nama_wali": "Eko Prasetyo"
+  },
+  {
+    "id": 35,
+    "nisn": "0042112035",
+    "nama": "Adi Nugroho",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2006-11-04",
+    "jk": "L",
+    "no_tlp": "087381975569",
+    "nama_wali": "Rini Handayani"
+  },
+  {
+    "id": 36,
+    "nisn": "0042112036",
+    "nama": "Bella Puspita",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2007-07-02",
+    "jk": "P",
+    "no_tlp": "083584985407",
+    "nama_wali": "Joko Susilo"
+  },
+  {
+    "id": 37,
+    "nisn": "0042112037",
+    "nama": "Cahyo Pratama",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2006-04-21",
+    "jk": "L",
+    "no_tlp": "088838616668",
+    "nama_wali": "Dewi Anggraeni"
+  },
+  {
+    "id": 38,
+    "nisn": "0042112038",
+    "nama": "Dian Permatasari",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2006-11-14",
+    "jk": "P",
+    "no_tlp": "089150511897",
+    "nama_wali": "Hariyadi"
+  },
+  {
+    "id": 39,
+    "nisn": "0042112039",
+    "nama": "Eka Putri",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2006-12-21",
+    "jk": "P",
+    "no_tlp": "087401102985",
+    "nama_wali": "Suryadi"
+  },
+  {
+    "id": 40,
+    "nisn": "0042112040",
+    "nama": "Firman Syah",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2007-01-14",
+    "jk": "L",
+    "no_tlp": "086561777828",
+    "nama_wali": "Lina Marliani"
+  },
+  {
+    "id": 41,
+    "nisn": "0042112041",
+    "nama": "Gita Wulandari",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2006-04-15",
+    "jk": "P",
+    "no_tlp": "085817288191",
+    "nama_wali": "Arief Budiman"
+  },
+  {
+    "id": 42,
+    "nisn": "0042112042",
+    "nama": "Hendra Saputra",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2006-08-10",
+    "jk": "L",
+    "no_tlp": "087379638242",
+    "nama_wali": "Ratna Dewi"
+  },
+  {
+    "id": 43,
+    "nisn": "0042112043",
+    "nama": "Indah Permata",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2007-11-22",
+    "jk": "P",
+    "no_tlp": "087084795504",
+    "nama_wali": "Dodi Setiawan"
+  },
+  {
+    "id": 44,
+    "nisn": "0042112044",
+    "nama": "Joko Santoso",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2007-09-11",
+    "jk": "L",
+    "no_tlp": "088662907603",
+    "nama_wali": "Siti Fatimah"
+  },
+  {
+    "id": 45,
+    "nisn": "0042112045",
+    "nama": "Kiki Amalia",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2007-12-04",
+    "jk": "P",
+    "no_tlp": "082580131229",
+    "nama_wali": "Rudi Hermansyah"
+  },
+  {
+    "id": 46,
+    "nisn": "0042112046",
+    "nama": "Luki Setiawan",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2008-03-18",
+    "jk": "L",
+    "no_tlp": "084282095577",
+    "nama_wali": "Anita Rahayu"
+  },
+  {
+    "id": 47,
+    "nisn": "0042112047",
+    "nama": "Mira Agustina",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2008-03-06",
+    "jk": "P",
+    "no_tlp": "085426872345",
+    "nama_wali": "Bambang Suryadi"
+  },
+  {
+    "id": 48,
+    "nisn": "0042112048",
+    "nama": "Nando Pratama",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2006-08-12",
+    "jk": "L",
+    "no_tlp": "081924394090",
+    "nama_wali": "Dewi Kurnia"
+  },
+  {
+    "id": 49,
+    "nisn": "0042112049",
+    "nama": "Oki Setiawan",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2008-08-24",
+    "jk": "L",
+    "no_tlp": "088668178394",
+    "nama_wali": "Rina Astuti"
+  },
+  {
+    "id": 50,
+    "nisn": "0042112050",
+    "nama": "Putra Ramadhan",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2006-02-24",
+    "jk": "L",
+    "no_tlp": "085816469505",
+    "nama_wali": "Siti Rahma"
+  },
+  {
+    "id": 51,
+    "nisn": "0042112051",
+    "nama": "Rina Wijaya",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2007-05-21",
+    "jk": "P",
+    "no_tlp": "089287470273",
+    "nama_wali": "Agus Setiawan"
+  },
+  {
+    "id": 52,
+    "nisn": "0042112052",
+    "nama": "Sandi Nugraha",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2006-12-01",
+    "jk": "L",
+    "no_tlp": "082113977940",
+    "nama_wali": "Dewi Lestari"
+  },
+  {
+    "id": 53,
+    "nisn": "0042112053",
+    "nama": "Tika Wulandari",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2007-03-13",
+    "jk": "P",
+    "no_tlp": "086065746053",
+    "nama_wali": "Hari Santoso"
+  },
+  {
+    "id": 54,
+    "nisn": "0042112054",
+    "nama": "Umar Said",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2006-03-22",
+    "jk": "L",
+    "no_tlp": "087180235013",
+    "nama_wali": "Lina Marlina"
+  },
+  {
+    "id": 55,
+    "nisn": "0042112055",
+    "nama": "Vina Permata",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2006-02-27",
+    "jk": "P",
+    "no_tlp": "088594877828",
+    "nama_wali": "Rudi Kurniawan"
+  },
+  {
+    "id": 56,
+    "nisn": "0042112056",
+    "nama": "Wawan Setiawan",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2008-08-30",
+    "jk": "L",
+    "no_tlp": "084040023434",
+    "nama_wali": "Siti Nurhayati"
+  },
+  {
+    "id": 57,
+    "nisn": "0042112057",
+    "nama": "Yani Susanti",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2008-06-23",
+    "jk": "P",
+    "no_tlp": "083610565852",
+    "nama_wali": "Budi Santosa"
+  },
+  {
+    "id": 58,
+    "nisn": "0042112058",
+    "nama": "Zaki Fauzi",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2007-01-27",
+    "jk": "L",
+    "no_tlp": "087084230388",
+    "nama_wali": "Dewi Anggraini"
+  },
+  {
+    "id": 59,
+    "nisn": "0042112059",
+    "nama": "Ade Saputra",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2008-05-01",
+    "jk": "L",
+    "no_tlp": "084580212717",
+    "nama_wali": "Rina Wati"
+  },
+  {
+    "id": 60,
+    "nisn": "0042112060",
+    "nama": "Bunga Citra",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2006-06-11",
+    "jk": "P",
+    "no_tlp": "084595556689",
+    "nama_wali": "Hadi Susanto"
+  },
+  {
+    "id": 61,
+    "nisn": "0042112061",
+    "nama": "Candra Wijaya",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2006-12-18",
+    "jk": "L",
+    "no_tlp": "084377173917",
+    "nama_wali": "Siti Rahmawati"
+  },
+  {
+    "id": 62,
+    "nisn": "0042112062",
+    "nama": "Dinda Puspita",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2006-02-20",
+    "jk": "P",
+    "no_tlp": "086514425441",
+    "nama_wali": "Agung Prasetyo"
+  },
+  {
+    "id": 63,
+    "nisn": "0042112063",
+    "nama": "Eko Yulianto",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2006-03-22",
+    "jk": "L",
+    "no_tlp": "083852060091",
+    "nama_wali": "Dewi Kusuma"
+  },
+  {
+    "id": 64,
+    "nisn": "0042112064",
+    "nama": "Fitriani",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2007-08-03",
+    "jk": "P",
+    "no_tlp": "089167981922",
+    "nama_wali": "Hendra Kurniawan"
+  },
+  {
+    "id": 65,
+    "nisn": "0042112065",
+    "nama": "Guntur Prakoso",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2007-09-07",
+    "jk": "L",
+    "no_tlp": "086487402081",
+    "nama_wali": "Rina Setiawati"
+  },
+  {
+    "id": 66,
+    "nisn": "0042112066",
+    "nama": "Hani Lestari",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2007-05-17",
+    "jk": "P",
+    "no_tlp": "087061812962",
+    "nama_wali": "Budi Hartono"
+  },
+  {
+    "id": 67,
+    "nisn": "0042112067",
+    "nama": "Irfan Maulana",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2006-12-04",
+    "jk": "L",
+    "no_tlp": "088214628673",
+    "nama_wali": "Dewi Puspita"
+  },
+  {
+    "id": 68,
+    "nisn": "0042112068",
+    "nama": "Jihan Ayu",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2008-01-28",
+    "jk": "P",
+    "no_tlp": "089553226660",
+    "nama_wali": "Rudi Setiawan"
+  },
+  {
+    "id": 69,
+    "nisn": "0042112069",
+    "nama": "Kevin Pratama",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2008-04-21",
+    "jk": "L",
+    "no_tlp": "088902735604",
+    "nama_wali": "Siti Nurhaliza"
+  },
+  {
+    "id": 70,
+    "nisn": "0042112070",
+    "nama": "Lia Anggraeni",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2007-02-04",
+    "jk": "P",
+    "no_tlp": "087560188428",
+    "nama_wali": "Agus Supriyanto"
+  },
+  {
+    "id": 71,
+    "nisn": "0042112071",
+    "nama": "Miko Wijaya",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2006-06-23",
+    "jk": "L",
+    "no_tlp": "084074477546",
+    "nama_wali": "Dewi Fitriani"
+  },
+  {
+    "id": 72,
+    "nisn": "0042112072",
+    "nama": "Nia Ramadhani",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2008-06-19",
+    "jk": "P",
+    "no_tlp": "085810372924",
+    "nama_wali": "Hari Santoso"
+  },
+  {
+    "id": 73,
+    "nisn": "0042112073",
+    "nama": "Oki Setiawan",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2007-08-21",
+    "jk": "L",
+    "no_tlp": "082948159183",
+    "nama_wali": "Rina Wulandari"
+  },
+  {
+    "id": 74,
+    "nisn": "0042112074",
+    "nama": "Putri Anggraini",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2006-07-11",
+    "jk": "P",
+    "no_tlp": "089787349927",
+    "nama_wali": "Budi Santoso"
+  },
+  {
+    "id": 75,
+    "nisn": "0042112075",
+    "nama": "Rama Aditya",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2007-08-21",
+    "jk": "L",
+    "no_tlp": "085728789802",
+    "nama_wali": "Dewi Lestari"
+  },
+  {
+    "id": 76,
+    "nisn": "0042112076",
+    "nama": "Sari Dewi",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2007-08-04",
+    "jk": "P",
+    "no_tlp": "088808585458",
+    "nama_wali": "Hadi Susanto"
+  },
+  {
+    "id": 77,
+    "nisn": "0042112077",
+    "nama": "Tono Wijaya",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2006-02-10",
+    "jk": "L",
+    "no_tlp": "082315049927",
+    "nama_wali": "Siti Rahayu"
+  },
+  {
+    "id": 78,
+    "nisn": "0042112078",
+    "nama": "Umi Kulsum",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2008-05-25",
+    "jk": "P",
+    "no_tlp": "085994433381",
+    "nama_wali": "Bambang Sutrisno"
+  },
+  {
+    "id": 79,
+    "nisn": "0042112079",
+    "nama": "Vino Pratama",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2007-01-18",
+    "jk": "L",
+    "no_tlp": "082511035146",
+    "nama_wali": "Dewi Anggraeni"
+  },
+  {
+    "id": 80,
+    "nisn": "0042112080",
+    "nama": "Wulan Sari",
+    "alamat": "Surabaya",
+    "tgl_lahir": "2006-01-24",
+    "jk": "P",
+    "no_tlp": "085814783398",
+    "nama_wali": "Hariyanto"
+  }
+]

@@ -5,10 +5,10 @@
     aria-label="Sidebar"
   >
     <div class="h-full px-4 py-6 overflow-y-auto">
-      <h2 class="text-xl font-semibold text-gray-700 dark:text-gray-100 mb-6 px-2 tracking-wide">
+      <h2 class="text-xl font-semibold text-white dark:text-gray-800 mb-6 px-2 tracking-wide">
         Menu Utama
       </h2>
-      <ul class="space-y-2 text-sm font-medium">
+      <ul class="space-y-2 text-sm font-medium mt-8">
         <li>
           <router-link
             to="/siswa"
@@ -38,13 +38,13 @@
           </router-link>
         </li>
         <li>
-          <a
-            href="#"
+          <router-link
+            to="/absen"
             class="flex items-center gap-3 p-2 rounded-lg text-gray-800 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800 transition"
           >
             <i class="fas fa-calendar-check text-indigo-500"></i>
             <span>Absen</span>
-          </a>
+          </router-link>
         </li>
         <li>
           <router-link
@@ -81,12 +81,57 @@
 
 <script setup>
 import { useRouter } from 'vue-router'
+import Swal from 'sweetalert2'
 
+const isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
 const router = useRouter()
 
 const logout = () => {
-  localStorage.removeItem('user')
-  router.push('/')
+  Swal.fire({
+    title: 'Yakin ingin logout?',
+    text: 'Sesi kamu akan diakhiri.',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#e3342f',
+    cancelButtonColor: '#6c757d',
+    confirmButtonText: 'Ya, Logout',
+    cancelButtonText: 'Batal',
+    background: isDark ? '#1e1e2f' : '#ffffff',
+    color: isDark ? '#f1f5f9' : '#1f2937',
+    iconColor: isDark ? '#facc15' : '#f59e0b',
+    showClass: {
+      popup: 'animate__animated animate__zoomIn',
+    },
+    hideClass: {
+      popup: 'animate__animated animate__fadeOutUp',
+    },
+    customClass: {
+      popup: 'rounded-xl shadow-md',
+      confirmButton: 'px-4 py-2 text-sm',
+      cancelButton: 'px-4 py-2 text-sm',
+    },
+  }).then((result) => {
+    if (result.isConfirmed) {
+      localStorage.removeItem('user')
+      Swal.fire({
+        title: 'Logout berhasil!',
+        text: 'Sampai jumpa 👋',
+        icon: 'success',
+        timer: 1500,
+        showConfirmButton: false,
+        background: isDark ? '#1e1e2f' : '#ffffff',
+        color: isDark ? '#f1f5f9' : '#1f2937',
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown',
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp',
+        },
+      }).then(() => {
+        router.push('/')
+      })
+    }
+  })
 }
 </script>
 
