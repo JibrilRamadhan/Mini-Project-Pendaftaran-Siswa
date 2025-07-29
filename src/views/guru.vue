@@ -53,28 +53,13 @@ export default {
     },
   },
   methods: {
-    validateForm() {
-      this.errors = {}
-      const f = this.formGuru
-      if (!f.nama_guru) this.errors.nama_guru = 'Wajib diisi'
-      if (!f.nip) this.errors.nip = 'Wajib diisi'
-      if (!f.jenis_kelamin) this.errors.jenis_kelamin = 'Wajib dipilih'
-      if (!f.tgl_lahir) this.errors.tgl_lahir = 'Wajib diisi'
-      if (!f.alamat) this.errors.alamat = 'Wajib diisi'
-      if (!f.no_telp) this.errors.no_telp = 'Wajib diisi'
-      if (!f.email) this.errors.email = 'Wajib diisi'
-      return Object.keys(this.errors).length === 0
-    },
+    
     openAddModal() {
       this.resetNewGuru()
       this.editedIndex = null
       this.showModal = true
     },
-    editGuru(index) {
-      this.editedIndex = index
-      this.editedGuru = { ...this.guruList[index] }
-      this.showModal = true
-    },
+
     saveModal() {
       if (!this.validateForm()) return
       if (this.editedIndex === null) {
