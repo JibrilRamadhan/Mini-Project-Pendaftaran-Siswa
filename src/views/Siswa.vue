@@ -19,7 +19,7 @@
     <table class="w-full border-collapse shadow-lg">
       <thead class="bg-blue-100">
         <tr>
-          <th class="border p-2">ID</th>
+          <th class="border p-2">NO</th>
           <th class="border p-2">NISN</th>
           <th class="border p-2">Nama</th>
           <th class="border p-2">Alamat</th>
