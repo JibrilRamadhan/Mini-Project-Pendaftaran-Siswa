@@ -1,5 +1,7 @@
 import { ref, computed } from 'vue'
 import guruData from '../stores/guru.json'
+import { searchForWorkspaceRoot } from 'vite'
+const limit = ref(5)
 
 export function useGuru() {
   const guruList = ref([...guruData])
@@ -18,8 +20,20 @@ export function useGuru() {
   const editedIndex = ref(null)
   const showModal = ref(false)
   const errors = ref({})
+  const SearchQuery = ref('')
 
   const formGuru = computed(() => (editedIndex.value !== null ? editedGuru.value : newGuru.value))
+
+  const filteredGuruList = computed(() => {
+    if (!SearchQuery.value) return guruList.value
+    return guruList.value.filter(
+      (guru) =>
+        guru.nama_guru.toLowerCase().includes(SearchQuery.value.toLowerCase()) ||
+        guru.nip.includes(SearchQuery.value),
+    )
+  })
+
+  const limitedGuruList = computed(() => filteredGuruList.value.slice(0, limit.value))
 
   function validateForm() {
     errors.value = {}
@@ -48,10 +62,13 @@ export function useGuru() {
 
   function saveModal() {
     if (!validateForm()) return
+
     if (editedIndex.value === null) {
       guruList.value.push({ ...newGuru.value })
+      guruList.value = [...guruList.value]
     } else {
       guruList.value.splice(editedIndex.value, 1, { ...editedGuru.value })
+      guruList.value = [...guruList.value]
     }
     reorderID()
     closeModal()
@@ -95,6 +112,10 @@ export function useGuru() {
 
   return {
     guruList,
+    filteredGuruList,
+    limitedGuruList,
+    SearchQuery,
+    limit,
     formGuru,
     errors,
     showModal,
