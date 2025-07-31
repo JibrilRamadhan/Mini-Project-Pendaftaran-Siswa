@@ -1,9 +1,9 @@
-// composables/useMapel.js
-import { ref, reactive, onMounted } from 'vue'
+import { ref, reactive, onMounted, computed } from 'vue'
 import mapelData from '../data/mapel.json'
 
 export default function useMapel() {
   const mapels = ref([])
+  const search = ref('')
   const showModal = ref(false)
   const showConfirmDelete = ref(false)
   const indexToDelete = ref(null)
@@ -22,9 +22,31 @@ export default function useMapel() {
     id_guru: ''
   })
 
+  // Load data awal dan atur ID
   onMounted(() => {
-    mapels.value = mapelData
+    mapels.value = mapelData.map((item, index) => ({
+      ...item,
+      id_mapel: index + 1
+    }))
   })
+
+  // Fitur pencarian berdasarkan nama, kode, id_guru, dan id_mapel
+  const filteredMapels = computed(() => {
+    if (!search.value.trim()) return mapels.value
+    const keyword = search.value.toLowerCase()
+    return mapels.value.filter((m) =>
+      m.nama_mapel.toLowerCase().includes(keyword) ||
+      m.kode_mapel.toLowerCase().includes(keyword) ||
+      m.id_guru.toString().toLowerCase().includes(keyword) ||
+      m.id_mapel.toString().toLowerCase().includes(keyword)
+    )
+  })
+
+  const clearErrors = () => {
+    errors.nama_mapel = ''
+    errors.kode_mapel = ''
+    errors.id_guru = ''
+  }
 
   const resetForm = () => {
     form.id_mapel = null
@@ -33,12 +55,6 @@ export default function useMapel() {
     form.id_guru = null
     editIndex.value = null
     clearErrors()
-  }
-
-  const clearErrors = () => {
-    errors.nama_mapel = ''
-    errors.kode_mapel = ''
-    errors.id_guru = ''
   }
 
   const openModal = () => {
@@ -87,20 +103,29 @@ export default function useMapel() {
   }
 
   const edit = (index) => {
-    Object.assign(form, mapels.value[index])
-    editIndex.value = index
+    const item = filteredMapels.value[index]
+    const realIndex = mapels.value.findIndex((m) => m.id_mapel === item.id_mapel)
+    Object.assign(form, mapels.value[realIndex])
+    editIndex.value = realIndex
     clearErrors()
     showModal.value = true
   }
 
   const konfirmasiHapus = (index) => {
-    indexToDelete.value = index
+    const item = filteredMapels.value[index]
+    const realIndex = mapels.value.findIndex((m) => m.id_mapel === item.id_mapel)
+    indexToDelete.value = realIndex
     showConfirmDelete.value = true
   }
 
   const hapus = () => {
     if (indexToDelete.value !== null) {
       mapels.value.splice(indexToDelete.value, 1)
+      // Re-assign ID mapel agar tetap berurutan
+      mapels.value = mapels.value.map((m, idx) => ({
+        ...m,
+        id_mapel: idx + 1
+      }))
     }
     indexToDelete.value = null
     showConfirmDelete.value = false
@@ -108,11 +133,12 @@ export default function useMapel() {
 
   return {
     mapels,
-    showModal,
-    showConfirmDelete,
-    editIndex,
+    filteredMapels,
     form,
     errors,
+    search,
+    showModal,
+    showConfirmDelete,
     openModal,
     closeModal,
     updateForm,
