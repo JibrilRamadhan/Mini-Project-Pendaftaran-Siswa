@@ -43,6 +43,16 @@ export function useAbsensi() {
     }
   }
 
+  function tambahMurid(newItem) {
+  const exists = absen.value.some(i => i.nisn === newItem.nisn)
+  if (exists) {
+    alert('NISN sudah terdaftar.')
+    return
+  }
+  absen.value.push(newItem)
+}
+
+
   return {
     absen,
     sortKey,
@@ -50,6 +60,7 @@ export function useAbsensi() {
     loadData,
     updateStatus,
     hapusMurid,
-    toggleSort
+    toggleSort,
+    tambahMurid
   }
 }

@@ -25,6 +25,8 @@
   />
 
 </div>
+    <TambahSiswaForm @tambah-siswa="tambahMurid" />
+
 
     <AbsensiTable
       :items="sortedItems"
@@ -39,6 +41,7 @@
 import { ref, onMounted, computed } from 'vue'
 import { useAbsensi } from '../composables/useAbsensi.js'
 import AbsensiTable from '../components/AbsensiTable.vue'
+import TambahSiswaForm from '../components/TambahSiswaForm.vue'
 
 const kodeKelas = ref('KLS001')
 const tanggal = ref('2025-07-28')
@@ -65,7 +68,7 @@ const sortedItems = computed(() => {
   return sorted
 })
 
-const { absen, sortKey, sortOrder, loadData, updateStatus, hapusMurid, toggleSort } = useAbsensi()
+const { absen, sortKey, sortOrder, loadData, updateStatus, hapusMurid, toggleSort, tambahMurid } = useAbsensi()
 
 onMounted(() => loadData(kodeKelas.value, tanggal.value))
 
