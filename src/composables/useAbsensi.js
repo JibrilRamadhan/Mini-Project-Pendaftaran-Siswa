@@ -2,6 +2,9 @@ import { ref } from 'vue'
 
 export function useAbsensi() {
   const absen = ref([])
+  
+  const sortKey = ref('nama') 
+  const sortOrder = ref('asc')
 
   async function loadData(kodeKelas, tanggal) {
     const res = await fetch('/absen.json')
@@ -31,10 +34,22 @@ export function useAbsensi() {
     absen.value = absen.value.filter(i => i.nisn !== nisn)
   }
 
+  function toggleSort(key) {
+    if (sortKey.value === key) {
+      sortOrder.value = sortOrder.value === 'asc' ? 'desc' : 'asc'
+    } else {
+      sortKey.value = key
+      sortOrder.value = 'asc'
+    }
+  }
+
   return {
     absen,
+    sortKey,
+    sortOrder,
     loadData,
     updateStatus,
-    hapusMurid
+    hapusMurid,
+    toggleSort
   }
 }

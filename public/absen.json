@@ -7,16 +7,20 @@
       {
         "nisn": "1234567890",
         "nama": "Ahmad",
-        "status": "Hadir"
+        "status": "Hadir",
+        "keterangan": "Temporary"
       },
       {
         "nisn": "2342342",
         "nama": "Alexan",
+        "keterangan": "Temporary",
         "status": "Hadir"
+        
       },
       {
         "nisn": "123455",
         "nama": "Are",
+        "keterangan": "Temporary",
         "status": "Sakit"
 
       }
@@ -30,11 +34,13 @@
       {
         "nisn": "1234567890",
         "nama": "Tule",
+          "keterangan": "Temporary",
         "status": "Izin"
       },
       {
         "nisn": "2310242",
         "nama": "Alexis",
+        "keterangan": "Temporary",
         "status": "Hadir"
       }
     ]
