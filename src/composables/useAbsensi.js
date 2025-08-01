@@ -6,24 +6,27 @@ export function useAbsensi() {
   const sortKey = ref('nama') 
   const sortOrder = ref('asc')
 
-  async function loadData(kodeKelas, tanggal) {
-    const res = await fetch('/absen.json')
-    console.log(kodeKelas)
-    const data = await res.json()
-    console.log(tanggal)
+  const kodeKelas = ref('KLS001')
+  const displayKodeKelas = ref();
+  const tanggal = ref('2025-07-28')
+  const displayTanggal = ref()
 
-    const record = data.find(d =>
-      d.kode_kelas === kodeKelas && d.tanggal === tanggal
-    )
+async function loadData(kodeKelas, tanggal) {
+  const res = await fetch('/absen.json')
+  const data = await res.json()
 
-    console.log(record)
+  const record = data.find(d =>
+    d.kode_kelas === kodeKelas && d.tanggal === tanggal
+  )
 
-    if (!record) {
-      alert('Data absensi tidak ditemukan untuk kelas dan tanggal tersebut.')
-    } else {
-      absen.value = record.absen
-    }
+  if (!record) {
+    alert('Data absensi tidak ditemukan untuk kelas dan tanggal tersebut.')
+  } else {
+    displayKodeKelas.value = kodeKelas
+    displayTanggal.value = tanggal
+    absen.value = record.absen
   }
+}
 
   function updateStatus(nisn, status) {
     const item = absen.value.find(i => i.nisn === nisn)
@@ -55,6 +58,10 @@ export function useAbsensi() {
 
   return {
     absen,
+    kodeKelas,
+    displayKodeKelas,
+    tanggal,
+    displayTanggal,
     sortKey,
     sortOrder,
     loadData,

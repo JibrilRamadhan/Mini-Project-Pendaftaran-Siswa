@@ -1,6 +1,6 @@
 <template>
   <div class="p-4 max-w-3xl mx-auto">
-    <h2 class="text-xl font-bold mb-4">Absensi Kelas {{ kodeKelas }} ({{ tanggal }})</h2>
+    <h2 class="text-xl font-bold mb-4">Absensi Kelas {{ displayKodeKelas }} ({{ displayTanggal }})</h2>
     <div class="flex gap-2 mb-4">
   <select v-model="kodeKelas" class="border p-2 rounded">
     <option value="KLS001">KLS001</option>
@@ -43,8 +43,6 @@ import { useAbsensi } from '../composables/useAbsensi.js'
 import AbsensiTable from '../components/AbsensiTable.vue'
 import TambahSiswaForm from '../components/TambahSiswaForm.vue'
 
-const kodeKelas = ref('KLS001')
-const tanggal = ref('2025-07-28')
 const filterStatus = ref('')
 const searchKeyword = ref('')
 
@@ -68,7 +66,7 @@ const sortedItems = computed(() => {
   return sorted
 })
 
-const { absen, sortKey, sortOrder, loadData, updateStatus, hapusMurid, toggleSort, tambahMurid } = useAbsensi()
+const { absen, kodeKelas, displayKodeKelas, tanggal, displayTanggal, sortKey, sortOrder, loadData, updateStatus, hapusMurid, toggleSort, tambahMurid } = useAbsensi()
 
 onMounted(() => loadData(kodeKelas.value, tanggal.value))
 
