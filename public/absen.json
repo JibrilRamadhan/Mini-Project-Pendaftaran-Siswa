@@ -1,8 +1,9 @@
 [
   {
     "kode_kelas": "RPL12-01",
-    "id_guru": 1,
+    "id_guru": 5,
     "tanggal": "2025-08-01",
+    "id_wali_kelas": 5,
     "absen": [
       {
         "nisn": "0042112001",
@@ -28,6 +29,7 @@
     "kode_kelas": "RPL12-02",
     "id_guru": 2,
     "tanggal": "2025-08-01",
+    "id_wali_kelas": 2,
     "absen": [
       {
         "nisn": "0042112004",
@@ -51,8 +53,9 @@
   },
   {
     "kode_kelas": "RPL12-01",
-    "id_guru": 1,
+    "id_guru": 5,
     "tanggal": "2025-08-02",
+    "id_wali_kelas": 5,
     "absen": [
       {
         "nisn": "0042112001",

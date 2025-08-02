@@ -1,6 +1,6 @@
 <template>
   <div class="p-4 max-w-3xl mx-auto">
-<h2 class="text-xl font-bold mb-4">Absensi {{ namaKelasAktif }} ({{ displayTanggal }})</h2>
+    <h2 class="text-xl font-bold mb-4">Absensi {{ namaKelasAktif }} ({{ displayTanggal }})</h2>
     <p class="text-sm text-gray-600">Wali Kelas: {{ namaWaliKelas }}</p>
     <div class="flex gap-2 mb-4">
   <select v-model="kodeKelas" class="border p-2 rounded">
@@ -74,12 +74,13 @@ const sortedItems = computed(() => {
   return sorted
 })
 
-const { absen, namaKelasAktif, namaWaliKelas, kodeKelas, daftarKelas, displayKodeKelas, tanggal, displayTanggal, sortKey, sortOrder, loadData, loadKelas, loadGuru, updateStatus, hapusMurid, toggleSort, tambahMurid, updateKeterangan } = useAbsensi()
+const { absen, namaKelasAktif, namaWaliKelas, kodeKelas, daftarKelas, tanggal, displayTanggal, sortKey, sortOrder, loadData, loadKelas, loadGuru, updateStatus, hapusMurid, toggleSort, tambahMurid, updateKeterangan } = useAbsensi()
 
-onMounted(() => {
-  loadKelas()
-  loadData(kodeKelas.value, tanggal.value)
-  loadGuru()
+onMounted(async () => {
+  await loadKelas()
+  await loadGuru()
+  await loadData(kodeKelas.value, tanggal.value)
 })
+
 
 </script>

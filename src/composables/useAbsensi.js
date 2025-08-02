@@ -6,8 +6,7 @@ export function useAbsensi() {
   const daftarKelas = ref([])
 
   const daftarGuru = ref([])
-  const namaWaliKelas = ref('')
-
+  const namaWaliKelas = ref('Delay')
 
   const sortKey = ref('nama') 
   const sortOrder = ref('asc')
@@ -25,6 +24,11 @@ export function useAbsensi() {
   async function loadData(kode, tgl) {
     const res = await fetch('/absen.json')
     const data = await res.json()
+    console.log(namaWaliKelas.value)
+
+    namaWaliKelas.value = cariWaliKelas(kode)
+
+    console.log(namaWaliKelas.value)
 
     const record = data.find(d =>
       d.kode_kelas === kode && d.tanggal === tgl
@@ -37,7 +41,9 @@ export function useAbsensi() {
         const kelas = daftarKelas.value.find(k => k.kode_kelas === kode)
         if (kelas) {
           const wali = daftarGuru.value.find(g => g.id_guru === kelas.id_wali_kelas)
+          console.log("WALI: ", wali)
           namaWaliKelas.value = wali ? wali.nama_guru : 'Tidak diketahui'
+          console.log("NAMA WALI KELAS: ", namaWaliKelas.value)
         }
       displayTanggal.value = tgl
       absen.value = record.absen
@@ -55,6 +61,14 @@ export function useAbsensi() {
     const data = await res.json()
     daftarGuru.value = data
   }
+
+  function cariWaliKelas(kode_kelas) {
+  const kelas = daftarKelas.value.find(k => k.kode_kelas === kode_kelas)
+  if (!kelas) return 'Tidak diketahui'
+
+  const guru = daftarGuru.value.find(g => g.id_guru === kelas.id_wali_kelas)
+  return guru ? guru.nama_guru : 'Tidak diketahui'
+}
 
 
   function updateStatus(nisn, status) {
@@ -94,6 +108,7 @@ export function useAbsensi() {
     absen,
     daftarKelas,
     kodeKelas,
+    namaWaliKelas,
     tanggal,
     displayKodeKelas,
     displayTanggal,
@@ -103,6 +118,7 @@ export function useAbsensi() {
     loadData,
     loadKelas,
     loadGuru,
+    cariWaliKelas,
     updateStatus,
     hapusMurid,
     toggleSort,
