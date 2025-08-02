@@ -1,0 +1,47 @@
+[
+  {
+    "id_jam": 1,
+    "hari": "Senin",
+    "jam_mulai": "07:00",
+    "jam_selesai": "08:00",
+    "id_mapel": 1,
+    "id_guru": 1,
+    "id_kelas": 1
+  },
+  {
+    "id_jam": 2,
+    "hari": "Senin",
+    "jam_mulai": "08:00",
+    "jam_selesai": "09:00",
+    "id_mapel": 2,
+    "id_guru": 2,
+    "id_kelas": 1
+  },
+  {
+    "id_jam": 3,
+    "hari": "Selasa",
+    "jam_mulai": "07:00",
+    "jam_selesai": "08:00",
+    "id_mapel": 3,
+    "id_guru": 3,
+    "id_kelas": 2
+  },
+  {
+    "id_jam": 4,
+    "hari": "Rabu",
+    "jam_mulai": "08:00",
+    "jam_selesai": "09:00",
+    "id_mapel": 4,
+    "id_guru": 4,
+    "id_kelas": 3
+  },
+  {
+    "id_jam": 5,
+    "hari": "Kamis",
+    "jam_mulai": "09:00",
+    "jam_selesai": "10:00",
+    "id_mapel": 5,
+    "id_guru": 5,
+    "id_kelas": 4
+  }
+]

@@ -1,47 +1,76 @@
 [
   {
-    "kode_kelas": "KLS001",
-    "id_guru": "G123",
-    "tanggal": "2025-07-28",
+    "kode_kelas": "RPL12-01",
+    "id_guru": 1,
+    "tanggal": "2025-08-01",
     "absen": [
       {
-        "nisn": "1234567890",
-        "nama": "Ahmad",
+        "nisn": "0042112001",
+        "nama": "Alya Putri",
         "status": "Hadir",
-        "keterangan": "Temporary"
+        "keterangan": ""
       },
       {
-        "nisn": "2342342",
-        "nama": "Alexan",
-        "keterangan": "Temporary",
-        "status": "Hadir"
-        
+        "nisn": "0042112002",
+        "nama": "Raka Pratama",
+        "status": "Sakit",
+        "keterangan": ""
       },
       {
-        "nisn": "123455",
-        "nama": "Are",
-        "keterangan": "Temporary",
-        "status": "Sakit"
-
+        "nisn": "0042112003",
+        "nama": "Dewi Anjani",
+        "status": "Alpha",
+        "keterangan": ""
       }
     ]
   },
   {
-    "kode_kelas": "KLS002",
-    "id_guru": "G456",
-    "tanggal": "2025-07-29",
+    "kode_kelas": "RPL12-02",
+    "id_guru": 2,
+    "tanggal": "2025-08-01",
     "absen": [
       {
-        "nisn": "1234567890",
-        "nama": "Tule",
-          "keterangan": "Temporary",
-        "status": "Izin"
+        "nisn": "0042112004",
+        "nama": "Bayu Nugraha",
+        "status": "Hadir",
+        "keterangan": ""
       },
       {
-        "nisn": "2310242",
-        "nama": "Alexis",
-        "keterangan": "Temporary",
-        "status": "Hadir"
+        "nisn": "0042112005",
+        "nama": "Intan Permata",
+        "status": "Izin",
+        "keterangan": ""
+      },
+      {
+        "nisn": "0042112006",
+        "nama": "Fikri Hidayat",
+        "status": "Hadir",
+        "keterangan": ""
+      }
+    ]
+  },
+  {
+    "kode_kelas": "RPL12-01",
+    "id_guru": 1,
+    "tanggal": "2025-08-02",
+    "absen": [
+      {
+        "nisn": "0042112001",
+        "nama": "Alya Putri",
+        "status": "Izin",
+        "keterangan": ""
+      },
+      {
+        "nisn": "0042112002",
+        "nama": "Raka Pratama",
+        "status": "Hadir",
+        "keterangan": ""
+      },
+      {
+        "nisn": "0042112003",
+        "nama": "Dewi Anjani",
+        "status": "Hadir",
+        "keterangan": ""
       }
     ]
   }

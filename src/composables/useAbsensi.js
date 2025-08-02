@@ -1,32 +1,61 @@
-import { ref } from 'vue'
+import { update } from 'three/examples/jsm/libs/tween.module.js'
+import { ref, computed } from 'vue'
 
 export function useAbsensi() {
   const absen = ref([])
-  
+  const daftarKelas = ref([])
+
+  const daftarGuru = ref([])
+  const namaWaliKelas = ref('')
+
+
   const sortKey = ref('nama') 
   const sortOrder = ref('asc')
 
-  const kodeKelas = ref('KLS001')
-  const displayKodeKelas = ref();
-  const tanggal = ref('2025-07-28')
-  const displayTanggal = ref()
+  const kodeKelas = ref('RPL12-01')
+  const displayKodeKelas = ref('RPL12-01')
+  const tanggal = ref('2025-08-01')
+  const displayTanggal = ref('2025-08-01')
 
-async function loadData(kodeKelas, tanggal) {
-  const res = await fetch('/absen.json')
-  const data = await res.json()
+  const namaKelasAktif = computed(() => {
+    const kelas = daftarKelas.value.find(k => k.kode_kelas === displayKodeKelas.value)
+    return kelas ? kelas.nama_kelas : displayKodeKelas.value
+  })
 
-  const record = data.find(d =>
-    d.kode_kelas === kodeKelas && d.tanggal === tanggal
-  )
+  async function loadData(kode, tgl) {
+    const res = await fetch('/absen.json')
+    const data = await res.json()
 
-  if (!record) {
-    alert('Data absensi tidak ditemukan untuk kelas dan tanggal tersebut.')
-  } else {
-    displayKodeKelas.value = kodeKelas
-    displayTanggal.value = tanggal
-    absen.value = record.absen
+    const record = data.find(d =>
+      d.kode_kelas === kode && d.tanggal === tgl
+    )
+
+    if (!record) {
+      alert('Data absensi tidak ditemukan untuk kelas dan tanggal tersebut.')
+    } else {
+      displayKodeKelas.value = kode
+        const kelas = daftarKelas.value.find(k => k.kode_kelas === kode)
+        if (kelas) {
+          const wali = daftarGuru.value.find(g => g.id_guru === kelas.id_wali_kelas)
+          namaWaliKelas.value = wali ? wali.nama_guru : 'Tidak diketahui'
+        }
+      displayTanggal.value = tgl
+      absen.value = record.absen
+    }
   }
-}
+
+  async function loadKelas() {
+    const res = await fetch('/kelas.json')
+    const data = await res.json()
+    daftarKelas.value = data
+  }
+
+  async function loadGuru() {
+    const res = await fetch('/guru.json')
+    const data = await res.json()
+    daftarGuru.value = data
+  }
+
 
   function updateStatus(nisn, status) {
     const item = absen.value.find(i => i.nisn === nisn)
@@ -47,27 +76,37 @@ async function loadData(kodeKelas, tanggal) {
   }
 
   function tambahMurid(newItem) {
-  const exists = absen.value.some(i => i.nisn === newItem.nisn)
-  if (exists) {
-    alert('NISN sudah terdaftar.')
-    return
+    const exists = absen.value.some(i => i.nisn === newItem.nisn)
+    if (exists) {
+      alert('NISN sudah terdaftar.')
+      return
+    }
+    absen.value.push(newItem)
   }
-  absen.value.push(newItem)
-}
+
+  function updateKeterangan(nisn, keterangan) {
+    const item = absen.value.find(i => i.nisn === nisn)
+    if (item) item.keterangan = keterangan
+  }
 
 
   return {
     absen,
+    daftarKelas,
     kodeKelas,
-    displayKodeKelas,
     tanggal,
+    displayKodeKelas,
     displayTanggal,
+    namaKelasAktif,
     sortKey,
     sortOrder,
     loadData,
+    loadKelas,
+    loadGuru,
     updateStatus,
     hapusMurid,
     toggleSort,
-    tambahMurid
+    tambahMurid,
+    updateKeterangan
   }
 }

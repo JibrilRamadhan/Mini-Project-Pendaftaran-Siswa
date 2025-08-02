@@ -1,11 +1,17 @@
 <template>
   <div class="p-4 max-w-3xl mx-auto">
-    <h2 class="text-xl font-bold mb-4">Absensi Kelas {{ displayKodeKelas }} ({{ displayTanggal }})</h2>
+<h2 class="text-xl font-bold mb-4">Absensi {{ namaKelasAktif }} ({{ displayTanggal }})</h2>
+    <p class="text-sm text-gray-600">Wali Kelas: {{ namaWaliKelas }}</p>
     <div class="flex gap-2 mb-4">
   <select v-model="kodeKelas" class="border p-2 rounded">
-    <option value="KLS001">KLS001</option>
-    <option value="KLS002">KLS002</option>
-  </select>
+  <option
+    v-for="kelas in daftarKelas"
+    :key="kelas.kode_kelas"
+    :value="kelas.kode_kelas"
+  >
+    {{ kelas.nama_kelas }}
+  </option>
+</select>
   <input type="date" v-model="tanggal" class="border p-2 rounded" />
   <button @click="loadData(kodeKelas, tanggal)" class="bg-blue-500 text-white px-3 py-1 rounded">
     Tampilkan
@@ -32,8 +38,10 @@
       :items="sortedItems"
       @sort-by="toggleSort"
       @update-status="updateStatus"
+      @update-keterangan="updateKeterangan"
       @hapus-murid="hapusMurid"
     />
+
   </div>
 </template>
 
@@ -66,8 +74,12 @@ const sortedItems = computed(() => {
   return sorted
 })
 
-const { absen, kodeKelas, displayKodeKelas, tanggal, displayTanggal, sortKey, sortOrder, loadData, updateStatus, hapusMurid, toggleSort, tambahMurid } = useAbsensi()
+const { absen, namaKelasAktif, namaWaliKelas, kodeKelas, daftarKelas, displayKodeKelas, tanggal, displayTanggal, sortKey, sortOrder, loadData, loadKelas, loadGuru, updateStatus, hapusMurid, toggleSort, tambahMurid, updateKeterangan } = useAbsensi()
 
-onMounted(() => loadData(kodeKelas.value, tanggal.value))
+onMounted(() => {
+  loadKelas()
+  loadData(kodeKelas.value, tanggal.value)
+  loadGuru()
+})
 
 </script>

@@ -23,7 +23,7 @@
               item.status === 'Hadir' ? 'bg-green-50' :
               item.status === 'Izin' ? 'bg-yellow-50' :
               item.status === 'Sakit' ? 'bg-blue-50' :
-              item.status === 'Alfa' ? 'bg-red-50' :
+              item.status === 'Alpha' ? 'bg-red-50' :
               ''
             ]"
           >
@@ -38,17 +38,17 @@
               <option value="Hadir">Hadir</option>
               <option value="Izin">Izin</option>
               <option value="Sakit">Sakit</option>
-              <option value="Alfa">Alfa</option>
+              <option value="Alpha">Alpha</option>
             </select>
           </td>
-          <td class=""p-3>
-          <input
-            type="text"
-            v-model="item.keterangan"
-            placeholder="Keterangan"
-            @change="$emit('update-keterangan', item.id, item.keterangan)"
-            class="border p-2 rounded w-full sm:w-64"
-          />
+          <td class="p-3">
+            <input
+              type="text"
+              v-model="item.keterangan"
+              placeholder="Keterangan"
+              @change="$emit('update-keterangan', item.nisn, item.keterangan)"
+              class="border p-2 rounded w-full sm:w-64"
+            />
           </td>
           <td class="p-3">
             <button
@@ -69,5 +69,5 @@
 
 <script setup>
 defineProps(['items'])
-defineEmits(['update-status', 'hapus-murid'])
+defineEmits(['update-status', 'hapus-murid', 'update-keterangan'])
 </script>
