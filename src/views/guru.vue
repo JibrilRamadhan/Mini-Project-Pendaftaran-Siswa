@@ -1,8 +1,35 @@
 <template>
   <div class="p-4">
-    <h2 class="text-2xl font-semibold mb-4">🧑‍🏫 Data Guru</h2>
+    <h2 class="text-2xl font-semibold mb-4 flex items-center gap-2">🧑‍🏫 Data Guru</h2>
 
-    <ButtonAdd @click="openAddModal" />
+    <!-- Edit & Hapus -->
+    <div class="flex justify-between items-center flex-wrap mb-4">
+      <div class="flex gap-2 mb-2 sm:mb-0">
+        <ButtonAdd @click="openAddModal" />
+        <button class="mb-4 bg-yellow-400 text-white px-4 py-2 rounded" @click="editSelected">
+          Edit
+        </button>
+        <button class="mb-4 bg-red-500 text-white px-4 py-2 rounded" @click="deleteSelected  ">
+          Hapus
+        </button>
+      </div>
+
+      <!-- Fitur Seacrh -->
+      <div class="flex gap-2 flex-wrap justify-end items-center">
+        <input
+          type="text"
+          v-model="searchQuery"
+          placeholder="Cari nama atau NIP..."
+          class="border px-2 py-1 rounded"
+        />
+
+        <!--Fitur Limit-->
+        <label for="limit" class="text-sm">Tampilkan:</label>
+        <select v-model="limit" class="border px-2 py-1 rounded">
+          <option v-for="n in [5, 10, 20, 50]" :key="n" :value="n">{{ n }}</option>
+        </select>
+      </div>
+    </div>
 
     <GuruForm
       v-if="showModal"
@@ -12,22 +39,6 @@
       @save="saveModal"
       @close="closeModal"
     />
-
-    <input
-      v-model="searchQuery"
-      placeholder="Cari nama atau NIP..."
-      class="border px-4 py-2 mb-4 w-full rounded"
-    />
-
-    <div class="mb-4">
-      <label class="mr-2">Tampilkan:</label>
-      <select v-model="limit" class="border px-2 py-1 rounded">
-        <option :value="5">5</option>
-        <option :value="10">10</option>
-        <option :value="20">20</option>
-        <option :value="guruList.length">Semua</option>
-      </select>
-    </div>
 
     <GuruTable :guruList="limitedGuruList" @editGuru="editGuru" @deleteGuru="deleteGuru" />
   </div>
