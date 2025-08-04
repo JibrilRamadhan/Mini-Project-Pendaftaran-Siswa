@@ -20,6 +20,8 @@ const {
   batal,
   pilihItem,
   clearSelected,
+  getNamaKelas,
+  kelas,
 } = useSiswa()
 
 const actionRef = ref(null)
@@ -368,6 +370,7 @@ onBeforeUnmount(() => {
       :mode="mode"
       :readonly="readonly"
       :form="form"
+      :dataKelas="kelas"
       :errors="errors"
       @cancel="batal"
       @save="simpan"
