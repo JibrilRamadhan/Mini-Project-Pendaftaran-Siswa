@@ -305,13 +305,15 @@ const totalKapasitas = computed(() =>
 )
 
 function handleClickOutside(event) {
+  console.log('Click target:', event.target);
   if (
     actionRef.value &&
     !actionRef.value.contains(event.target) &&
     !event.target.closest('table') &&
     !event.target.closest('.modal')
   ) {
-    clearSelected()
+    console.log('Clearing selected item');
+    clearSelected();
   }
 }
 

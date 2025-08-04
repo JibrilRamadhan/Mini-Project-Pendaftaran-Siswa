@@ -15,7 +15,6 @@ const props = defineProps({
   siswaDiKelas: Array,
 })
 
-
 const localReadonly = ref(false)
 const selected = ref(null)
 
@@ -66,7 +65,6 @@ function onSave() {
 }
 </script>
 
-
 <template>
   <!-- Backdrop dengan animasi fade -->
   <Transition
@@ -92,96 +90,21 @@ function onSave() {
       >
         <div
           v-if="show"
-          class="bg-white dark:bg-gray-900 w-full max-w-3xl rounded-3xl shadow-2xl relative overflow-hidden"
+          class="bg-white dark:bg-gray-900 w-full max-w-3xl rounded-3xl shadow-2xl relative"
+          style="max-height: 90vh; overflow-y: auto;"
         >
           <!-- Header dengan gradient -->
           <div
-            class="bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-800 dark:to-purple-800 px-8 py-6"
+            class="bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-800 dark:to-purple-800 px-8 py-6 flex items-center justify-between"
           >
-            <div class="flex items-center justify-between">
-              <div class="flex items-center space-x-3">
-                <!-- Icon berdasarkan mode -->
-                <div
-                  class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center"
-                >
-                  <svg
-                    v-if="mode === 'edit' && localReadonly"
-                    class="w-5 h-5 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                    ></path>
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                    ></path>
-                  </svg>
-                  <svg
-                    v-else-if="mode === 'edit'"
-                    class="w-5 h-5 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                    ></path>
-                  </svg>
-                  <svg
-                    v-else
-                    class="w-5 h-5 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M12 4v16m8-8H4"
-                    ></path>
-                  </svg>
-                </div>
-                <div>
-                  <h3 class="text-xl font-bold text-white">
-                    {{
-                      mode === 'edit' && localReadonly
-                        ? 'Detail Kelas'
-                        : mode === 'edit'
-                          ? 'Edit Kelas'
-                          : 'Kelas Baru'
-                    }}
-                  </h3>
-                  <p class="text-indigo-100 text-sm">
-                    {{
-                      mode === 'edit' && localReadonly
-                        ? 'Lihat informasi lengkap kelas'
-                        : mode === 'edit'
-                          ? 'Perbarui informasi kelas'
-                          : 'Tambahkan kelas baru ke sistem'
-                    }}
-                  </p>
-                </div>
-              </div>
-
-              <!-- Close button -->
-              <button
-                @click="onCancel"
-                class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm flex items-center justify-center transition-all duration-200 group"
+            <div class="flex items-center space-x-3">
+              <!-- Icon berdasarkan mode -->
+              <div
+                class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center"
               >
                 <svg
-                  class="w-4 h-4 text-white group-hover:scale-110 transition-transform duration-200"
+                  v-if="mode === 'edit' && localReadonly"
+                  class="w-5 h-5 text-white"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -190,11 +113,86 @@ function onSave() {
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     stroke-width="2"
-                    d="M6 18L18 6M6 6l12 12"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  ></path>
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
                   ></path>
                 </svg>
-              </button>
+                <svg
+                  v-else-if="mode === 'edit'"
+                  class="w-5 h-5 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                  ></path>
+                </svg>
+                <svg
+                  v-else
+                  class="w-5 h-5 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 4v16m8-8H4"
+                  ></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-white">
+                  {{
+                    mode === 'edit' && localReadonly
+                      ? 'Detail Kelas'
+                      : mode === 'edit'
+                        ? 'Edit Kelas'
+                        : 'Kelas Baru'
+                  }}
+                </h3>
+                <p class="text-indigo-100 text-sm">
+                  {{
+                    mode === 'edit' && localReadonly
+                      ? 'Lihat informasi lengkap kelas'
+                      : mode === 'edit'
+                        ? 'Perbarui informasi kelas'
+                        : 'Tambahkan kelas baru ke sistem'
+                  }}
+                </p>
+              </div>
             </div>
+
+            <!-- Close button -->
+            <button
+              @click="onCancel"
+              class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm flex items-center justify-center transition-all duration-200 group"
+              style="z-index: 52;"
+            >
+              <svg
+                class="w-4 h-4 text-white group-hover:scale-110 transition-transform duration-200"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </button>
           </div>
 
           <!-- Content -->
@@ -519,6 +517,8 @@ function onSave() {
                     v-model="search"
                     type="text"
                     placeholder="Cari nama siswa..."
+                    @click.stop="console.log('Search input clicked')"
+                    @input="console.log('Search input updated:', search)"
                     class="w-full pl-12 pr-4 py-3 border-2 border-gray-200 dark:border-gray-600 rounded-xl bg-gray-50/50 dark:bg-gray-800/50 text-gray-800 dark:text-gray-200 placeholder-gray-400 focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 transition-all duration-200"
                   />
                   <Transition
@@ -607,7 +607,7 @@ function onSave() {
                 <!-- Form Tambah Siswa -->
                 <div class="mt-8">
                   <button
-                    @click="showAddForm = !showAddForm"
+                    @click.stop="showAddForm = !showAddForm"
                     class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105"
                   >
                     <svg
@@ -668,6 +668,7 @@ function onSave() {
                             v-model="newSiswaNama"
                             type="text"
                             placeholder="Masukkan nama lengkap siswa"
+                            @click.stop
                             class="w-full px-4 py-3 border-2 border-emerald-200 dark:border-emerald-700 rounded-xl bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 placeholder-gray-400 focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 transition-all duration-200"
                           />
                           <Transition
@@ -702,7 +703,7 @@ function onSave() {
 
                         <div class="flex space-x-3">
                           <button
-                            @click="tambahSiswa"
+                            @click.stop="tambahSiswa"
                             class="flex-1 inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105"
                           >
                             <svg
@@ -735,7 +736,7 @@ function onSave() {
                 </div>
               </div>
             </Transition>
-          </div>
+          </div>    
 
           <!-- Action Buttons -->
           <div
