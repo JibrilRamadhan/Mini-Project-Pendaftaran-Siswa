@@ -57,12 +57,18 @@
 
       <!-- TABLE CONTAINER WITH ADVANCED GLASSMORPHISM -->
       <div class="backdrop-blur-xl bg-white/80 dark:bg-gray-900/80 rounded-3xl shadow-2xl border border-white/30 dark:border-gray-700/30 overflow-hidden">
-        <!-- Table Header with Gradient -->
-        <div class="bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 p-6">
+        <!-- Table Header with Gradient & Search -->
+        <div class="bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 p-6 flex justify-between items-center">
           <h3 class="text-2xl font-bold text-white flex items-center">
             <i class="ri-building-line mr-3"></i>
             Daftar Ruang Kelas
           </h3>
+          <input
+            v-model="searchQuery"
+            type="text"
+            placeholder="Cari kelas, kode, kapasitas, atau guru..."
+            class="px-4 py-2 rounded-xl border border-violet-300 focus:outline-none focus:ring-2 focus:ring-violet-500 dark:bg-gray-800 dark:text-white"
+          />
         </div>
 
         <!-- Enhanced Table -->
@@ -104,7 +110,7 @@
             </thead>
             <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
               <tr
-                v-for="(item, index) in data"
+                v-for="(item, index) in filteredKelas"
                 :key="item.id"
                 @click="pilihItem(item)"
                 :class="[
@@ -154,25 +160,29 @@
                   </div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                <div class="text-sm font-medium text-gray-800 dark:text-gray-200">
-                  {{ item?.id_guru ? getGuruById(item.id_guru) : 'Belum Ditentukan' }}
-                </div>
-              </td>
+                  <div class="text-sm font-medium text-gray-800 dark:text-gray-200">
+                    {{ item?.id_guru ? getGuruById(item.id_guru) : 'Belum Ditentukan' }}
+                  </div>
+                </td>
               </tr>
             </tbody>
           </table>
         </div>
 
-        <!-- Empty State -->
-        <div v-if="data.length === 0" class="text-center py-16">
+        <!-- Empty State Search -->
+        <div v-if="filteredKelas.length === 0" class="text-center py-16">
           <div class="w-32 h-32 mx-auto mb-6 bg-gradient-to-r from-violet-100 to-purple-200 dark:from-violet-700 dark:to-purple-800 rounded-full flex items-center justify-center">
             <i class="ri-school-line text-6xl text-violet-500 dark:text-violet-400"></i>
           </div>
-          <h3 class="text-xl font-semibold text-gray-600 dark:text-gray-400 mb-2">Belum Ada Data Kelas</h3>
-          <p class="text-gray-500 dark:text-gray-500 mb-6">Mulai tambahkan data kelas untuk melihat informasi di sini</p>
+          <h3 class="text-xl font-semibold text-gray-600 dark:text-gray-400 mb-2">
+            Tidak ditemukan data sesuai pencarian
+          </h3>
+          <p class="text-gray-500 dark:text-gray-500 mb-6">
+            Silakan ubah kata kunci atau tambah data baru
+          </p>
           <button @click="tambahBaru" class="px-6 py-3 bg-gradient-to-r from-violet-600 to-purple-600 text-white rounded-xl hover:shadow-lg transition-all duration-300">
             <i class="ri-add-line mr-2"></i>
-            Tambah Kelas Pertama
+            Tambah Kelas
           </button>
         </div>
       </div>
@@ -266,11 +276,11 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount, computed} from 'vue'
+import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
 import useKelas from '@/composables/useKelas'
 import ModalFormKelas from '@/components/ModalFormKelas.vue'
 import guruList from '@/stores/guru.json'
-import siswaList from '@/stores/siswa.json'
+import useSearch from '../composables/search'
 
 const {
   data,
@@ -293,11 +303,36 @@ const {
 
 const actionRef = ref(null)
 
-const getGuruById = (id) => {
-  return guruList.find((g) => g.id_guru === id)?.nama_guru || 'Tidak Diketahui'
+// Helper untuk nama guru
+function getGuruById(id) {
+  return guruList.find((g) => g.id_guru === id)?.nama_guru || ''
 }
 
-// STAT CARDS
+const dataKelasWithGuru = computed(() => {
+  return data.value.map(item => ({
+    ...item,
+    nama_guru: getGuruById(item.id_guru)
+  }))
+})
+
+const { query: searchQuery, filtered: filteredData } = useSearch(dataKelasWithGuru, [
+  'nama_kelas', 'kode_kelas', 'kapasitas', 'nama_guru'
+])
+
+// Gabungkan pencarian nama guru ke filteredData
+const filteredKelas = computed(() => {
+  if (!searchQuery.value) return filteredData.value
+  const q = searchQuery.value.toLowerCase()
+  return filteredData.value.filter(item => {
+    const guruNama = getGuruById(item.id_guru)?.toLowerCase() || ''
+    return guruNama.includes(q) ||
+      item.nama_kelas?.toLowerCase().includes(q) ||
+      item.kode_kelas?.toLowerCase().includes(q) ||
+      (item.kapasitas + '').includes(q)
+  })
+})
+
+// Statistik
 const totalKelas = computed(() => data.value.length)
 const ruangAktif = computed(() => data.value.filter(k => k.kapasitas > 0).length)
 const totalKapasitas = computed(() =>

@@ -135,11 +135,17 @@
         class="backdrop-blur-xl bg-white/80 dark:bg-gray-900/80 rounded-3xl shadow-2xl border border-white/30 dark:border-gray-700/30 overflow-hidden"
       >
         <!-- Table Header with Gradient -->
-        <div class="bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 p-6">
+        <div class="bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 p-6 flex justify-between items-center">
           <h3 class="text-2xl font-bold text-white flex items-center">
             <i class="ri-file-list-line mr-3"></i>
             Daftar Kehadiran Siswa
           </h3>
+          <input
+            v-model="searchQuery"
+            type="text"
+            placeholder="Cari nama, kelas, status, tanggal..."
+            class="px-4 py-2 rounded-xl border border-sky-300 focus:outline-none focus:ring-2 focus:ring-sky-500 dark:bg-gray-800 dark:text-white"
+          />
         </div>
 
         <!-- Enhanced Table -->
@@ -201,7 +207,7 @@
             </thead>
             <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
               <tr
-                v-for="(a, i) in filteredAbsensi"
+                v-for="(a, i) in filteredAbsensiSearch"
                 :key="a.id"
                 class="hover:bg-gradient-to-r hover:from-sky-50 hover:to-blue-50 dark:hover:from-sky-900/20 dark:hover:to-blue-900/20 transition-all duration-300"
               >
@@ -272,7 +278,7 @@
         </div>
 
         <!-- Empty State -->
-        <div v-if="filteredAbsensi.length === 0" class="text-center py-16">
+        <div v-if="filteredAbsensiSearch.length === 0" class="text-center py-16">
           <div
             class="w-32 h-32 mx-auto mb-6 bg-gradient-to-r from-sky-100 to-blue-200 dark:from-sky-700 dark:to-blue-800 rounded-full flex items-center justify-center"
           >
@@ -370,6 +376,7 @@
 import { computed } from 'vue'
 import ModalFormAbsen from '../components/ModalFormAbsen.vue'
 import useAbsen from '../composables/useAbsen'
+import useSearch from '../composables/search'
 import siswaData from '../stores/siswa.json'
 import guruList from '../stores/guru.json'
 import kelasList from '../stores/kelas.json'
@@ -388,6 +395,18 @@ const {
   getNamaGuru,
   getNamaSiswa,
 } = useAbsen()
+
+const absensiWithNama = computed(() =>
+  filteredAbsensi.value.map(a => ({
+    ...a,
+    nama_siswa: getNamaSiswa(a.id_siswa),
+    nama_kelas: getNamaKelas(a.id_kelas),
+  }))
+)
+
+const { query: searchQuery, filtered: filteredAbsensiSearch } = useSearch(absensiWithNama, [
+  'nama_siswa', 'nama_kelas', 'status', 'tanggal',
+])
 
 const getWaliKelas = (id_kelas) => {
   return guruList.find((g) => g.id_guru === id_kelas)?.id_guru || null
