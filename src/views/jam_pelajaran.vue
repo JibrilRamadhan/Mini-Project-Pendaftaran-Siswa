@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import ModalForm from '@/components/ModalForm.vue'
-import useJamPelajaran from '@/composables/useJamPelajaran'
+import useJamPelajaran from '../composables/usejampelajaran'
 
 const {
   data,
@@ -48,7 +48,7 @@ onBeforeUnmount(() => {
 
 <template>
   <div
-    class="min-h-screen bg-gradient-to-br from-orange-50 via-red-50 to-pink-100 dark:from-gray-900 dark:via-red-900 dark:to-pink-950 p-5"
+    class="min-h-screen  dark:from-gray-900 dark:via-red-900 dark:to-pink-950 p-5"
   >
     <div class="max-w-7xl mx-auto">
       <!-- HEADER SECTION WITH GLASS EFFECT -->
@@ -249,11 +249,12 @@ onBeforeUnmount(() => {
                     <div
                       class="w-10 h-10 bg-gradient-to-r from-red-400 to-pink-500 rounded-full flex items-center justify-center text-white font-bold mr-3"
                     >
-                      {{ mapelList[item.id_mapel - 1]?.charAt(0).toUpperCase() }}
+                      {{ mapelList.find(m => m.id_mapel === item.id_mapel)?.nama_mapel?.charAt(0).toUpperCase() }}
                     </div>
                     <div>
                       <div class="text-sm font-bold text-gray-900 dark:text-gray-100">
-                        {{ mapelList[item.id_mapel - 1] }}
+                        {{ mapelList.find(m => m.id_mapel === item.id_mapel)?.nama_mapel }}
+
                       </div>
                       <div class="text-xs text-gray-500 dark:text-gray-400">Mata Pelajaran</div>
                     </div>
@@ -264,11 +265,11 @@ onBeforeUnmount(() => {
                     <div
                       class="w-8 h-8 bg-gradient-to-r from-pink-400 to-rose-500 rounded-full flex items-center justify-center text-white font-bold text-xs mr-3"
                     >
-                      {{ guruList[item.id_guru - 1]?.charAt(0).toUpperCase() }}
+                      {{ guruList.find(g => g.id_guru === item.id_guru)?.nama_guru?.charAt(0).toUpperCase() }}
                     </div>
                     <div>
                       <div class="text-sm font-medium text-gray-900 dark:text-gray-100">
-                        {{ guruList[item.id_guru - 1] }}
+                        {{ guruList.find(g => g.id_guru === item.id_guru)?.nama_guru }}
                       </div>
                       <div class="text-xs text-gray-500 dark:text-gray-400">Guru Pengajar</div>
                     </div>
@@ -279,7 +280,7 @@ onBeforeUnmount(() => {
                     class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-rose-100 text-rose-800 dark:bg-rose-900 dark:text-rose-200"
                   >
                     <i class="ri-graduation-cap-line mr-1"></i>
-                    {{ kelasList[item.id_kelas - 1] }}
+                    {{ kelasList.find(k => k.id_kelas === item.id_kelas)?.nama_kelas }}
                   </div>
                 </td>
               </tr>

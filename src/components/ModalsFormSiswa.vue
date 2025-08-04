@@ -19,7 +19,7 @@
                     ? 'ri-eye-line'
                     : mode === 'edit'
                       ? 'ri-edit-line'
-                      : 'ri-user-add-line'
+                      : 'ri-user-add-line',
                 ]"
               ></i>
             </div>
@@ -58,20 +58,22 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <!-- NISN -->
           <div class="space-y-2">
-            <label class="flex items-center space-x-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
+            <label
+              class="flex items-center space-x-2 text-sm font-semibold text-gray-700 dark:text-gray-300"
+            >
               <i class="ri-id-card-line text-indigo-600"></i>
               <span>NISN</span>
               <span class="text-red-500">*</span>
             </label>
             <div class="relative">
               <input
-                type="text"
+                type="Number"
                 v-model="form.nisn"
                 :disabled="readonly"
-                class="w-full px-4 py-3 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-gray-100 placeholder-gray-400"
+                class="no-spinner w-full px-4 py-3 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-gray-100 placeholder-gray-400"
                 :class="[
                   readonly ? 'cursor-not-allowed opacity-75' : 'hover:border-indigo-300',
-                  errors.nisn ? 'border-red-500 focus:ring-red-500' : ''
+                  errors.nisn ? 'border-red-500 focus:ring-red-500' : '',
                 ]"
                 placeholder="Masukkan NISN siswa"
               />
@@ -84,7 +86,9 @@
 
           <!-- Nama -->
           <div class="space-y-2">
-            <label class="flex items-center space-x-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
+            <label
+              class="flex items-center space-x-2 text-sm font-semibold text-gray-700 dark:text-gray-300"
+            >
               <i class="ri-user-line text-indigo-600"></i>
               <span>Nama Lengkap</span>
               <span class="text-red-500">*</span>
@@ -97,7 +101,7 @@
                 class="w-full px-4 py-3 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-gray-100 placeholder-gray-400"
                 :class="[
                   readonly ? 'cursor-not-allowed opacity-75' : 'hover:border-indigo-300',
-                  errors.nama ? 'border-red-500 focus:ring-red-500' : ''
+                  errors.nama ? 'border-red-500 focus:ring-red-500' : '',
                 ]"
                 placeholder="Masukkan nama lengkap siswa"
               />
@@ -110,7 +114,9 @@
 
           <!-- Alamat -->
           <div class="lg:col-span-2 space-y-2">
-            <label class="flex items-center space-x-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
+            <label
+              class="flex items-center space-x-2 text-sm font-semibold text-gray-700 dark:text-gray-300"
+            >
               <i class="ri-map-pin-line text-indigo-600"></i>
               <span>Alamat Lengkap</span>
               <span class="text-red-500">*</span>
@@ -123,7 +129,7 @@
                 class="w-full px-4 py-3 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-gray-100 placeholder-gray-400 resize-none"
                 :class="[
                   readonly ? 'cursor-not-allowed opacity-75' : 'hover:border-indigo-300',
-                  errors.alamat ? 'border-red-500 focus:ring-red-500' : ''
+                  errors.alamat ? 'border-red-500 focus:ring-red-500' : '',
                 ]"
                 placeholder="Masukkan alamat lengkap siswa"
               ></textarea>
@@ -136,7 +142,9 @@
 
           <!-- Tanggal Lahir -->
           <div class="space-y-2">
-            <label class="flex items-center space-x-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
+            <label
+              class="flex items-center space-x-2 text-sm font-semibold text-gray-700 dark:text-gray-300"
+            >
               <i class="ri-calendar-line text-indigo-600"></i>
               <span>Tanggal Lahir</span>
               <span class="text-red-500">*</span>
@@ -149,7 +157,7 @@
                 class="w-full px-4 py-3 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-gray-100"
                 :class="[
                   readonly ? 'cursor-not-allowed opacity-75' : 'hover:border-indigo-300',
-                  errors.tgl_lahir ? 'border-red-500 focus:ring-red-500' : ''
+                  errors.tgl_lahir ? 'border-red-500 focus:ring-red-500' : '',
                 ]"
               />
             </div>
@@ -161,7 +169,9 @@
 
           <!-- Jenis Kelamin -->
           <div class="space-y-2">
-            <label class="flex items-center space-x-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
+            <label
+              class="flex items-center space-x-2 text-sm font-semibold text-gray-700 dark:text-gray-300"
+            >
               <i class="ri-user-heart-line text-indigo-600"></i>
               <span>Jenis Kelamin</span>
               <span class="text-red-500">*</span>
@@ -170,10 +180,10 @@
               <select
                 v-model="form.jk"
                 :disabled="readonly"
-                class="w-full px-4 py-3 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-gray-100 appearance-none"
+                class="w-full px-4 py-3 bg-white/50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-gray-100 appearance-none"
                 :class="[
                   readonly ? 'cursor-not-allowed opacity-75' : 'hover:border-indigo-300',
-                  errors.jk ? 'border-red-500 focus:ring-red-500' : ''
+                  errors.jk ? 'border-red-500 focus:ring-red-500' : '',
                 ]"
               >
                 <option disabled value="" class="text-gray-400">Pilih jenis kelamin</option>
@@ -192,20 +202,22 @@
 
           <!-- No Telepon -->
           <div class="space-y-2">
-            <label class="flex items-center space-x-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
+            <label
+              class="flex items-center space-x-2 text-sm font-semibold text-gray-700 dark:text-gray-300"
+            >
               <i class="ri-phone-line text-indigo-600"></i>
               <span>No Telepon</span>
               <span class="text-red-500">*</span>
             </label>
             <div class="relative">
               <input
-                type="tel"
+                type="Number"
                 v-model="form.no_tlp"
                 :disabled="readonly"
-                class="w-full px-4 py-3 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-gray-100 placeholder-gray-400"
+                class="no-spinner w-full px-4 py-3 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-gray-100 placeholder-gray-400"
                 :class="[
                   readonly ? 'cursor-not-allowed opacity-75' : 'hover:border-indigo-300',
-                  errors.no_tlp ? 'border-red-500 focus:ring-red-500' : ''
+                  errors.no_tlp ? 'border-red-500 focus:ring-red-500' : '',
                 ]"
                 placeholder="Contoh: 08123456789"
               />
@@ -218,7 +230,9 @@
 
           <!-- Nama Wali -->
           <div class="space-y-2">
-            <label class="flex items-center space-x-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
+            <label
+              class="flex items-center space-x-2 text-sm font-semibold text-gray-700 dark:text-gray-300"
+            >
               <i class="ri-parent-line text-indigo-600"></i>
               <span>Nama Wali</span>
               <span class="text-red-500">*</span>
@@ -231,7 +245,7 @@
                 class="w-full px-4 py-3 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-gray-100 placeholder-gray-400"
                 :class="[
                   readonly ? 'cursor-not-allowed opacity-75' : 'hover:border-indigo-300',
-                  errors.nama_wali ? 'border-red-500 focus:ring-red-500' : ''
+                  errors.nama_wali ? 'border-red-500 focus:ring-red-500' : '',
                 ]"
                 placeholder="Masukkan nama wali siswa"
               />
@@ -241,10 +255,62 @@
               {{ errors.nama_wali }}
             </p>
           </div>
+
+          <!-- Jurusan -->
+          <div class="space-y-2">
+            <label
+              class="flex items-center space-x-2 text-sm font-semibold text-gray-700 dark:text-gray-300"
+            >
+              <i class="ri-book-2-line text-indigo-600"></i>
+              <span>Jurusan</span>
+              <span class="text-red-500">*</span>
+            </label>
+            <div class="relative">
+              <select
+                v-model="form.jurusan"
+                :disabled="readonly"
+                class="w-full px-4 py-3 bg-white/50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-gray-100 appearance-none"
+                :class="[
+                  readonly ? 'cursor-not-allowed opacity-75' : 'hover:border-indigo-300',
+                  errors.jurusan ? 'border-red-500 focus:ring-red-500' : '',
+                ]"
+              >
+                <option disabled value="" class="text-gray-400">Pilih jurusan</option>
+                <option value="IPA" class="text-gray-900 dark:text-gray-100">IPA</option>
+                <option value="IPS" class="text-gray-900 dark:text-gray-100">IPS</option>
+              </select>
+              <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
+                <i class="ri-arrow-down-s-line text-gray-400"></i>
+              </div>
+            </div>
+            <p v-if="errors.jurusan" class="text-red-500 text-sm flex items-center">
+              <i class="ri-error-warning-line mr-1"></i>
+              {{ errors.jurusan }}
+            </p>
+          </div>
+
+          <!-- Kelas (auto-assign) -->
+          <div class="space-y-2">
+            <label
+              class="flex items-center space-x-2 text-sm font-semibold text-gray-700 dark:text-gray-300"
+            >
+              <i class="ri-home-4-line text-indigo-600"></i>
+              <span>Kelas (otomatis)</span>
+            </label>
+            <input
+              type="text"
+              :value="form.kelas_id ?? 'Belum tersedia'"
+              disabled
+              class="w-full px-4 py-3 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-xl text-gray-900 dark:text-gray-100 opacity-75"
+            />
+          </div>
+          
         </div>
 
         <!-- Action Buttons -->
-        <div class="flex justify-end items-center mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 space-x-4">
+        <div
+          class="flex justify-end items-center mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 space-x-4"
+        >
           <button
             @click="onCancel"
             class="px-6 py-3 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-xl font-semibold transition-all duration-200 flex items-center space-x-2"
@@ -252,7 +318,7 @@
             <i class="ri-close-line"></i>
             <span>{{ readonly ? 'Tutup' : 'Batal' }}</span>
           </button>
-          
+
           <button
             v-if="!readonly"
             @click="onSave"
@@ -268,6 +334,7 @@
 </template>
 
 <script setup>
+import Swal from 'sweetalert2'
 const emit = defineEmits(['cancel', 'save'])
 
 const props = defineProps({
@@ -282,15 +349,86 @@ function onCancel() {
   emit('cancel')
 }
 
-function onSave() {
-  emit('save')
+async function onSave() {
+  const f = props.form
+  const errors = []
+
+  const requiredFields = [
+    { field: 'nisn', label: 'NISN' },
+    { field: 'nama', label: 'Nama Lengkap' },
+    { field: 'jk', label: 'Jenis Kelamin' },
+    { field: 'tgl_lahir', label: 'Tanggal Lahir' },
+    { field: 'alamat', label: 'Alamat' },
+    { field: 'no_tlp', label: 'No Telepon' },
+    { field: 'nama_wali', label: 'Nama Wali' },
+  ]
+
+  requiredFields.forEach(({ field, label }) => {
+    if (!f[field]) errors.push(label)
+  })
+
+  if (errors.length > 0) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Gagal Menyimpan',
+      html: `Field berikut wajib diisi:<br><strong>${errors.join(', ')}</strong>`,
+      confirmButtonColor: '#ef4444',
+    })
+    return
+  }
+
+  const konfirmasi = await Swal.fire({
+    title: 'Simpan Data?',
+    text: 'Pastikan data siswa sudah benar.',
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonColor: '#6366f1',
+    cancelButtonColor: '#d1d5db',
+    confirmButtonText: 'Ya, Simpan',
+    cancelButtonText: 'Batal',
+  })
+
+  if (konfirmasi.isConfirmed) {
+    emit('save')
+    Swal.fire({
+      icon: 'success',
+      title: 'Berhasil',
+      text: 'Data siswa berhasil disimpan!',
+      confirmButtonColor: '#6366f1',
+      timer: 1500,
+      showConfirmButton: false,
+    })
+  }
 }
+
+const requiredFields = [
+  { field: 'nisn', label: 'NISN' },
+  { field: 'nama', label: 'Nama Lengkap' },
+  { field: 'jk', label: 'Jenis Kelamin' },
+  { field: 'tgl_lahir', label: 'Tanggal Lahir' },
+  { field: 'alamat', label: 'Alamat' },
+  { field: 'no_telp', label: 'No Telepon' },
+  { field: 'nama_wali', label: 'Nama Wali' },
+  { field: 'jurusan', label: 'Jurusan' },
+  { field: 'jurusan', label: 'Jurusan' },
+]
+
 </script>
 
 <style scoped>
 /* Custom scrollbar for textarea */
 textarea::-webkit-scrollbar {
   width: 6px;
+}
+
+.no-spinner::-webkit-outer-spin-button,
+.no-spinner::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.no-spinner {
+  -moz-appearance: textfield;
 }
 
 textarea::-webkit-scrollbar-track {

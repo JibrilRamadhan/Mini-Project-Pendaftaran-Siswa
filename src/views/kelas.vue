@@ -29,7 +29,7 @@
             <div class="flex items-center justify-between">
               <div>
                 <p class="text-violet-100">Total Kelas</p>
-                <p class="text-2xl font-bold">{{ data.length }}</p>
+                <p class="text-2xl font-bold">{{ totalKelas }}</p>
               </div>
               <i class="ri-school-line text-3xl text-violet-200"></i>
             </div>
@@ -38,7 +38,7 @@
             <div class="flex items-center justify-between">
               <div>
                 <p class="text-indigo-100">Ruang Aktif</p>
-                <p class="text-2xl font-bold">{{ data.length }}</p>
+                <p class="text-2xl font-bold">{{ ruangAktif }}</p>
               </div>
               <i class="ri-door-open-line text-3xl text-indigo-200"></i>
             </div>
@@ -47,7 +47,7 @@
             <div class="flex items-center justify-between">
               <div>
                 <p class="text-purple-100">Total Kapasitas</p>
-                <p class="text-2xl font-bold">{{ data.reduce((sum, item) => sum + parseInt(item.kapasitas || 0), 0) }}</p>
+                <p class="text-2xl font-bold">{{ totalKapasitas }}</p>
               </div>
               <i class="ri-team-fill text-3xl text-purple-200"></i>
             </div>
@@ -92,6 +92,12 @@
                   <div class="flex items-center space-x-2">
                     <i class="ri-team-line text-violet-600"></i>
                     <span>Kapasitas</span>
+                  </div>
+                </th>
+                <th class="px-6 py-4 text-left text-sm font-bold text-gray-700 dark:text-gray-200 uppercase tracking-wider border-b-2 border-violet-200 dark:border-violet-800">
+                  <div class="flex items-center space-x-2">
+                    <i class="ri-user-star-line text-violet-600"></i>
+                    <span>Wali Kelas</span>
                   </div>
                 </th>
               </tr>
@@ -147,6 +153,11 @@
                     </div>
                   </div>
                 </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm font-medium text-gray-800 dark:text-gray-200">
+                  {{ item?.id_guru ? getGuruById(item.id_guru) : 'Belum Ditentukan' }}
+                </div>
+              </td>
               </tr>
             </tbody>
           </table>
@@ -192,6 +203,10 @@
                   <i class="ri-group-line mr-1"></i>
                   {{ selectedItem.kapasitas }} siswa
                 </p>
+                <p class="text-sm text-gray-600 dark:text-gray-400 flex items-center">
+                  <i class="ri-user-star-line mr-1"></i>
+                  {{ selectedItem?.id_guru ? getGuruById(selectedItem.id_guru) : 'Belum dipilih' }}
+                </p>
               </div>
             </div>
           </div>
@@ -231,25 +246,31 @@
             </button>
           </div>
         </div>
-      </transition>
+      </transition> 
     </div>
 
     <ModalFormKelas
-      :show="showForm"
-      :mode="mode"
-      :readonly="readonly"
-      :form="form"
-      :errors="errors"
-      @cancel="batal"
-      @save="simpan"
-    />
+  :key="selectedItem?.id ?? 'new'"
+  :show="showForm"
+  :mode="mode"
+  :readonly="readonly"
+  :form="form"
+  :errors="errors"
+  :selectedItem="selectedItem"
+  :siswaDiKelas="siswaDiKelas"
+  @cancel="batal"
+  @save="simpan"
+/>
+
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount, computed} from 'vue'
 import useKelas from '@/composables/useKelas'
 import ModalFormKelas from '@/components/ModalFormKelas.vue'
+import guruList from '@/stores/guru.json'
+import siswaList from '@/stores/siswa.json'
 
 const {
   data,
@@ -267,9 +288,21 @@ const {
   batal,
   pilihItem,
   clearSelected,
+  siswaDiKelas,
 } = useKelas()
 
 const actionRef = ref(null)
+
+const getGuruById = (id) => {
+  return guruList.find((g) => g.id_guru === id)?.nama_guru || 'Tidak Diketahui'
+}
+
+// STAT CARDS
+const totalKelas = computed(() => data.value.length)
+const ruangAktif = computed(() => data.value.filter(k => k.kapasitas > 0).length)
+const totalKapasitas = computed(() =>
+  data.value.reduce((sum, k) => sum + parseInt(k.kapasitas || 0), 0)
+)
 
 function handleClickOutside(event) {
   if (

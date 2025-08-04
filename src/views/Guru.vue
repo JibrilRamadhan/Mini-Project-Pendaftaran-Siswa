@@ -1,7 +1,9 @@
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
 import ModalFormGuru from '@/components/ModalFormGuru.vue'
 import useGuru from '@/composables/useGuru.js'
+
+
 
 const {
   data,
@@ -22,6 +24,14 @@ const {
 } = useGuru()
 
 const actionRef = ref(null)
+
+const totalGuru = computed(() => data.value.length)
+const guruLaki = computed(() =>
+  data.value.filter(guru => guru.jenis_kelamin === 'Laki-laki').length
+)
+const guruPerempuan = computed(() =>
+  data.value.filter(guru => guru.jenis_kelamin === 'Perempuan').length
+)
 
 function handleClickOutside(event) {
   if (
@@ -68,32 +78,45 @@ onBeforeUnmount(() => {
         </div>
         
         <!-- Stats Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-          <div class="bg-gradient-to-r from-emerald-500 to-teal-600 rounded-xl p-4 text-white">
-            <div class="flex items-center justify-between">
-              <div>
-                <p class="text-emerald-100">Total Guru</p>
-                <p class="text-2xl font-bold">{{ data.length }}</p>
-              </div>
-              <i class="ri-user-star-line text-3xl text-emerald-200"></i>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6 mt-8">
+          <!-- Total Siswa -->
+          <div
+            class="relative p-6 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl shadow-lg overflow-hidden text-white transform hover:scale-[1.02] transition-all duration-300"
+          >
+            <div class="absolute -top-4 -right-4 opacity-30 text-7xl">
+              <i class="ri-group-line"></i>
+            </div>
+            <div class="z-10 relative">
+              <p class="text-sm font-semibold uppercase tracking-wide">Total Siswa</p>
+              <h2 class="text-4xl font-extrabold mt-1">{{ totalGuru }}</h2>
+              <p class="text-sm opacity-80 mt-1">Jumlah seluruh siswa terdaftar</p>
             </div>
           </div>
-          <div class="bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl p-4 text-white">
-            <div class="flex items-center justify-between">
-              <div>
-                <p class="text-cyan-100">Guru Aktif</p>
-                <p class="text-2xl font-bold">{{ data.length }}</p>
-              </div>
-              <i class="ri-medal-line text-3xl text-cyan-200"></i>
+          <!-- Siswa Laki-laki -->
+          <div
+            class="relative p-6 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl shadow-lg overflow-hidden text-white transform hover:scale-[1.02] transition-all duration-300"
+          >
+            <div class="absolute -top-4 -right-4 opacity-30 text-7xl">
+              <i class="ri-men-line"></i>
+            </div>
+            <div class="z-10 relative">
+              <p class="text-sm font-semibold uppercase tracking-wide">Laki-laki</p>
+              <h2 class="text-4xl font-extrabold mt-1">{{ guruLaki }}</h2>
+              <p class="text-sm opacity-80 mt-1">Jumlah siswa laki-laki</p>
             </div>
           </div>
-          <div class="bg-gradient-to-r from-teal-500 to-emerald-600 rounded-xl p-4 text-white">
-            <div class="flex items-center justify-between">
-              <div>
-                <p class="text-teal-100">Profesional</p>
-                <p class="text-2xl font-bold">100%</p>
-              </div>
-              <i class="ri-graduation-cap-line text-3xl text-teal-200"></i>
+
+          <!-- Siswa Perempuan -->
+          <div
+            class="relative p-6 bg-gradient-to-r from-pink-500 to-rose-500 rounded-2xl shadow-lg overflow-hidden text-white transform hover:scale-[1.02] transition-all duration-300"
+          >
+            <div class="absolute -top-4 -right-4 opacity-30 text-7xl">
+              <i class="ri-women-line"></i>
+            </div>
+            <div class="z-10 relative">
+              <p class="text-sm font-semibold uppercase tracking-wide">Perempuan</p>
+              <h2 class="text-4xl font-extrabold mt-1">{{ guruPerempuan }}</h2>
+              <p class="text-sm opacity-80 mt-1">Jumlah siswa perempuan</p>
             </div>
           </div>
         </div>
@@ -122,20 +145,32 @@ onBeforeUnmount(() => {
                 </th>
                 <th class="px-6 py-4 text-left text-sm font-bold text-gray-700 dark:text-gray-200 uppercase tracking-wider border-b-2 border-emerald-200 dark:border-emerald-800">
                   <div class="flex items-center space-x-2">
-                    <i class="ri-user-star-line text-emerald-600"></i>
-                    <span>Nama Guru</span>
-                  </div>
-                </th>
-                <th class="px-6 py-4 text-left text-sm font-bold text-gray-700 dark:text-gray-200 uppercase tracking-wider border-b-2 border-emerald-200 dark:border-emerald-800">
-                  <div class="flex items-center space-x-2">
                     <i class="ri-id-card-line text-emerald-600"></i>
                     <span>NIP</span>
                   </div>
                 </th>
                 <th class="px-6 py-4 text-left text-sm font-bold text-gray-700 dark:text-gray-200 uppercase tracking-wider border-b-2 border-emerald-200 dark:border-emerald-800">
                   <div class="flex items-center space-x-2">
+                    <i class="ri-user-star-line text-emerald-600"></i>
+                    <span>Nama Guru</span>
+                  </div>
+                </th>
+                <th class="px-6 py-4 text-left text-sm font-bold text-gray-700 dark:text-gray-200 uppercase tracking-wider border-b-2 border-emerald-200 dark:border-emerald-800">
+                  <div class="flex items-center space-x-2">
                     <i class="ri-user-heart-line text-emerald-600"></i>
                     <span>Jenis Kelamin</span>
+                  </div>
+                </th>
+                <th class="px-6 py-4 text-left text-sm font-bold text-gray-700 dark:text-gray-200 uppercase tracking-wider border-b-2 border-emerald-200 dark:border-emerald-800">
+                  <div class="flex items-center space-x-2">
+                    <i class="ri-user-heart-line text-emerald-600"></i>
+                    <span>Tanggal Lahir</span>
+                  </div>
+                </th>
+                <th class="px-6 py-4 text-left text-sm font-bold text-gray-700 dark:text-gray-200 uppercase tracking-wider border-b-2 border-emerald-200 dark:border-emerald-800">
+                  <div class="flex items-center space-x-2">
+                    <i class="ri-user-heart-line text-emerald-600"></i>
+                    <span>Alamat</span>
                   </div>
                 </th>
                 <th class="px-6 py-4 text-left text-sm font-bold text-gray-700 dark:text-gray-200 uppercase tracking-wider border-b-2 border-emerald-200 dark:border-emerald-800">
@@ -153,79 +188,99 @@ onBeforeUnmount(() => {
               </tr>
             </thead>
             <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
-              <tr
-                v-for="(item, index) in data"
-                :key="item.id_guru"
-                @click="pilihItem(item)"
-                :class="[
-                  'cursor-pointer transition-all duration-300 hover:shadow-lg',
-                  selectedItem?.id_guru === item.id_guru
-                    ? 'bg-gradient-to-r from-emerald-50 via-teal-50 to-cyan-50 dark:from-emerald-900/30 dark:via-teal-900/30 dark:to-cyan-900/30 shadow-xl border-l-4 border-emerald-500 transform scale-[1.02]'
-                    : 'hover:bg-gradient-to-r hover:from-gray-50 hover:to-emerald-50 dark:hover:from-gray-800 dark:hover:to-slate-800'
-                ]"
-              >
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="flex items-center">
-                    <div class="w-8 h-8 text-black rounded-full flex items-center justify-center dark:text-white font-bold text-lg">
-                      {{ index + 1 }}
-                    </div>
-                  </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="flex items-center">
-                    <div class="w-12 h-12 bg-gradient-to-r from-emerald-400 to-teal-500 rounded-full flex items-center justify-center text-white font-bold mr-4">
-                      {{ item.nama_guru.charAt(0).toUpperCase() }}
-                    </div>
-                    <div>
-                      <div class="text-sm font-bold text-gray-900 dark:text-gray-100">{{ item.nama_guru }}</div>
-                      <div class="text-xs text-gray-500 dark:text-gray-400 flex items-center">
-                        <i class="ri-graduation-cap-line mr-1"></i>
-                        Tenaga Pendidik
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200">
-                    <i class="ri-vip-crown-line mr-1"></i>
-                    {{ item.nip }}
-                  </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <span :class="[
-                    'inline-flex items-center px-3 py-1 rounded-full text-xs font-medium',
-                    item.jenis_kelamin === 'L' 
-                      ? 'bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200' 
-                      : 'bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-200'
-                  ]">
-                    <i :class="item.jenis_kelamin === 'L' ? 'ri-men-line' : 'ri-women-line'" class="mr-1"></i>
-                    {{ item.jenis_kelamin === 'L' ? 'Laki-laki' : 'Perempuan' }}
-                  </span>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="flex items-center">
-                    <div class="w-10 h-10 bg-gradient-to-r from-teal-400 to-emerald-500 rounded-full flex items-center justify-center mr-3">
-                      <i class="ri-phone-fill text-white"></i>
-                    </div>
-                    <div>
-                      <div class="text-sm font-medium text-gray-900 dark:text-gray-100 font-mono">{{ item.no_telp }}</div>
-                      <div class="text-xs text-gray-500 dark:text-gray-400">Kontak Aktif</div>
-                    </div>
-                  </div>
-                </td>
-                <td class="px-6 py-4">
-                  <div class="flex items-center">
-                    <div class="w-10 h-10 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full flex items-center justify-center mr-3">
-                      <i class="ri-mail-fill text-white"></i>
-                    </div>
-                    <div>
-                      <div class="text-sm font-medium text-gray-900 dark:text-gray-100 max-w-xs truncate">{{ item.email }}</div>
-                      <div class="text-xs text-gray-500 dark:text-gray-400">Email Resmi</div>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
+  <tr
+    v-for="(item, index) in data"
+    :key="item.id_guru"
+    @click="pilihItem(item)"
+    :class="[
+      'cursor-pointer transition-all duration-300 hover:shadow-lg',
+      selectedItem?.id_guru === item.id_guru
+        ? 'bg-gradient-to-r from-emerald-50 via-teal-50 to-cyan-50 dark:from-emerald-900/30 dark:via-teal-900/30 dark:to-cyan-900/30 shadow-xl border-l-4 border-emerald-500 transform scale-[1.02]'
+        : 'hover:bg-gradient-to-r hover:from-gray-50 hover:to-emerald-50 dark:hover:from-gray-800 dark:hover:to-slate-800'
+    ]"
+  >
+    <!-- No -->
+    <td class="px-6 py-4 whitespace-nowrap">
+      <div class="text-lg font-bold text-black dark:text-white">{{ index + 1 }}</div>
+    </td>
+
+    <!-- NIP -->
+    <td class="px-6 py-4 whitespace-nowrap">
+      <div class="text-sm font-bold text-gray-900 dark:text-gray-100">
+        {{ item.nip }}
+      </div>
+    </td>
+
+    <!-- Nama -->
+    <td class="px-6 py-4 whitespace-nowrap">
+      <div class="flex items-center gap-4">
+        <div class="w-10 h-10 bg-gradient-to-r from-emerald-400 to-teal-500 rounded-full flex items-center justify-center text-white font-bold">
+          {{ item.nama_guru.charAt(0).toUpperCase() }}
+        </div>
+        <div>
+          <div class="text-sm font-bold text-gray-900 dark:text-gray-100">{{ item.nama_guru }}</div>
+          <div class="text-xs text-gray-500 dark:text-gray-400 flex items-center">
+            <i class="ri-graduation-cap-line mr-1"></i>Tenaga Pendidik
+          </div>
+        </div>
+      </div>
+    </td>
+
+    <!-- Jenis Kelamin -->
+    <td class="px-6 py-4 whitespace-nowrap">
+      <span :class="[
+        'inline-flex items-center px-3 py-1 rounded-full text-xs font-medium',
+        item.jenis_kelamin === 'Laki-laki' 
+          ? 'bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200' 
+          : 'bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-200'
+      ]">
+        <i :class="item.jenis_kelamin === 'Laki-laki' ? 'ri-men-line' : 'ri-women-line'" class="mr-1"></i>
+        {{ item.jenis_kelamin }}
+      </span>
+    </td>
+
+    <!-- Tanggal Lahir -->
+    <td class="px-6 py-4 whitespace-nowrap">
+      <div class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+        <i class="ri-calendar-2-line mr-1"></i>
+        {{ item.tgl_lahir }}
+      </div>
+    </td>
+
+    <!-- Alamat -->
+    <td class="px-6 py-4 whitespace-nowrap max-w-xs truncate">
+      <div class="text-sm text-gray-900 dark:text-gray-100">{{ item.alamat }}</div>
+      <div class="text-xs text-gray-500 dark:text-gray-400">Alamat Rumah</div>
+    </td>
+
+    <!-- No Telepon -->
+    <td class="px-6 py-4 whitespace-nowrap">
+      <div class="flex items-center">
+        <div class="w-10 h-10 bg-gradient-to-r from-teal-400 to-emerald-500 rounded-full flex items-center justify-center mr-3">
+          <i class="ri-phone-fill text-white"></i>
+        </div>
+        <div>
+          <div class="text-sm font-medium text-gray-900 dark:text-gray-100 font-mono">{{ item.no_telp }}</div>
+          <div class="text-xs text-gray-500 dark:text-gray-400">Kontak Aktif</div>
+        </div>
+      </div>
+    </td>
+
+    <!-- Email -->
+    <td class="px-6 py-4 whitespace-nowrap">
+      <div class="flex items-center">
+        <div class="w-10 h-10 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full flex items-center justify-center mr-3">
+          <i class="ri-mail-fill text-white"></i>
+        </div>
+        <div>
+          <div class="text-sm font-medium text-gray-900 dark:text-gray-100 max-w-xs truncate">{{ item.email }}</div>
+          <div class="text-xs text-gray-500 dark:text-gray-400">Email Resmi</div>
+        </div>
+      </div>
+    </td>
+  </tr>
+</tbody>
+
           </table>
         </div>
 

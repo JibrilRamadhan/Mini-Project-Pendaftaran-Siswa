@@ -1,9 +1,9 @@
 // composables/useAbsen.js
 import { ref, computed } from 'vue'
-import absenData from '../assets/absen.json'
-import kelasData from '../assets/kelas.json'
-import siswaData from '../assets/siswa.json'
-import guruData from '../assets/guru.json'
+import absenData from '../stores/absen.json'
+import kelasData from '../stores/kelas.json'
+import siswaData from '../stores/siswa.json'
+import guruData from '../stores/guru.json'
 
 const absens = ref([...absenData])
 const selectedKelasId = ref(null)

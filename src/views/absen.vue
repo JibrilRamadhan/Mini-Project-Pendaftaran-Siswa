@@ -370,9 +370,9 @@
 import { computed } from 'vue'
 import ModalFormAbsen from '../components/ModalFormAbsen.vue'
 import useAbsen from '../composables/useAbsen'
-import siswaData from '../assets/siswa.json'
-import guruList from '../assets/guru.json'
-import kelasList from '../assets/kelas.json'
+import siswaData from '../stores/siswa.json'
+import guruList from '../stores/guru.json'
+import kelasList from '../stores/kelas.json'
 
 const {
   absens,

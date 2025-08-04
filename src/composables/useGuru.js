@@ -1,5 +1,5 @@
 import { ref } from 'vue'
-import guruJson from '../assets/guru.json'
+import guruJson from '../stores/guru.json'
 
 export default function useGuru() {
   const data = ref([...guruJson])

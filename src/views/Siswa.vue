@@ -1,8 +1,9 @@
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
 import ModalForm from '../components/ModalsFormSiswa.vue'
 import useSiswa from '@/composables/useSiswa'
 
+// Ambil semua dari useSiswa sekali saja
 const {
   data,
   showForm,
@@ -23,6 +24,14 @@ const {
 
 const actionRef = ref(null)
 
+// ⛳ Gunakan langsung `data` untuk statistik
+const siswaLaki = computed(() => data.value?.filter((s) => s.jk === 'L').length || 0)
+
+const siswaPerempuan = computed(() => data.value?.filter((s) => s.jk === 'P').length || 0)
+
+const totalSiswa = computed(() => data.value?.length || 0)
+
+// klik di luar table = batal
 function handleClickOutside(event) {
   if (
     actionRef.value &&
@@ -78,32 +87,45 @@ onBeforeUnmount(() => {
         </div>
 
         <!-- Stats Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-          <div class="bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl p-4 text-white">
-            <div class="flex items-center justify-between">
-              <div>
-                <p class="text-blue-100">Total Siswa</p>
-                <p class="text-2xl font-bold">{{ data.length }}</p>
-              </div>
-              <i class="ri-user-line text-3xl text-blue-200"></i>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6 mt-8">
+          <!-- Total Siswa -->
+          <div
+            class="relative p-6 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl shadow-lg overflow-hidden text-white transform hover:scale-[1.02] transition-all duration-300"
+          >
+            <div class="absolute -top-4 -right-4 opacity-30 text-7xl">
+              <i class="ri-group-line"></i>
+            </div>
+            <div class="z-10 relative">
+              <p class="text-sm font-semibold uppercase tracking-wide">Total Siswa</p>
+              <h2 class="text-4xl font-extrabold mt-1">{{ totalSiswa }}</h2>
+              <p class="text-sm opacity-80 mt-1">Jumlah seluruh siswa terdaftar</p>
             </div>
           </div>
-          <div class="bg-gradient-to-r from-emerald-500 to-teal-600 rounded-xl p-4 text-white">
-            <div class="flex items-center justify-between">
-              <div>
-                <p class="text-emerald-100">Siswa Aktif</p>
-                <p class="text-2xl font-bold">{{ data.length }}</p>
-              </div>
-              <i class="ri-user-check-line text-3xl text-emerald-200"></i>
+          <!-- Siswa Laki-laki -->
+          <div
+            class="relative p-6 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl shadow-lg overflow-hidden text-white transform hover:scale-[1.02] transition-all duration-300"
+          >
+            <div class="absolute -top-4 -right-4 opacity-30 text-7xl">
+              <i class="ri-men-line"></i>
+            </div>
+            <div class="z-10 relative">
+              <p class="text-sm font-semibold uppercase tracking-wide">Laki-laki</p>
+              <h2 class="text-4xl font-extrabold mt-1">{{ siswaLaki }}</h2>
+              <p class="text-sm opacity-80 mt-1">Jumlah siswa laki-laki</p>
             </div>
           </div>
-          <div class="bg-gradient-to-r from-purple-500 to-pink-600 rounded-xl p-4 text-white">
-            <div class="flex items-center justify-between">
-              <div>
-                <p class="text-purple-100">Data Lengkap</p>
-                <p class="text-2xl font-bold">100%</p>
-              </div>
-              <i class="ri-database-line text-3xl text-purple-200"></i>
+
+          <!-- Siswa Perempuan -->
+          <div
+            class="relative p-6 bg-gradient-to-r from-pink-500 to-rose-500 rounded-2xl shadow-lg overflow-hidden text-white transform hover:scale-[1.02] transition-all duration-300"
+          >
+            <div class="absolute -top-4 -right-4 opacity-30 text-7xl">
+              <i class="ri-women-line"></i>
+            </div>
+            <div class="z-10 relative">
+              <p class="text-sm font-semibold uppercase tracking-wide">Perempuan</p>
+              <h2 class="text-4xl font-extrabold mt-1">{{ siswaPerempuan }}</h2>
+              <p class="text-sm opacity-80 mt-1">Jumlah siswa perempuan</p>
             </div>
           </div>
         </div>
@@ -113,7 +135,7 @@ onBeforeUnmount(() => {
       <div
         class="backdrop-blur-xl bg-white/80 dark:bg-gray-900/80 rounded-3xl shadow-2xl border border-white/30 dark:border-gray-700/30 overflow-hidden"
       >
-        <!-- Table Header with Gradient -->
+        <!-- Table Header -->
         <div class="bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 p-6">
           <h3 class="text-2xl font-bold text-white flex items-center">
             <i class="ri-table-line mr-3"></i>
@@ -121,76 +143,52 @@ onBeforeUnmount(() => {
           </h3>
         </div>
 
-        <!-- Enhanced Table -->
+        <!-- Table Section -->
         <div class="overflow-x-auto">
-          <table class="w-full">
+          <table class="w-full text-sm text-left text-gray-700 dark:text-gray-200">
             <thead>
               <tr
                 class="bg-gradient-to-r from-slate-100 to-gray-100 dark:from-gray-800 dark:to-slate-800"
               >
                 <th
-                  class="px-6 py-4 text-left text-sm font-bold text-gray-700 dark:text-gray-200 uppercase tracking-wider border-b-2 border-indigo-200 dark:border-indigo-800"
+                  class="px-5 py-4 whitespace-nowrap border-b-2 border-indigo-200 dark:border-indigo-800 font-bold uppercase tracking-wide"
                 >
-                  <div class="flex items-center space-x-2">
-                    <i class="ri-hashtag text-indigo-600"></i>
-                    <span>No</span>
-                  </div>
+                  <i class="ri-hashtag text-indigo-600 mr-1"></i> No
                 </th>
                 <th
-                  class="px-6 py-4 text-left text-sm font-bold text-gray-700 dark:text-gray-200 uppercase tracking-wider border-b-2 border-indigo-200 dark:border-indigo-800"
+                  class="px-5 py-4 whitespace-nowrap border-b-2 border-indigo-200 dark:border-indigo-800 font-bold uppercase tracking-wide"
                 >
-                  <div class="flex items-center space-x-2">
-                    <i class="ri-id-card-line text-indigo-600"></i>
-                    <span>NISN</span>
-                  </div>
+                  <i class="ri-id-card-line text-indigo-600 mr-1"></i> NISN
                 </th>
                 <th
-                  class="px-6 py-4 text-left text-sm font-bold text-gray-700 dark:text-gray-200 uppercase tracking-wider border-b-2 border-indigo-200 dark:border-indigo-800"
+                  class="pl-12 px-5 py-4 whitespace-nowrap border-b-2 border-indigo-200 dark:border-indigo-800 font-bold uppercase tracking-wide min-w-[180px]"
                 >
-                  <div class="flex items-center space-x-2">
-                    <i class="ri-user-line text-indigo-600"></i>
-                    <span>Nama</span>
-                  </div>
+                  <i class="ri-user-line text-indigo-600 mr-1"></i> Nama
                 </th>
                 <th
-                  class="px-6 py-4 text-left text-sm font-bold text-gray-700 dark:text-gray-200 uppercase tracking-wider border-b-2 border-indigo-200 dark:border-indigo-800"
+                  class="px-5 py-4 whitespace-nowrap border-b-2 border-indigo-200 dark:border-indigo-800 font-bold uppercase tracking-wide min-w-[200px]"
                 >
-                  <div class="flex items-center space-x-2">
-                    <i class="ri-map-pin-line text-indigo-600"></i>
-                    <span>Alamat</span>
-                  </div>
+                  <i class="ri-map-pin-line text-indigo-600 mr-1"></i> Alamat
                 </th>
                 <th
-                  class="px-6 py-4 text-left text-sm font-bold text-gray-700 dark:text-gray-200 uppercase tracking-wider border-b-2 border-indigo-200 dark:border-indigo-800"
+                  class="px-5 py-4 whitespace-nowrap border-b-2 border-indigo-200 dark:border-indigo-800 font-bold uppercase tracking-wide"
                 >
-                  <div class="flex items-center space-x-2">
-                    <i class="ri-calendar-line text-indigo-600"></i>
-                    <span>Tgl Lahir</span>
-                  </div>
+                  <i class="ri-calendar-line text-indigo-600 mr-1"></i> Tanggal Lahir
                 </th>
                 <th
-                  class="px-6 py-4 text-left text-sm font-bold text-gray-700 dark:text-gray-200 uppercase tracking-wider border-b-2 border-indigo-200 dark:border-indigo-800"
+                  class="px-5 py-4 whitespace-nowrap border-b-2 border-indigo-200 dark:border-indigo-800 font-bold uppercase tracking-wide"
                 >
-                  <div class="flex items-center space-x-2">
-                    <i class="ri-user-heart-line text-indigo-600"></i>
-                    <span>JK</span>
-                  </div>
+                  <i class="ri-user-heart-line text-indigo-600 mr-1"></i> Jenis Kelamin
                 </th>
                 <th
-                  class="px-6 py-4 text-left text-sm font-bold text-gray-700 dark:text-gray-200 uppercase tracking-wider border-b-2 border-indigo-200 dark:border-indigo-800"
+                  class="px-5 py-4 whitespace-nowrap border-b-2 border-indigo-200 dark:border-indigo-800 font-bold uppercase tracking-wide"
                 >
-                  <div class="flex items-center space-x-2">
-                    <i class="ri-phone-line text-indigo-600"></i>
-                    <span>No Tlp</span>
-                  </div>
+                  <i class="ri-phone-line text-indigo-600 mr-1"></i> No Telepon
                 </th>
                 <th
-                  class="px-6 py-4 text-left text-sm font-bold text-gray-700 dark:text-gray-200 uppercase tracking-wider border-b-2 border-indigo-200 dark:border-indigo-800"
+                  class="px-5 py-4 whitespace-nowrap border-b-2 border-indigo-200 dark:border-indigo-800 font-bold uppercase tracking-wide min-w-[160px]"
                 >
-                  <div class="flex items-center space-x-2">
-                    <i class="ri-parent-line text-indigo-600"></i>
-                    <span>Nama Wali</span>
-                  </div>
+                  <i class="ri-parent-line text-indigo-600 mr-1"></i> Nama Wali
                 </th>
               </tr>
             </thead>
@@ -206,54 +204,37 @@ onBeforeUnmount(() => {
                     : 'hover:bg-gradient-to-r hover:from-gray-50 hover:to-blue-50 dark:hover:from-gray-800 dark:hover:to-slate-800',
                 ]"
               >
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="flex items-center">
-                    <div
-                      class="w-8 h-8 rounded-full flex items-center justify-center text-gray-900 dark:text-white font-bold text-lg"
-                    >
-                      {{ index + 1 }}
-                    </div>
-                  </div>
+                <td class="px-5 py-4 whitespace-nowrap font-bold text-gray-800 dark:text-white">
+                  {{ index + 1 }}
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="flex items-center">
-                    <div class="ml-0">
-                      <div class="text-sm font-bold text-gray-900 dark:text-gray-100">
-                        {{ item.nisn }}
-                      </div>
-                    </div>
-                  </div>
+                <td class="px-5 py-4 whitespace-nowrap">
+                  <span class="font-mono font-semibold">{{ item.nisn }}</span>
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="flex items-center">
+                <td class="px-5 py-4 whitespace-nowrap">
+                  <div class="flex items-center gap-3">
                     <div
-                      class="w-10 h-10 bg-gradient-to-r from-blue-400 to-indigo-500 rounded-full flex items-center justify-center text-white font-bold mr-3"
+                      class="w-10 h-10 bg-gradient-to-r from-blue-400 to-indigo-500 rounded-full flex items-center justify-center text-white font-bold"
                     >
                       {{ item.nama.charAt(0).toUpperCase() }}
                     </div>
                     <div>
-                      <div class="text-sm font-bold text-gray-900 dark:text-gray-100">
-                        {{ item.nama }}
-                      </div>
+                      <div class="font-bold">{{ item.nama }}</div>
                       <div class="text-xs text-gray-500 dark:text-gray-400">Siswa</div>
                     </div>
                   </div>
                 </td>
-                <td class="px-6 py-4">
-                  <div class="text-sm text-gray-900 dark:text-gray-100 max-w-xs truncate">
-                    {{ item.alamat }}
-                  </div>
+                <td class="px-5 py-4 whitespace-nowrap">
+                  <div class="truncate max-w-xs">{{ item.alamat }}</div>
                   <div class="text-xs text-gray-500 dark:text-gray-400">Alamat Rumah</div>
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div
-                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
+                <td class="px-5 py-4 whitespace-nowrap">
+                  <span
+                    class="inline-flex items-center px-3 py-1 rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 text-xs"
                   >
-                    <i class="ri-calendar-2-line mr-1"></i>
-                    {{ item.tgl_lahir }}
-                  </div>
+                    <i class="ri-calendar-2-line mr-1"></i> {{ item.tgl_lahir }}
+                  </span>
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap">
+                <td class="px-5 py-4 whitespace-nowrap">
                   <span
                     :class="[
                       'inline-flex items-center px-3 py-1 rounded-full text-xs font-medium',
@@ -266,25 +247,21 @@ onBeforeUnmount(() => {
                     {{ item.jk === 'L' ? 'Laki-laki' : 'Perempuan' }}
                   </span>
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="flex items-center">
-                    <i class="ri-phone-fill text-green-500 mr-2"></i>
-                    <span class="text-sm text-gray-900 dark:text-gray-100 font-mono">{{
-                      item.no_tlp
-                    }}</span>
+                <td class="px-5 py-4 whitespace-nowrap">
+                  <div class="flex items-center gap-2">
+                    <i class="ri-phone-fill text-green-500"></i>
+                    <span class="font-mono">{{ item.no_tlp }}</span>
                   </div>
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="flex items-center">
+                <td class="px-5 py-4 whitespace-nowrap">
+                  <div class="flex items-center gap-3">
                     <div
-                      class="w-8 h-8 bg-gradient-to-r from-emerald-400 to-teal-500 rounded-full flex items-center justify-center text-white font-bold text-xs mr-3"
+                      class="w-8 h-8 bg-gradient-to-r from-emerald-400 to-teal-500 rounded-full flex items-center justify-center text-white font-bold text-sm"
                     >
                       {{ item.nama_wali.charAt(0).toUpperCase() }}
                     </div>
                     <div>
-                      <div class="text-sm font-medium text-gray-900 dark:text-gray-100">
-                        {{ item.nama_wali }}
-                      </div>
+                      <div class="font-medium">{{ item.nama_wali }}</div>
                       <div class="text-xs text-gray-500 dark:text-gray-400">Wali Siswa</div>
                     </div>
                   </div>

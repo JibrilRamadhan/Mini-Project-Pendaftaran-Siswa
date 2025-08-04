@@ -1,6 +1,6 @@
 import { ref } from 'vue'
-import mapelJson from '../assets/mapel.json'
-import guruJson from '../assets/guru.json'
+import mapelJson from '../stores/mapel.json'
+import guruJson from '../stores/guru.json'
 
 export default function useMapel() {
   const data = ref([...mapelJson])

@@ -45,7 +45,7 @@ onBeforeUnmount(() => {
 
 <template>
   <div
-    class="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-100 dark:from-gray-900 dark:via-emerald-900 dark:to-teal-950 p-5"
+    class="min-h-screen  dark:from-gray-900 dark:via-emerald-900 dark:to-teal-950 p-5"
   >
     <div class="max-w-7xl mx-auto">
       <!-- HEADER SECTION WITH GLASS EFFECT -->
