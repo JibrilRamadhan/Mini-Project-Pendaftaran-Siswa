@@ -6,7 +6,7 @@ import siswaData from '../stores/siswa.json'
 import guruData from '../stores/guru.json'
 
 const absens = ref([...absenData])
-const selectedKelasId = ref(1)
+const selectedKelasId = ref(null)
 const selectedTanggal = ref('')
 const showForm = ref(false)
 const selectedItem = ref(null)

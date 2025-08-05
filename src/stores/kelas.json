@@ -26,5 +26,26 @@
     "kode_kelas": "IPS11-01",
     "kapasitas": 10,
     "id_guru": 4
+  },
+  {
+    "id_kelas": 5,
+    "nama_kelas": "Kelas 11 IPA 1",
+    "kode_kelas": "IPA11-01",
+    "kapasitas": 10,
+    "id_guru": 5
+  },
+  {
+    "id_kelas": 6,
+    "nama_kelas": "Kelas 11 IPA 2",
+    "kode_kelas": "IPA11-02",
+    "kapasitas": 10,
+    "id_guru": 1
+  },
+  {
+    "id_kelas": 7,
+    "nama_kelas": "Kelas 12 IPS 1",
+    "kode_kelas": "IPS12-01",
+    "kapasitas": 10,
+    "id_guru": 2
   }
 ]
