@@ -6,7 +6,7 @@ import siswaData from '../stores/siswa.json'
 import guruData from '../stores/guru.json'
 
 const absens = ref([...absenData])
-const selectedKelasId = ref(null)
+const selectedKelasId = ref(1)
 const selectedTanggal = ref('')
 const showForm = ref(false)
 const selectedItem = ref(null)
@@ -15,7 +15,7 @@ const filteredAbsensi = computed(() => {
   return absens.value.filter(item => {
     return (
       (!selectedTanggal.value || item.tanggal === selectedTanggal.value) &&
-      (!selectedKelasId.value || item.kelas_id === selectedKelasId.value)
+      (!selectedKelasId.value || item.id_kelas === selectedKelasId.value)
     )
   })
 })

@@ -69,7 +69,7 @@
                 class="w-full px-4 py-3 bg-white/80 dark:bg-gray-800/80 border border-sky-200 dark:border-sky-700 rounded-xl shadow-lg backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent transition-all duration-300 appearance-none"
               >
                 <option disabled value="">-- Pilih Kelas --</option>
-                <option v-for="kelas in kelasList" :key="kelas.id" :value="kelas.id">
+                <option v-for="kelas in kelasList" :key="kelas.id_kelas" :value="kelas.id_kelas">
                   {{ kelas.nama_kelas }}
                 </option>
               </select>
