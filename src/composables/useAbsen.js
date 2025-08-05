@@ -67,7 +67,7 @@ function hapus(id) {
 }
 
 function getNamaKelas(id) {
-  return kelasData.find(k => k.id === id)?.nama_kelas || 'Tidak diketahui'
+  return kelasData.find(k => k.id_kelas === id)?.nama_kelas || 'Tidak diketahui'
 }
 
 function getNamaGuru(id) {
