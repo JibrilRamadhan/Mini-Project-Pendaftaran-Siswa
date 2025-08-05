@@ -7,6 +7,8 @@ import guruData from '../stores/guru.json'
 
 const absens = ref([...absenData])
 const selectedKelasId = ref(null)
+// const today = new Date().toISOString().split('T')[0] ini kalau ada rencana untuk filternya dimulai dari tanggal hari ini
+// const selectedTanggal = ref(today) 
 const selectedTanggal = ref('')
 const showForm = ref(false)
 const selectedItem = ref(null)
