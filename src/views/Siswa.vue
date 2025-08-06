@@ -1,7 +1,10 @@
+<!-- Siswa.vue -->
+
 <script setup>
 import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
 import ModalForm from '../components/ModalsFormSiswa.vue'
 import useSiswa from '@/composables/useSiswa'
+import Swal from 'sweetalert2'
 
 // Ambil semua dari useSiswa sekali saja
 const {
@@ -12,6 +15,16 @@ const {
   form,
   errors,
   selectedItem,
+  paginatedData,
+  currentPage,
+  totalPages,
+  itemsPerPage,
+  paginationInfo,
+  pageNumbers,
+  goToPage,
+  nextPage,
+  prevPage,
+  changeItemsPerPage,
   lihatItem,
   tambahBaru,
   editItem,
@@ -26,12 +39,225 @@ const {
 
 const actionRef = ref(null)
 
-// ⛳ Gunakan langsung `data` untuk statistik
+// ⛳ Gunakan langsung data untuk statistik
 const siswaLaki = computed(() => data.value?.filter((s) => s.jk === 'L').length || 0)
 
 const siswaPerempuan = computed(() => data.value?.filter((s) => s.jk === 'P').length || 0)
 
 const totalSiswa = computed(() => data.value?.length || 0)
+
+// Enhanced functions with SweetAlert2
+async function handleTambahBaru() {
+  const result = await Swal.fire({
+    title: 'Tambah Siswa Baru',
+    text: 'Apakah Anda ingin menambahkan data siswa baru?',
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonColor: '#6366f1',
+    cancelButtonColor: '#d1d5db',
+    confirmButtonText: 'Ya, Tambah',
+    cancelButtonText: 'Batal',
+    showClass: {
+      popup: 'animate__animated animate__fadeInUp'
+    },
+    hideClass: {
+      popup: 'animate__animated animate__fadeOutDown'
+    }
+  })
+
+  if (result.isConfirmed) {
+    tambahBaru()
+    Swal.fire({
+      icon: 'info',
+      title: 'Form Siap',
+      text: 'Silakan lengkapi data siswa baru',
+      confirmButtonColor: '#6366f1',
+      timer: 1500,
+      showConfirmButton: false
+    })
+  }
+}
+
+async function handleEditItem(item) {
+  const result = await Swal.fire({
+    title: 'Edit Data Siswa',
+    html: `
+      <div class="text-left">
+        <p class="mb-2">Anda akan mengedit data siswa:</p>
+        <div class="bg-gray-100 p-3 rounded-lg">
+          <p><strong>Nama:</strong> ${item.nama}</p>
+          <p><strong>NISN:</strong> ${item.nisn}</p>
+        </div>
+        <p class="mt-2 text-sm text-gray-600">Pastikan perubahan data sudah benar</p>
+      </div>
+    `,
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#f59e0b',
+    cancelButtonColor: '#d1d5db',
+    confirmButtonText: 'Ya, Edit',
+    cancelButtonText: 'Batal',
+    showClass: {
+      popup: 'animate__animated animate__fadeInUp'
+    }
+  })
+
+  if (result.isConfirmed) {
+    editItem(item)
+    Swal.fire({
+      icon: 'info',
+      title: 'Mode Edit Aktif',
+      text: 'Silakan ubah data yang diperlukan',
+      confirmButtonColor: '#f59e0b',
+      timer: 1500,
+      showConfirmButton: false
+    })
+  }
+}
+
+async function handleLihatItem(item) {
+  const result = await Swal.fire({
+    title: 'Lihat Detail Siswa',
+    html: `
+      <div class="text-left">
+        <p class="mb-2">Anda akan melihat detail lengkap:</p>
+        <div class="bg-blue-50 p-3 rounded-lg">
+          <p><strong>Nama:</strong> ${item.nama}</p>
+          <p><strong>NISN:</strong> ${item.nisn}</p>
+          <p><strong>Jenis Kelamin:</strong> ${item.jk === 'L' ? 'Laki-laki' : 'Perempuan'}</p>
+        </div>
+      </div>
+    `,
+    icon: 'info',
+    showCancelButton: true,
+    confirmButtonColor: '#10b981',
+    cancelButtonColor: '#d1d5db',
+    confirmButtonText: 'Lihat Detail',
+    cancelButtonText: 'Batal'
+  })
+
+  if (result.isConfirmed) {
+    lihatItem(item)
+  }
+}
+
+async function handleHapusItem(itemId, itemNama) {
+  // First confirmation
+  const firstResult = await Swal.fire({
+    title: 'Hapus Data Siswa?',
+    html: `
+      <div class="text-left">
+        <p class="mb-2">Anda akan menghapus data siswa:</p>
+        <div class="bg-red-50 p-3 rounded-lg border-l-4 border-red-500">
+          <p><strong>Nama:</strong> ${itemNama}</p>
+        </div>
+        <p class="mt-2 text-sm text-red-600">⚠️ Data yang dihapus tidak dapat dikembalikan!</p>
+      </div>
+    `,
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#ef4444',
+    cancelButtonColor: '#d1d5db',
+    confirmButtonText: 'Ya, Hapus',
+    cancelButtonText: 'Batal',
+    showClass: {
+      popup: 'animate__animated animate__shakeX'
+    }
+  })
+
+  if (firstResult.isConfirmed) {
+    // Second confirmation for critical action
+    const secondResult = await Swal.fire({
+      title: 'Konfirmasi Terakhir',
+      text: 'Apakah Anda benar-benar yakin ingin menghapus data ini?',
+      icon: 'error',
+      showCancelButton: true,
+      confirmButtonColor: '#dc2626',
+      cancelButtonColor: '#6b7280',
+      confirmButtonText: 'YA, HAPUS SEKARANG!',
+      cancelButtonText: 'Tidak, Batalkan',
+      reverseButtons: true,
+      focusCancel: true
+    })
+
+    if (secondResult.isConfirmed) {
+      try {
+        await hapusItem(itemId)
+        clearSelected()
+        
+        Swal.fire({
+          icon: 'success',
+          title: 'Berhasil Dihapus!',
+          text: `Data siswa ${itemNama} telah dihapus`,
+          confirmButtonColor: '#10b981',
+          timer: 2000,
+          showConfirmButton: false
+        })
+      } catch (error) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Gagal Menghapus',
+          text: 'Terjadi kesalahan saat menghapus data',
+          confirmButtonColor: '#ef4444'
+        })
+      }
+    }
+  }
+}
+
+async function handleClearSelected() {
+  if (selectedItem.value) {
+    const result = await Swal.fire({
+      title: 'Batalkan Pilihan?',
+      text: 'Anda akan membatalkan pilihan siswa yang sedang dipilih',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#6b7280',
+      cancelButtonColor: '#d1d5db',
+      confirmButtonText: 'Ya, Batalkan',
+      cancelButtonText: 'Tidak',
+      timer: 5000,
+      timerProgressBar: true
+    })
+
+    if (result.isConfirmed) {
+      clearSelected()
+      Swal.fire({
+        icon: 'info',
+        title: 'Pilihan Dibatalkan',
+        text: 'Tidak ada siswa yang dipilih',
+        confirmButtonColor: '#6b7280',
+        timer: 1500,
+        showConfirmButton: false
+      })
+    }
+  }
+}
+
+// Enhanced pagination with confirmation for large jumps
+async function handleGoToPage(page) {
+  const currentPageValue = currentPage.value
+  const pageDifference = Math.abs(page - currentPageValue)
+  
+  if (pageDifference > 5) {
+    const result = await Swal.fire({
+      title: 'Lompat Halaman',
+      text: `Anda akan berpindah dari halaman ${currentPageValue} ke halaman ${page}`,
+      icon: 'info',
+      showCancelButton: true,
+      confirmButtonColor: '#6366f1',
+      cancelButtonColor: '#d1d5db',
+      confirmButtonText: 'Ya, Lompat',
+      cancelButtonText: 'Batal'
+    })
+    
+    if (result.isConfirmed) {
+      goToPage(page)
+    }
+  } else {
+    goToPage(page)
+  }
+}
 
 // klik di luar table = batal
 function handleClickOutside(event) {
@@ -39,7 +265,8 @@ function handleClickOutside(event) {
     actionRef.value &&
     !actionRef.value.contains(event.target) &&
     !event.target.closest('table') &&
-    !event.target.closest('.modal')
+    !event.target.closest('.modal')&&
+    !event.target.closest('.pagination')
   ) {
     clearSelected()
   }
@@ -47,7 +274,20 @@ function handleClickOutside(event) {
 
 onMounted(() => {
   document.addEventListener('click', handleClickOutside)
+  
+  // Welcome message
+  Swal.fire({
+    icon: 'info',
+    title: 'Selamat Datang!',
+    text: 'Halaman Data Siswa siap digunakan',
+    confirmButtonColor: '#6366f1',
+    timer: 2000,
+    showConfirmButton: false,
+    toast: true,
+    position: 'top-end'
+  })
 })
+
 onBeforeUnmount(() => {
   document.removeEventListener('click', handleClickOutside)
 })
@@ -75,7 +315,7 @@ onBeforeUnmount(() => {
           </div>
 
           <button
-            @click="tambahBaru"
+            @click="handleTambahBaru"
             class="group relative px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white rounded-2xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 font-semibold text-lg"
           >
             <div
@@ -196,7 +436,7 @@ onBeforeUnmount(() => {
             </thead>
             <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
               <tr
-                v-for="(item, index) in data"
+                v-for="(item, index) in paginatedData"
                 :key="item.id"
                 @click="pilihItem(item)"
                 :class="[
@@ -207,7 +447,7 @@ onBeforeUnmount(() => {
                 ]"
               >
                 <td class="px-5 py-4 whitespace-nowrap font-bold text-gray-800 dark:text-white">
-                  {{ index + 1 }}
+                  {{ (currentPage - 1) * itemsPerPage + index + 1 }}
                 </td>
                 <td class="px-5 py-4 whitespace-nowrap">
                   <span class="font-mono font-semibold">{{ item.nisn }}</span>
@@ -273,6 +513,76 @@ onBeforeUnmount(() => {
           </table>
         </div>
 
+         <!-- Pagination Section -->
+         <div v-if="totalPages > 1" class="bg-gray-50 dark:bg-gray-800/50 px-6 py-4 border-t border-gray-200 dark:border-gray-700">
+          <div class="flex items-center justify-between">
+            <!-- Pagination Info -->
+            <div class="flex items-center text-sm text-gray-700 dark:text-gray-300">
+              <span>
+                Menampilkan 
+                <span class="font-semibold">{{ paginationInfo.start }}</span>
+                sampai 
+                <span class="font-semibold">{{ paginationInfo.end }}</span>
+                dari 
+                <span class="font-semibold">{{ paginationInfo.total }}</span>
+                hasil
+              </span>
+            </div>
+
+            <!-- Pagination Controls -->
+            <div class="flex items-center space-x-2 pagination">
+              <!-- Previous Button -->
+              <button
+                @click="prevPage"
+                :disabled="currentPage === 1"
+                :class="[
+                  'px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200',
+                  currentPage === 1
+                    ? 'text-gray-400 dark:text-gray-600 cursor-not-allowed'
+                    : 'text-gray-700 dark:text-gray-300 hover:bg-indigo-100 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400'
+                ]"
+              >
+                <i class="ri-arrow-left-s-line"></i>
+                Previous
+              </button>
+
+              <!-- Page Numbers -->
+              <div class="flex items-center space-x-1">
+                <template v-for="page in pageNumbers" :key="page">
+                  <button
+                    v-if="page !== '...'"
+                    @click="handleGoToPage(page)"
+                    :class="[
+                      'px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200',
+                      currentPage === page
+                        ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg'
+                        : 'text-gray-700 dark:text-gray-300 hover:bg-indigo-100 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400'
+                    ]"
+                  >
+                    {{ page }}
+                  </button>
+                  <span v-else class="px-2 py-2 text-gray-500">...</span>
+                </template>
+              </div>
+
+              <!-- Next Button -->
+              <button
+                @click="nextPage"
+                :disabled="currentPage === totalPages"
+                :class="[
+                  'px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200',
+                  currentPage === totalPages
+                    ? 'text-gray-400 dark:text-gray-600 cursor-not-allowed'
+                    : 'text-gray-700 dark:text-gray-300 hover:bg-indigo-100 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400'
+                ]"
+              >
+                Next
+                <i class="ri-arrow-right-s-line"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
         <!-- Empty State -->
         <div v-if="data.length === 0" class="text-center py-16">
           <div
@@ -287,7 +597,7 @@ onBeforeUnmount(() => {
             Mulai tambahkan data siswa untuk melihat informasi di sini
           </p>
           <button
-            @click="tambahBaru"
+            @click="handleTambahBaru"
             class="px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl hover:shadow-lg transition-all duration-300"
           >
             <i class="ri-add-line mr-2"></i>
@@ -330,7 +640,7 @@ onBeforeUnmount(() => {
           <!-- Action Buttons -->
           <div class="flex flex-col space-y-3">
             <button
-              @click="editItem(selectedItem)"
+              @click="handleEditItem(selectedItem)"
               class="group flex items-center space-x-3 px-6 py-4 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white rounded-2xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 font-semibold min-w-[160px]"
             >
               <i class="ri-edit-line text-xl"></i>
@@ -338,7 +648,7 @@ onBeforeUnmount(() => {
             </button>
 
             <button
-              @click="lihatItem(selectedItem)"
+              @click="handleLihatItem(selectedItem)"
               class="group flex items-center space-x-3 px-6 py-4 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white rounded-2xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 font-semibold min-w-[160px]"
             >
               <i class="ri-eye-line text-xl"></i>
@@ -346,7 +656,7 @@ onBeforeUnmount(() => {
             </button>
 
             <button
-              @click="(hapusItem(selectedItem.id), clearSelected())"
+              @click="handleHapusItem(selectedItem.id, selectedItem.nama)"
               class="group flex items-center space-x-3 px-6 py-4 bg-gradient-to-r from-red-500 to-rose-600 hover:from-red-600 hover:to-rose-700 text-white rounded-2xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 font-semibold min-w-[160px]"
             >
               <i class="ri-delete-bin-line text-xl"></i>
@@ -354,7 +664,7 @@ onBeforeUnmount(() => {
             </button>
 
             <button
-              @click="clearSelected"
+              @click="handleClearSelected"
               class="group flex items-center space-x-3 px-6 py-4 bg-gradient-to-r from-gray-500 to-slate-600 hover:from-gray-600 hover:to-slate-700 text-white rounded-2xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 font-semibold min-w-[160px]"
             >
               <i class="ri-close-line text-xl"></i>
@@ -431,5 +741,48 @@ onBeforeUnmount(() => {
 
 .group:hover {
   animation: float 2s ease-in-out infinite;
+}
+
+/* SweetAlert2 custom animations */
+@keyframes shake {
+  0%, 20%, 40%, 60%, 80%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-10px);
+  }
+}
+
+.animate__shakeX {
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+.animate__fadeInUp {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+.animate__fadeOutDown {
+  animation: fadeOutDown 0.5s ease-in;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 40px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeOutDown {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(0, 40px, 0);
+  }
 }
 </style>
