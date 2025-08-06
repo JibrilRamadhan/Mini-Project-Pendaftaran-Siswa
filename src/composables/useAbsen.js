@@ -5,16 +5,17 @@ import kelasData from '../stores/kelas.json'
 import siswaData from '../stores/siswa.json'
 import guruData from '../stores/guru.json'
 
+const kelasList = ref([...kelasData])
 const absens = ref([...absenData])
-const selectedKelasId = ref('')
+const siswaDataRef = ref([...siswaData])
+const selectedKelasId = ref(null)
 const selectedTanggal = ref('')
 const showForm = ref(false)
 const selectedItem = ref(null)
 
-// Computed untuk mendapatkan siswa berdasarkan kelas yang dipilih
 const siswaByKelas = computed(() => {
   if (!selectedKelasId.value) return []
-  return siswaData.filter(siswa => siswa.kelas_id === Number(selectedKelasId.value))
+  return siswaDataRef.value.filter(siswa => siswa.kelas_id === Number(selectedKelasId.value))
 })
 
 // Data absensi yang sudah difilter berdasarkan tanggal dan kelas
@@ -25,6 +26,7 @@ const filteredAbsensi = computed(() => {
     return item.tanggal === selectedTanggal.value && item.id_kelas === Number(selectedKelasId.value)
   })
 })
+
 
 // Data lengkap untuk tampilan tabel - menggabungkan data siswa dengan absensi
 const tableData = computed(() => {
@@ -99,7 +101,7 @@ const tambahSiswaKeAbsensi = (siswa) => {
   if (!kelasId || !tanggal) return
 
   // Cari kelas yang sesuai
-  const kelas = kelasList.value.find(k => k.id_kelas === kelasId)
+  const kelas = kelasList.value.find(k => k.id === kelasId)
   if (!kelas) return
 
   // Cek apakah sudah ditambahkan
@@ -186,7 +188,7 @@ function hapus(id) {
 }
 
 function getNamaKelas(id) {
-  return kelasData.find(k => k.id_kelas === id)?.nama_kelas || 'Tidak diketahui'
+  return kelasData.find(k => k.id === id)?.nama_kelas || 'Tidak diketahui'
 }
 
 function getNamaGuru(id) {
@@ -198,7 +200,7 @@ function getNamaSiswa(id) {
 }
 
 function getWaliKelas(id_kelas) {
-  const kelas = kelasData.find(k => k.id_kelas === id_kelas)
+  const kelas = kelasData.find(k => k.id === id_kelas)
   return kelas?.id_guru || guruData[0]?.id_guru || null
 }
 
