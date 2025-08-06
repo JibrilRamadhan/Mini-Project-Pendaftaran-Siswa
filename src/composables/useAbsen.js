@@ -95,38 +95,71 @@ function updateStatusAbsensi(idSiswa, newStatus) {
   }
 }
 
+// const tambahSiswaKeAbsensi = (siswa) => {
+//   const kelasId = selectedKelasId.value
+//   const tanggal = selectedTanggal.value
+
+//   if (!kelasId || !tanggal) return
+
+//   // Cari kelas yang sesuai
+//   const kelas = kelasList.value.find(k => k.id === kelasId)
+//   if (!kelas) return
+
+//   // Cek apakah sudah ditambahkan
+//   const exists = tableData.value.some(
+//     (data) => data.id_siswa === siswa.id && data.id_kelas === kelasId
+//   )
+//   if (exists) return
+
+//   // Set kelas_id langsung di siswa
+//   siswa.kelas_id = kelasId
+
+//   tableData.value.push({
+//     id: Date.now(), // atau ID yang lebih baik
+//     id_siswa: siswa.id,
+//     id_kelas: kelasId,
+//     id_wali: kelas.wali_kelas_id,
+//     tanggal,
+//     status: null,
+//   })
+// }
+
 const tambahSiswaKeAbsensi = (siswa) => {
   const kelasId = selectedKelasId.value
   const tanggal = selectedTanggal.value
+      console.log("b4", tableData.value)
+
+      console.log(siswa)
 
   if (!kelasId || !tanggal) return
 
-  // Cari kelas yang sesuai
   const kelas = kelasList.value.find(k => k.id === kelasId)
   if (!kelas) return
 
-  // Cek apakah sudah ditambahkan
-  const exists = tableData.value.some(
-    (data) => data.id_siswa === siswa.id && data.id_kelas === kelasId
+  // Cek apakah sudah ada absensinya
+  const exists = absens.value.some(
+    (data) => data.id_siswa === siswa.id && data.id_kelas === kelasId && data.tanggal === tanggal
   )
   if (exists) return
 
-  // Set kelas_id langsung di siswa
-  siswa.kelas_id = kelasId
-
-  tableData.value.push({
-    id: Date.now(), // atau ID yang lebih baik
-    id_siswa: siswa.id,
+  // Tambahkan ke absens, bukan tableData 
+  absens.value.push({
+    id: Date.now(),
+    id_siswa: siswa.id_siswa,
     id_kelas: kelasId,
     id_wali: kelas.wali_kelas_id,
-    tanggal,
     status: null,
+    tanggal,
   })
-}
 
+      console.log("afta", tableData.value)
+
+}
 
 function hapusSiswaDariAbsensi(idSiswa) {
   if (!confirm('Yakin ingin menghapus siswa dari absensi?')) return
+
+  console.log("BEFORE", tableData.value)
 
   const index = absens.value.findIndex(a =>
     a.tanggal === selectedTanggal.value &&
@@ -134,9 +167,12 @@ function hapusSiswaDariAbsensi(idSiswa) {
     a.id_siswa === idSiswa
   )
   console.log('Index to remove:', index)
+ 
 
   if (index !== -1) {
     absens.value.splice(index, 1)
+      console.log("AFTER", tableData.value)
+
   }
 }
 
