@@ -207,6 +207,8 @@ function login() {
     const found = users.find((u) => u.username === username.value && u.password === password.value)
     if (found) {
       // Success animation
+        localStorage.setItem('username', username.value) // ⬅ menyimpan username
+
       gsap.to(card.value, {
         scale: 0.95,
         opacity: 0,

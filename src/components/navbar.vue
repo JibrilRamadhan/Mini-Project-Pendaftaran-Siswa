@@ -62,7 +62,7 @@
             class="flex items-center gap-2 text-sm font-semibold text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 bg-white/20 dark:bg-gray-700/20 backdrop-blur-sm rounded-lg px-3 py-2"
           >
             <i class="ri-user-line text-xl"></i>
-            <span class="hidden lg:inline">User</span>
+            <span class="hidden lg:inline">{{username}}</span>
             <i
               class="ri-arrow-down-s-line text-lg transition-transform duration-300"
               :class="{ 'rotate-180': isDropdownOpen }"
@@ -144,6 +144,8 @@ const router = useRouter()
 const isDropdownOpen = ref(false)
 const isMobileMenuOpen = ref(false)
 const dropdownRef = ref(null)
+
+const username = localStorage.getItem('username')
 
 // Toggle dropdown
 const toggleDropdown = () => {
