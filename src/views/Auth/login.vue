@@ -213,7 +213,7 @@ function login() {
         scale: 0.95,
         opacity: 0,
         duration: 0.5,
-        onComplete: () => router.push('/jadwal'),
+        onComplete: () => router.push('/siswa'),
       })
 
       // Particle explosion effect

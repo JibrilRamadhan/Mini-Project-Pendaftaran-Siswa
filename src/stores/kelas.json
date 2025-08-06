@@ -1,48 +1,48 @@
 [
   {
-    "id_kelas": 1,
+    "id": 1,
     "nama_kelas": "Kelas 10 IPA 1",
     "kode_kelas": "IPA10-01",
     "kapasitas": 10,
     "id_guru": 1
   },
   {
-    "id_kelas": 2,
+    "id": 2,
     "nama_kelas": "Kelas 10 IPA 2",
     "kode_kelas": "IPA10-02",
     "kapasitas": 10,
     "id_guru": 2
   },
   {
-    "id_kelas": 3,
+    "id": 3,
     "nama_kelas": "Kelas 10 IPS 1",
     "kode_kelas": "IPS10-01",
     "kapasitas": 10,
     "id_guru": 3
   },
   {
-    "id_kelas": 4,
+    "id": 4,
     "nama_kelas": "Kelas 11 IPS 1",
     "kode_kelas": "IPS11-01",
     "kapasitas": 10,
     "id_guru": 4
   },
   {
-    "id_kelas": 5,
+    "id": 5,
     "nama_kelas": "Kelas 11 IPA 1",
     "kode_kelas": "IPA11-01",
     "kapasitas": 10,
     "id_guru": 5
   },
   {
-    "id_kelas": 6,
+    "id": 6,
     "nama_kelas": "Kelas 11 IPA 2",
     "kode_kelas": "IPA11-02",
     "kapasitas": 10,
     "id_guru": 1
   },
   {
-    "id_kelas": 7,
+    "id": 7,
     "nama_kelas": "Kelas 12 IPS 1",
     "kode_kelas": "IPS12-01",
     "kapasitas": 10,

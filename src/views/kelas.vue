@@ -260,18 +260,18 @@
     </div>
 
     <ModalFormKelas
-  :key="selectedItem?.id ?? 'new'"
-  :show="showForm"
-  :mode="mode"
-  :readonly="readonly"
-  :form="form"
-  :errors="errors"
-  :selectedItem="selectedItem"
-  :siswaDiKelas="siswaDiKelas"
-  @cancel="batal"
-  @save="simpan"
-/>
-
+      :key="selectedItem?.id ?? 'new'"
+      :show="showForm"
+      :mode="mode"
+      :readonly="readonly"
+      :form="form"
+      :errors="errors"
+      :selectedItem="selectedItem"
+      :siswaDiKelas="siswaDiKelas"
+      :tambahSiswa="tambahSiswa"
+      @cancel="batal"
+      @save="simpan"
+    />
   </div>
 </template>
 
@@ -299,6 +299,7 @@ const {
   pilihItem,
   clearSelected,
   siswaDiKelas,
+  tambahSiswa
 } = useKelas()
 
 const actionRef = ref(null)
@@ -340,20 +341,21 @@ const totalKapasitas = computed(() =>
 )
 
 function handleClickOutside(event) {
-  console.log('Click target:', event.target);
-  if (
-    actionRef.value &&
-    !actionRef.value.contains(event.target) &&
-    !event.target.closest('table') &&
-    !event.target.closest('.modal')
-  ) {
-    console.log('Clearing selected item');
-    clearSelected();
+  if (showForm.value) return 
+  const path = event.composedPath?.() || []
+  const clickedInsideAction = path.some(el => el === actionRef.value)
+  const clickedInTable = path.some(el => el?.tagName?.toLowerCase() === 'table')
+  const clickedInModal = path.some(el => el?.classList?.contains('modal'))
+  const clickedButton = path.some(el => el?.tagName?.toLowerCase() === 'button')
+
+  if (!clickedInsideAction && !clickedInTable && !clickedInModal && !clickedButton) {
+    clearSelected()
   }
 }
 
 onMounted(() => {
   document.addEventListener('click', handleClickOutside)
+  console.log('kelas.vue mounted, tambahSiswa:', tambahSiswa)
 })
 onBeforeUnmount(() => {
   document.removeEventListener('click', handleClickOutside)

@@ -295,7 +295,7 @@ onBeforeUnmount(() => {
                     class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-rose-100 text-rose-800 dark:bg-rose-900 dark:text-rose-200"
                   >
                     <i class="ri-graduation-cap-line mr-1"></i>
-                    {{ kelasList.find(k => k.id_kelas === item.id_kelas)?.nama_kelas }}
+                    {{ kelasList.find(k => k.id === item.id_kelas)?.nama_kelas }}
                   </div>
                 </td>
               </tr>
