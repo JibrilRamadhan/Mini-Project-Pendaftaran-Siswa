@@ -8,7 +8,7 @@ import Swal from 'sweetalert2'
 // Fungsi untuk mendeteksi mode gelap
 function isDarkMode() {
   return document.documentElement.classList.contains('dark')
-zz}
+}
 
 // Konfigurasi tema yang konsisten
 const getThemeConfig = () => {
