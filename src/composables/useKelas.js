@@ -49,11 +49,12 @@ function editItem(item) {
 }
 
 function lihatItem(item) {
-  form.value = { ...item }
-  mode.value = 'edit'
-  selectedItem.value = item
-  readonly.value = true
-  showForm.value = true
+  console.log('Lihat item:', item);
+  form.value = { ...item };
+  mode.value = 'edit';
+  selectedItem.value = item;
+  readonly.value = true;
+  showForm.value = true;
 }
 
 function simpan() {
@@ -91,7 +92,8 @@ function batal() {
 }
 
 function pilihItem(item) {
-  selectedItem.value = item
+  console.log('Pilih item:', item);
+  selectedItem.value = item;
 }
 
 function clearSelected() {

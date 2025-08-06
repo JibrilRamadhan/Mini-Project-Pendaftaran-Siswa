@@ -2,6 +2,7 @@
 import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
 import ModalFormGuru from '@/components/ModalFormGuru.vue'
 import useGuru from '@/composables/useGuru.js'
+import useSearch from '../composables/search'
 
 
 
@@ -22,6 +23,10 @@ const {
   pilihItem,
   clearSelected,
 } = useGuru()
+
+const { query: searchQuery, filtered: filteredData } = useSearch(data, [
+  'nama_guru', 'nip', 'alamat', 'email', 'no_telp', 'jenis_kelamin'
+])
 
 const actionRef = ref(null)
 
@@ -79,7 +84,7 @@ onBeforeUnmount(() => {
         
         <!-- Stats Cards -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6 mt-8">
-          <!-- Total Siswa -->
+          <!-- Total Guru -->
           <div
             class="relative p-6 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl shadow-lg overflow-hidden text-white transform hover:scale-[1.02] transition-all duration-300"
           >
@@ -87,12 +92,12 @@ onBeforeUnmount(() => {
               <i class="ri-group-line"></i>
             </div>
             <div class="z-10 relative">
-              <p class="text-sm font-semibold uppercase tracking-wide">Total Siswa</p>
+              <p class="text-sm font-semibold uppercase tracking-wide">Total Guru</p>
               <h2 class="text-4xl font-extrabold mt-1">{{ totalGuru }}</h2>
-              <p class="text-sm opacity-80 mt-1">Jumlah seluruh siswa terdaftar</p>
+              <p class="text-sm opacity-80 mt-1">Jumlah seluruh Guru terdaftar</p>
             </div>
           </div>
-          <!-- Siswa Laki-laki -->
+          <!-- Guru Laki-laki -->
           <div
             class="relative p-6 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl shadow-lg overflow-hidden text-white transform hover:scale-[1.02] transition-all duration-300"
           >
@@ -102,11 +107,11 @@ onBeforeUnmount(() => {
             <div class="z-10 relative">
               <p class="text-sm font-semibold uppercase tracking-wide">Laki-laki</p>
               <h2 class="text-4xl font-extrabold mt-1">{{ guruLaki }}</h2>
-              <p class="text-sm opacity-80 mt-1">Jumlah siswa laki-laki</p>
+              <p class="text-sm opacity-80 mt-1">Jumlah Guru laki-laki</p>
             </div>
           </div>
 
-          <!-- Siswa Perempuan -->
+          <!-- Guru Perempuan -->
           <div
             class="relative p-6 bg-gradient-to-r from-pink-500 to-rose-500 rounded-2xl shadow-lg overflow-hidden text-white transform hover:scale-[1.02] transition-all duration-300"
           >
@@ -116,7 +121,7 @@ onBeforeUnmount(() => {
             <div class="z-10 relative">
               <p class="text-sm font-semibold uppercase tracking-wide">Perempuan</p>
               <h2 class="text-4xl font-extrabold mt-1">{{ guruPerempuan }}</h2>
-              <p class="text-sm opacity-80 mt-1">Jumlah siswa perempuan</p>
+              <p class="text-sm opacity-80 mt-1">Jumlah Guru perempuan</p>
             </div>
           </div>
         </div>
@@ -125,11 +130,17 @@ onBeforeUnmount(() => {
       <!-- TABLE CONTAINER WITH ADVANCED GLASSMORPHISM -->
       <div class="backdrop-blur-xl bg-white/80 dark:bg-gray-900/80 rounded-3xl shadow-2xl border border-white/30 dark:border-gray-700/30 overflow-hidden">
         <!-- Table Header with Gradient -->
-        <div class="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 p-6">
+        <div class="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 p-6 flex justify-between items-center">
           <h3 class="text-2xl font-bold text-white flex items-center">
             <i class="ri-team-line mr-3"></i>
             Daftar Tenaga Pendidik
           </h3>
+          <input
+            v-model="searchQuery"
+            type="text"
+            placeholder="Cari nama, NIP, alamat, email, telepon..."
+            class="px-4 py-2 rounded-xl border border-emerald-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-800 dark:text-white"
+          />
         </div>
 
         <!-- Enhanced Table -->
@@ -189,7 +200,7 @@ onBeforeUnmount(() => {
             </thead>
             <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
   <tr
-    v-for="(item, index) in data"
+    v-for="(item, index) in filteredData"
     :key="item.id_guru"
     @click="pilihItem(item)"
     :class="[
@@ -250,7 +261,9 @@ onBeforeUnmount(() => {
     <!-- Alamat -->
     <td class="px-6 py-4 whitespace-nowrap max-w-xs truncate">
       <div class="text-sm text-gray-900 dark:text-gray-100">{{ item.alamat }}</div>
-      <div class="text-xs text-gray-500 dark:text-gray-400">Alamat Rumah</div>
+      <div class="text-xs text-gray-500 dark:text-gray-400 flex items-center">
+        <i class="ri-map-pin-line mr-1"></i>Alamat Rumah
+      </div>
     </td>
 
     <!-- No Telepon -->
@@ -285,7 +298,7 @@ onBeforeUnmount(() => {
         </div>
 
         <!-- Empty State -->
-        <div v-if="data.length === 0" class="text-center py-16">
+        <div v-if="filteredData.length === 0" class="text-center py-16">
           <div class="w-32 h-32 mx-auto mb-6 bg-gradient-to-r from-emerald-100 to-teal-200 dark:from-emerald-700 dark:to-teal-800 rounded-full flex items-center justify-center">
             <i class="ri-team-line text-6xl text-emerald-500 dark:text-emerald-400"></i>
           </div>

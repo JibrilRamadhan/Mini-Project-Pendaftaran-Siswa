@@ -7,6 +7,8 @@ import guruData from '../stores/guru.json'
 
 const absens = ref([...absenData])
 const selectedKelasId = ref(null)
+// const today = new Date().toISOString().split('T')[0] ini kalau ada rencana untuk filternya dimulai dari tanggal hari ini
+// const selectedTanggal = ref(today) 
 const selectedTanggal = ref('')
 const showForm = ref(false)
 const selectedItem = ref(null)
@@ -15,7 +17,7 @@ const filteredAbsensi = computed(() => {
   return absens.value.filter(item => {
     return (
       (!selectedTanggal.value || item.tanggal === selectedTanggal.value) &&
-      (!selectedKelasId.value || item.kelas_id === selectedKelasId.value)
+      (!selectedKelasId.value || item.id_kelas === selectedKelasId.value)
     )
   })
 })
@@ -67,7 +69,7 @@ function hapus(id) {
 }
 
 function getNamaKelas(id) {
-  return kelasData.find(k => k.id === id)?.nama_kelas || 'Tidak diketahui'
+  return kelasData.find(k => k.id_kelas === id)?.nama_kelas || 'Tidak diketahui'
 }
 
 function getNamaGuru(id) {

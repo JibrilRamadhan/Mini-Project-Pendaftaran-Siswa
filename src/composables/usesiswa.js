@@ -1,5 +1,5 @@
 // useSiswa.js (Final dengan jurusan dan penempatan otomatis)
-import { ref } from 'vue'
+import { ref,computed } from 'vue'
 import siswaJson from '@/stores/siswa.json'
 import kelasJson from '@/stores/kelas.json'
 
@@ -23,6 +23,91 @@ export default function useSiswa() {
   const errors = ref({})
   const selectedItem = ref(null)
 
+   // Pagination
+   const currentPage = ref(1)
+   const itemsPerPage = ref(10) // Bisa diubah sesuai kebutuhan
+ 
+   const totalPages = computed(() => Math.ceil(data.value.length / itemsPerPage.value))
+ 
+   const paginatedData = computed(() => {
+     const start = (currentPage.value - 1) * itemsPerPage.value
+     return data.value.slice(start, start + itemsPerPage.value)
+   })
+ 
+   // Pagination functions
+   function goToPage(page) {
+     if (page >= 1 && page <= totalPages.value) {
+       currentPage.value = page
+       selectedItem.value = null // Clear selection when changing page
+     }
+   }
+ 
+   function nextPage() {
+     if (currentPage.value < totalPages.value) {
+       currentPage.value++
+       selectedItem.value = null
+     }
+   }
+ 
+   function prevPage() {
+     if (currentPage.value > 1) {
+       currentPage.value--
+       selectedItem.value = null
+     }
+   }
+ 
+   function changeItemsPerPage(newItemsPerPage) {
+     itemsPerPage.value = newItemsPerPage
+     currentPage.value = 1 // Reset to first page
+     selectedItem.value = null
+   }
+ 
+   // Computed untuk info pagination
+   const paginationInfo = computed(() => {
+     const start = (currentPage.value - 1) * itemsPerPage.value + 1
+     const end = Math.min(currentPage.value * itemsPerPage.value, data.value.length)
+     return {
+       start,
+       end,
+       total: data.value.length
+     }
+   })
+ 
+   // Generate page numbers untuk pagination
+   const pageNumbers = computed(() => {
+     const pages = []
+     const total = totalPages.value
+     const current = currentPage.value
+ 
+     if (total <= 7) {
+       // Jika total halaman <= 7, tampilkan semua
+       for (let i = 1; i <= total; i++) {
+         pages.push(i)
+       }
+     } else {
+       // Jika total halaman > 7, tampilkan dengan ellipsis
+       if (current <= 4) {
+         // Di awal
+         for (let i = 1; i <= 5; i++) pages.push(i)
+         pages.push('...')
+         pages.push(total)
+       } else if (current >= total - 3) {
+         // Di akhir
+         pages.push(1)
+         pages.push('...')
+         for (let i = total - 4; i <= total; i++) pages.push(i)
+       } else {
+         // Di tengah
+         pages.push(1)
+         pages.push('...')
+         for (let i = current - 1; i <= current + 1; i++) pages.push(i)
+         pages.push('...')
+         pages.push(total)
+       }
+     }
+     return pages
+   })
+
   function tambahBaru() {
     mode.value = 'add'
     form.value = {
@@ -43,7 +128,7 @@ export default function useSiswa() {
   showAddForm.value = false
   }
 
-  function editItem(item) { 
+  function editItem(item) {   
     mode.value = 'edit'
     form.value = { ...item }
     errors.value = {}
@@ -88,6 +173,9 @@ export default function useSiswa() {
       }
       const dataBaru = { ...f, id: idBaru }
       data.value.push(dataBaru)
+
+      const newTotalPages = Math.ceil(data.value.length / itemsPerPage.value)
+      currentPage.value = newTotalPages
     } else {
       const index = data.value.findIndex(item => item.id === f.id)
       if (index !== -1) {
@@ -125,6 +213,20 @@ export default function useSiswa() {
     form,
     errors,
     selectedItem,
+    
+    // Pagination
+    paginatedData,
+    currentPage,
+    totalPages,
+    itemsPerPage,
+    paginationInfo,
+    pageNumbers,
+    goToPage,
+    nextPage,
+    prevPage,
+    changeItemsPerPage,
+    
+    // Functions
     lihatItem,
     tambahBaru,
     editItem,
@@ -134,6 +236,5 @@ export default function useSiswa() {
     pilihItem,
     clearSelected,
     getNamaKelas,
-    
   }
 }
