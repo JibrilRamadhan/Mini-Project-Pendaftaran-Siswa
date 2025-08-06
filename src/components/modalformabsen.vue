@@ -126,28 +126,43 @@
                     <span
                       class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-sky-100 text-sky-800 dark:bg-sky-900 dark:text-sky-200"
                     >
-                      {{ getNamaKelas(siswa.id_kelas) }}
+                      {{ getNamaKelas(siswa.kelas_id || siswa.id_kelas) || 'Tidak diketahui' }}
                     </span>
                   </td>
                   <td class="px-6 py-4 text-center">
-                    <span
-                      v-if="isInCurrentAbsensi(siswa.id, siswa.id_kelas)"
-                      class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
-                    >
-                      <i class="ri-checkbox-circle-fill mr-1"></i>
-                      Sudah dalam absensi
-                    </span>
-                    <span
-                      v-else
-                      class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200"
-                    >
-                      <i class="ri-user-add-line mr-1"></i>
-                      Belum ditambah
-                    </span>
+                    <!-- Hanya tampil tombol jika siswa berasal dari kelas yang dipilih -->
+                    <template v-if="isSiswaDalamKelasDipilih(siswa)">
+                      <span
+                        v-if="isInCurrentAbsensi(siswa.id)"
+                        class="px-4 py-2 bg-gray-300 text-gray-500 rounded-lg font-medium flex items-center space-x-2 mx-auto cursor-not-allowed"
+                      >
+                        <i class="ri-check-line"></i>
+                        <span>Ditambahkan</span>
+                      </span>
+                      <button
+                        v-else
+                        @click="tambahSiswa(siswa)"
+                        class="px-4 py-2 bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white rounded-lg font-medium transition-all duration-200 transform hover:scale-105 flex items-center space-x-2 mx-auto"
+                      >
+                        <i class="ri-user-add-line"></i>
+                        <span>Tambah</span>
+                      </button>
+                    </template>
+
+                    <!-- Jika siswa tidak dalam kelas yang dipilih, disable tombol -->
+                    <template v-else>
+                      <span
+                        class="px-4 py-2 bg-gray-200 text-gray-400 rounded-lg font-medium flex items-center space-x-2 mx-auto cursor-not-allowed"
+                      >
+                        <i class="ri-error-warning-line"></i>
+                        <span>Bukan dari kelas ini</span>
+                      </span>
+                    </template>
                   </td>
+
                   <td class="px-6 py-4 text-center">
                     <button
-                      v-if="isInCurrentAbsensi(siswa.id, siswa.id_kelas)"
+                      v-if="isInCurrentAbsensi(siswa.id)"
                       @click="tambahSiswa(siswa)"
                       class="px-4 py-2 bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white rounded-lg font-medium transition-all duration-200 transform hover:scale-105 flex items-center space-x-2 mx-auto"
                     >
@@ -163,7 +178,7 @@
                     </span>
                   </td>
                 </tr>
-                <tr v-if="filteredSiswa.length === 0">
+                <tr v-if="Array.isArray(filteredSiswa) && filteredSiswa.length === 0">
                   <td colspan="5" class="px-6 py-12 text-center text-gray-500 dark:text-gray-400">
                     <i class="ri-user-search-line text-4xl mb-4 block mx-auto opacity-50"></i>
                     <p class="text-lg font-medium">Siswa tidak ditemukan</p>
@@ -207,7 +222,6 @@ const props = defineProps({
   guruList: Array,
 })
 
-// Inject functions from parent component
 const tambahSiswaKeAbsensi = inject('tambahSiswaKeAbsensi')
 const getNamaKelas = inject('getNamaKelas')
 const selectedTanggal = inject('selectedTanggal')
@@ -217,50 +231,69 @@ const tableData = inject('tableData')
 const searchQuery = ref('')
 const selectedFilterKelas = ref('')
 
-// Filter siswa berdasarkan pencarian dan kelas
+// ✅ FIXED: Gunakan `let result = ...` bukan `filtered`
 const filteredSiswa = computed(() => {
-  let filtered = props.siswaList
+  let result = props.siswaList
 
-  // Filter berdasarkan pencarian
   if (searchQuery.value) {
     const query = searchQuery.value.toLowerCase()
-    filtered = filtered.filter(
+    result = result.filter(
       (siswa) =>
         siswa.nama.toLowerCase().includes(query) || siswa.nisn.toLowerCase().includes(query),
     )
   }
 
-  // Filter berdasarkan kelas jika dipilih
   if (selectedFilterKelas.value) {
-    filtered = filtered.filter((siswa) => siswa.id_kelas === Number(selectedFilterKelas.value))
+    result = result.filter((siswa) => siswa.kelas_id === Number(selectedFilterKelas.value))
   }
 
-  return filtered
+  return result
 })
 
-// Cek apakah siswa sudah ada dalam absensi saat ini
-const isInCurrentAbsensi = (siswaId, kelasId) => {
+const getSelectedKelasId = () => {
+  return Number(selectedFilterKelas.value || selectedKelasId.value)
+}
+
+const isInCurrentAbsensi = (siswaId) => {
+  const kelasId = getSelectedKelasId()
   return tableData.value.some((data) => data.id_siswa === siswaId && data.id_kelas === kelasId)
 }
 
-// Tambah siswa ke absensi
 const tambahSiswa = (siswa) => {
-  if (tambahSiswaKeAbsensi && !isInCurrentAbsensi(siswa.id, siswa.id_kelas)) {
-    tambahSiswaKeAbsensi(siswa)
+  const kelasId = getSelectedKelasId()
+
+  if (!isInCurrentAbsensi(siswa.id)) {
+    // Update langsung relasi siswa → kelas
+    const siswaObj = props.siswaList.find((s) => s.id === siswa.id)
+    if (siswaObj) siswaObj.kelas_id = kelasId
+
+    tambahSiswaKeAbsensi({
+      id_siswa: siswa.id,
+      id_kelas: kelasId,
+      id_wali: props.kelasList.find((k) => k.kelas_id === kelasId)?.wali_kelas_id || null,
+      tanggal: selectedTanggal.value,
+      status: null,
+    })
   }
 }
+const isSiswaDalamKelasDipilih = (siswa) => {
+  const kelasId = getSelectedKelasId()
+  return siswa.kelas_id === kelasId
+}
 
+// ✅ Update filter otomatis jika kelas diganti
 watch(selectedKelasId, (newVal) => {
   selectedFilterKelas.value = newVal
 })
 
+// ✅ Tombol batal
 function onCancel() {
-  // Reset form
   searchQuery.value = ''
   selectedFilterKelas.value = ''
   emit('cancel')
 }
 
+// ✅ Tombol simpan
 function onSave() {
   emit('save')
 }

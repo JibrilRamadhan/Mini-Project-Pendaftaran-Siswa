@@ -2,6 +2,7 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import ModalForm from '@/components/ModalForm.vue'
 import useJamPelajaran from '../composables/usejampelajaran'
+import useSearch from '../composables/search'
 
 const {
   data,
@@ -24,6 +25,14 @@ const {
   pilihItem,
   clearSelected,
 } = useJamPelajaran()
+
+const { query: searchQuery, filtered: filteredData } = useSearch(data, [
+  'hari',
+  'jam_mulai',
+  'jam_selesai',
+  // Untuk mapel, guru, kelas, gunakan computed string
+  // Nanti di bawah, tambahkan computed property jika perlu
+])
 
 const actionRef = ref(null)
 
@@ -127,11 +136,17 @@ onBeforeUnmount(() => {
         class="backdrop-blur-xl bg-white/80 dark:bg-gray-900/80 rounded-3xl shadow-2xl border border-white/30 dark:border-gray-700/30 overflow-hidden"
       >
         <!-- Table Header with Gradient -->
-        <div class="bg-gradient-to-r from-orange-600 via-red-600 to-pink-600 p-6">
+        <div class="bg-gradient-to-r from-orange-600 via-red-600 to-pink-600 p-6 flex justify-between items-center">
           <h3 class="text-2xl font-bold text-white flex items-center">
             <i class="ri-time-line mr-3"></i>
             Jadwal Pembelajaran
           </h3>
+          <input
+            v-model="searchQuery"
+            type="text"
+            placeholder="Cari hari, jam, mapel, guru, kelas..."
+            class="px-4 py-2 rounded-xl border border-orange-300 focus:outline-none focus:ring-2 focus:ring-orange-500 dark:bg-gray-800 dark:text-white"
+          />
         </div>
 
         <!-- Enhanced Table -->
@@ -201,7 +216,7 @@ onBeforeUnmount(() => {
             </thead>
             <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
               <tr
-                v-for="(item, index) in data"
+                v-for="(item, index) in filteredData"
                 :key="item.id_jam"
                 @click="pilihItem(item)"
                 :class="[
@@ -280,7 +295,7 @@ onBeforeUnmount(() => {
                     class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-rose-100 text-rose-800 dark:bg-rose-900 dark:text-rose-200"
                   >
                     <i class="ri-graduation-cap-line mr-1"></i>
-                    {{ kelasList.find(k => k.id_kelas === item.id_kelas)?.nama_kelas }}
+                    {{ kelasList.find(k => k.id === item.id_kelas)?.nama_kelas }}
                   </div>
                 </td>
               </tr>
@@ -289,7 +304,7 @@ onBeforeUnmount(() => {
         </div>
 
         <!-- Empty State -->
-        <div v-if="data.length === 0" class="text-center py-16">
+        <div v-if="filteredData.length === 0" class="text-center py-16">
           <div
             class="w-32 h-32 mx-auto mb-6 bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800 rounded-full flex items-center justify-center"
           >

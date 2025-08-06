@@ -2,6 +2,7 @@
 import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
 import ModalForm from '../components/ModalsFormSiswa.vue'
 import useSiswa from '@/composables/useSiswa'
+import useSearch from '../composables/search' // Tambahkan ini
 
 // Ambil semua dari useSiswa sekali saja
 const {
@@ -20,9 +21,22 @@ const {
   batal,
   pilihItem,
   clearSelected,
+  getNamaKelas,
+  kelas,
 } = useSiswa()
 
 const actionRef = ref(null)
+
+// Search setup: pastikan field sesuai data siswa!
+const { query: searchQuery, filtered: filteredData } = useSearch(data, [
+  'nama',        // Nama siswa
+  'nisn',        // NISN
+  'alamat',      // Alamat
+  'tgl_lahir',   // Tanggal lahir
+  'jk',          // Jenis kelamin
+  'no_tlp',      // No telepon
+  'nama_wali',   // Nama wali
+])
 
 // ⛳ Gunakan langsung `data` untuk statistik
 const siswaLaki = computed(() => data.value?.filter((s) => s.jk === 'L').length || 0)
@@ -136,11 +150,17 @@ onBeforeUnmount(() => {
         class="backdrop-blur-xl bg-white/80 dark:bg-gray-900/80 rounded-3xl shadow-2xl border border-white/30 dark:border-gray-700/30 overflow-hidden"
       >
         <!-- Table Header -->
-        <div class="bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 p-6">
+        <div class="bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 p-6 flex justify-between items-center">
           <h3 class="text-2xl font-bold text-white flex items-center">
             <i class="ri-table-line mr-3"></i>
             Daftar Siswa Terdaftar
           </h3>
+          <input
+            v-model="searchQuery"
+            type="text"
+            placeholder="Cari nama, NISN, alamat, wali..."
+            class="px-4 py-2 rounded-xl border border-indigo-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-800 dark:text-white"
+          />
         </div>
 
         <!-- Table Section -->
@@ -194,10 +214,10 @@ onBeforeUnmount(() => {
             </thead>
             <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
               <tr
-                v-for="(item, index) in data"
+                v-for="(item, index) in filteredData"
                 :key="item.id"
                 @click="pilihItem(item)"
-                :class="[
+                :class=" [
                   'cursor-pointer transition-all duration-300 hover:shadow-lg',
                   selectedItem?.id === item.id
                     ? 'bg-gradient-to-r from-indigo-50 via-purple-50 to-blue-50 dark:from-indigo-900/30 dark:via-purple-900/30 dark:to-blue-900/30 shadow-xl border-l-4 border-indigo-500 transform scale-[1.02]'
@@ -236,7 +256,7 @@ onBeforeUnmount(() => {
                 </td>
                 <td class="px-5 py-4 whitespace-nowrap">
                   <span
-                    :class="[
+                    :class=" [
                       'inline-flex items-center px-3 py-1 rounded-full text-xs font-medium',
                       item.jk === 'L'
                         ? 'bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200'
@@ -272,24 +292,22 @@ onBeforeUnmount(() => {
         </div>
 
         <!-- Empty State -->
-        <div v-if="data.length === 0" class="text-center py-16">
-          <div
-            class="w-32 h-32 mx-auto mb-6 bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800 rounded-full flex items-center justify-center"
-          >
+        <div v-if="filteredData.length === 0" class="text-center py-16">
+          <div class="w-32 h-32 mx-auto mb-6 bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800 rounded-full flex items-center justify-center">
             <i class="ri-user-search-line text-6xl text-gray-400"></i>
           </div>
           <h3 class="text-xl font-semibold text-gray-600 dark:text-gray-400 mb-2">
-            Belum Ada Data Siswa
+            Tidak ditemukan data sesuai pencarian
           </h3>
           <p class="text-gray-500 dark:text-gray-500 mb-6">
-            Mulai tambahkan data siswa untuk melihat informasi di sini
+            Silakan ubah kata kunci atau tambah data baru
           </p>
           <button
             @click="tambahBaru"
             class="px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl hover:shadow-lg transition-all duration-300"
           >
             <i class="ri-add-line mr-2"></i>
-            Tambah Siswa Pertama
+            Tambah Siswa
           </button>
         </div>
       </div>
@@ -368,6 +386,7 @@ onBeforeUnmount(() => {
       :mode="mode"
       :readonly="readonly"
       :form="form"
+      :dataKelas="kelas"
       :errors="errors"
       @cancel="batal"
       @save="simpan"

@@ -2,6 +2,7 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import ModalFormMapel from '../components/ModalFormMapel.vue'
 import useMapel from '../composables/useMapel'
+import useSearch from '../composables/search'
 
 const {
   data,
@@ -23,6 +24,11 @@ const {
 } = useMapel()
 
 const actionRef = ref(null)
+
+// Pakai useSearch untuk pencarian di nama_mapel dan kode_mapel
+const { query: searchQuery, filtered: filteredData } = useSearch(data, ['nama_mapel', 'kode_mapel'])
+
+// Untuk pencarian guru, tambahkan logic di filteredData jika perlu
 
 function handleClickOutside(event) {
   if (
@@ -115,11 +121,17 @@ onBeforeUnmount(() => {
         class="backdrop-blur-xl bg-white/80 dark:bg-gray-900/80 rounded-3xl shadow-2xl border border-white/30 dark:border-gray-700/30 overflow-hidden"
       >
         <!-- Table Header with Gradient -->
-        <div class="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 p-6">
+        <div class="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 p-6 flex justify-between items-center">
           <h3 class="text-2xl font-bold text-white flex items-center">
             <i class="ri-book-open-line mr-3"></i>
             Daftar Mata Pelajaran
           </h3>
+          <input
+            v-model="searchQuery"
+            type="text"
+            placeholder="Cari mapel atau kode..."
+            class="px-4 py-2 rounded-xl border border-emerald-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-800 dark:text-white"
+          />
         </div>
 
         <!-- Enhanced Table -->
@@ -165,7 +177,7 @@ onBeforeUnmount(() => {
             </thead>
             <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
               <tr
-                v-for="(item, index) in data"
+                v-for="(item, index) in filteredData"
                 :key="item.id_mapel"
                 @click="pilihItem(item)"
                 :class="[

@@ -92,34 +92,35 @@ function updateStatusAbsensi(idSiswa, newStatus) {
   }
 }
 
-function tambahSiswaKeAbsensi(siswa) {
-  if (!selectedTanggal.value || !selectedKelasId.value) {
-    alert('Pilih tanggal dan kelas terlebih dahulu!')
-    return
-  }
+const tambahSiswaKeAbsensi = (siswa) => {
+  const kelasId = selectedKelasId.value
+  const tanggal = selectedTanggal.value
 
-  const existingAbsensi = absens.value.find(a =>
-    a.tanggal === selectedTanggal.value &&
-    a.id_kelas === Number(selectedKelasId.value) &&
-    a.id_siswa === siswa.id
+  if (!kelasId || !tanggal) return
+
+  // Cari kelas yang sesuai
+  const kelas = kelasList.value.find(k => k.id_kelas === kelasId)
+  if (!kelas) return
+
+  // Cek apakah sudah ditambahkan
+  const exists = tableData.value.some(
+    (data) => data.id_siswa === siswa.id && data.id_kelas === kelasId
   )
+  if (exists) return
 
-  if (existingAbsensi) {
-    alert('Siswa sudah ada dalam absensi!')
-    return
-  }
+  // Set kelas_id langsung di siswa
+  siswa.kelas_id = kelasId
 
-  const newAbsensi = {
-    id: Date.now() + siswa.id,
-    tanggal: selectedTanggal.value,
-    id_kelas: Number(selectedKelasId.value),
+  tableData.value.push({
+    id: Date.now(), // atau ID yang lebih baik
     id_siswa: siswa.id,
-    id_wali: getWaliKelas(Number(selectedKelasId.value)),
-    status: 'Hadir'
-  }
-
-  absens.value.push(newAbsensi)
+    id_kelas: kelasId,
+    id_wali: kelas.wali_kelas_id,
+    tanggal,
+    status: null,
+  })
 }
+
 
 function hapusSiswaDariAbsensi(idSiswa) {
   if (!confirm('Yakin ingin menghapus siswa dari absensi?')) return

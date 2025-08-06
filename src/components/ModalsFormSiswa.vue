@@ -256,55 +256,42 @@
             </p>
           </div>
 
-          <!-- Jurusan -->
+          <!-- Kelas -->
           <div class="space-y-2">
             <label
               class="flex items-center space-x-2 text-sm font-semibold text-gray-700 dark:text-gray-300"
             >
               <i class="ri-book-2-line text-indigo-600"></i>
-              <span>Jurusan</span>
+              <span>kelas</span>
               <span class="text-red-500">*</span>
             </label>
             <div class="relative">
               <select
-                v-model="form.jurusan"
+                v-model="form.kelas_id"
                 :disabled="readonly"
                 class="w-full px-4 py-3 bg-white/50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-gray-100 appearance-none"
                 :class="[
                   readonly ? 'cursor-not-allowed opacity-75' : 'hover:border-indigo-300',
-                  errors.jurusan ? 'border-red-500 focus:ring-red-500' : '',
+                  errors.kelas_id ? 'border-red-500 focus:ring-red-500' : '',
                 ]"
               >
-                <option disabled value="" class="text-gray-400">Pilih jurusan</option>
-                <option value="IPA" class="text-gray-900 dark:text-gray-100">IPA</option>
-                <option value="IPS" class="text-gray-900 dark:text-gray-100">IPS</option>
+                <option disabled value="">Pilih Kelas</option>
+                <option v-for="kelas in dataKelas" :key="kelas.id" :value="kelas.id">
+                  {{ kelas.nama_kelas }}
+                </option>
               </select>
+
               <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
                 <i class="ri-arrow-down-s-line text-gray-400"></i>
               </div>
             </div>
-            <p v-if="errors.jurusan" class="text-red-500 text-sm flex items-center">
+            <p v-if="errors.kelas_id" class="text-red-500 text-sm flex items-center">
               <i class="ri-error-warning-line mr-1"></i>
-              {{ errors.jurusan }}
+              {{ errors.kelas_id }}
             </p>
           </div>
 
           <!-- Kelas (auto-assign) -->
-          <div class="space-y-2">
-            <label
-              class="flex items-center space-x-2 text-sm font-semibold text-gray-700 dark:text-gray-300"
-            >
-              <i class="ri-home-4-line text-indigo-600"></i>
-              <span>Kelas (otomatis)</span>
-            </label>
-            <input
-              type="text"
-              :value="form.kelas_id ?? 'Belum tersedia'"
-              disabled
-              class="w-full px-4 py-3 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-xl text-gray-900 dark:text-gray-100 opacity-75"
-            />
-          </div>
-          
         </div>
 
         <!-- Action Buttons -->
@@ -343,6 +330,7 @@ const props = defineProps({
   readonly: Boolean,
   form: Object,
   errors: Object,
+  dataKelas: Array,
 })
 
 function onCancel() {
@@ -361,6 +349,7 @@ async function onSave() {
     { field: 'alamat', label: 'Alamat' },
     { field: 'no_tlp', label: 'No Telepon' },
     { field: 'nama_wali', label: 'Nama Wali' },
+    { field: 'kelas_id', label: 'Kelas' },
   ]
 
   requiredFields.forEach(({ field, label }) => {
@@ -409,10 +398,8 @@ const requiredFields = [
   { field: 'alamat', label: 'Alamat' },
   { field: 'no_telp', label: 'No Telepon' },
   { field: 'nama_wali', label: 'Nama Wali' },
-  { field: 'jurusan', label: 'Jurusan' },
-  { field: 'jurusan', label: 'Jurusan' },
+  { field: 'kelas_id', label: 'Kelas' },
 ]
-
 </script>
 
 <style scoped>

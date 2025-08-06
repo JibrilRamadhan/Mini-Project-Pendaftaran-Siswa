@@ -18,8 +18,7 @@ export default function useSiswa() {
     jk: '',
     no_tlp: '',
     nama_wali: '',
-    jurusan: '',
-    kelas_id: null,
+    kelas_id: ''
   })
   const errors = ref({})
   const selectedItem = ref(null)
@@ -34,8 +33,7 @@ export default function useSiswa() {
       jk: '',
       no_tlp: '',
       nama_wali: '',
-      jurusan: '',
-      kelas_id: null,
+      kelas_id: ''
     }
     errors.value = {}
     readonly.value = false
@@ -45,7 +43,7 @@ export default function useSiswa() {
   showAddForm.value = false
   }
 
-  function editItem(item) {
+  function editItem(item) { 
     mode.value = 'edit'
     form.value = { ...item }
     errors.value = {}
@@ -79,17 +77,9 @@ export default function useSiswa() {
     if (!f.jk) errors.value.jk = 'Jenis kelamin wajib diisi'
     if (!f.no_tlp) errors.value.no_tlp = 'Nomor telepon wajib diisi'
     if (!f.nama_wali) errors.value.nama_wali = 'Nama wali wajib diisi'
-    if (!f.jurusan) errors.value.jurusan = 'Jurusan wajib dipilih'
+    if (!f.kelas_id) errors.value.kelas_id = 'Kelas wajib dipilih'
 
     if (Object.keys(errors.value).length > 0) return
-
-    // Otomatis cari kelas_id berdasarkan jurusan & kapasitas
-    const kelasDipilih = kelas.value.find(k => {
-      const jumlahSiswa = data.value.filter(s => s.kelas_id === k.id).length
-      return k.kode_kelas.includes(f.jurusan.toUpperCase()) && jumlahSiswa < k.kapasitas
-    })
-
-    f.kelas_id = kelasDipilih ? kelasDipilih.id : null
 
     if (mode.value === 'add') {
       let idBaru = 1
@@ -121,7 +111,13 @@ export default function useSiswa() {
     selectedItem.value = null
   }
 
+  function getNamaKelas(kelas_id) {
+    const kelas = kelasData.find(k => k.id === kelas_id)
+    return kelas ? kelas.nama_kelas : 'Tidak Diketahui'
+  }
+
   return {
+    kelas,
     data,
     showForm,
     mode,
@@ -137,5 +133,7 @@ export default function useSiswa() {
     batal,
     pilihItem,
     clearSelected,
+    getNamaKelas,
+    
   }
 }
