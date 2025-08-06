@@ -12,7 +12,7 @@
             <h1
               class="text-4xl font-bold bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 bg-clip-text text-transparent"
             >
-              Absensi Siswa
+              Absensi Siswa 
             </h1>
             <p class="text-gray-600 dark:text-gray-400 text-lg">
               Kelola kehadiran siswa dengan sistem yang akurat dan efisien
@@ -449,6 +449,9 @@ provide('tableData', tableData)
 const hasCompleteAbsensi = computed(() => {
   return tableData.value.length > 0 && tableData.value.every(data => data.has_absen && data.status)
 })
+
+
+
 
 // Status styling functions
 const getActiveStatusStyle = (status) => {
