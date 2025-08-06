@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
 import mapelJson from '../stores/mapel.json'
 import guruJson from '../stores/guru.json'
 
@@ -11,7 +11,9 @@ export default function useMapel() {
   const readonly = ref(false)
   const selectedItem = ref(null)
   const errors = ref({})
-  const form = ref(getDefaultForm())
+
+  // ✅ Gunakan reactive agar v-model bisa sinkron
+  const form = reactive(getDefaultForm())
 
   function getDefaultForm() {
     return {
@@ -25,21 +27,21 @@ export default function useMapel() {
   function tambahBaru() {
     mode.value = 'add'
     readonly.value = false
-    form.value = getDefaultForm()
+    Object.assign(form, getDefaultForm()) // reset form
     showForm.value = true
   }
 
   function editItem(item) {
     mode.value = 'edit'
     readonly.value = false
-    form.value = { ...item }
+    Object.assign(form, item) // isi form dengan data yang dipilih
     showForm.value = true
   }
 
   function lihatItem(item) {
     mode.value = 'edit'
     readonly.value = true
-    form.value = { ...item }
+    Object.assign(form, item)
     showForm.value = true
   }
 
@@ -50,18 +52,22 @@ export default function useMapel() {
   function simpan() {
     errors.value = {}
 
-    if (!form.value.nama_mapel) errors.value.nama_mapel = 'Nama mapel wajib diisi'
-    if (!form.value.kode_mapel) errors.value.kode_mapel = 'Kode mapel wajib diisi'
-    if (!form.value.id_guru) errors.value.id_guru = 'Guru wajib dipilih'
+    // Validasi manual
+    if (!form.nama_mapel?.trim()) errors.value.nama_mapel = 'Nama mapel wajib diisi'
+    if (!form.kode_mapel?.trim()) errors.value.kode_mapel = 'Kode mapel wajib diisi'
+    if (!form.id_guru) errors.value.id_guru = 'Guru wajib dipilih'
 
+    // Jika ada error, hentikan simpan
     if (Object.keys(errors.value).length > 0) return
 
     if (mode.value === 'add') {
-      form.value.id_mapel = data.value.length + 1
-      data.value.push({ ...form.value })
+      form.id_mapel = data.value.length + 1
+      data.value.push({ ...form })
     } else {
-      const index = data.value.findIndex(item => item.id_mapel === form.value.id_mapel)
-      if (index !== -1) data.value[index] = { ...form.value }
+      const index = data.value.findIndex(item => item.id_mapel === form.id_mapel)
+      if (index !== -1) {
+        data.value[index] = { ...form }
+      }
     }
 
     showForm.value = false
@@ -69,7 +75,7 @@ export default function useMapel() {
 
   function batal() {
     showForm.value = false
-    form.value = getDefaultForm()
+    Object.assign(form, getDefaultForm()) // reset semua field
     errors.value = {}
   }
 
