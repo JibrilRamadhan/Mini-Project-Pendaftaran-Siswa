@@ -290,7 +290,51 @@
 </template>
 
 <script setup>
+import Swal from 'sweetalert2'
 
+// Fungsi untuk mendeteksi mode gelap
+function isDarkMode() {
+  return document.documentElement.classList.contains('dark')
+}
+
+// Konfigurasi tema yang konsisten
+const getThemeConfig = () => {
+  const dark = isDarkMode()
+  return {
+    background: dark ? '#1e1e2f' : '#ffffff',
+    color: dark ? '#f1f5f9' : '#1f2937',
+    iconColor: dark ? '#facc15' : '#f59e0b',
+    confirmButtonColor: '#6366f1', // Indigo
+    cancelButtonColor: '#6b7280', // Gray
+    dangerButtonColor: '#ef4444', // Red
+    successButtonColor: '#10b981', // Emerald
+    warningButtonColor: '#f59e0b', // Amber
+    infoButtonColor: '#3b82f6', // Blue
+  }
+}
+
+// Konfigurasi default untuk semua SweetAlert
+const getDefaultConfig = () => {
+  const theme = getThemeConfig()
+  return {
+    background: theme.background,
+    color: theme.color,
+    iconColor: theme.iconColor,
+    showClass: {
+      popup: 'animate__animated animate__zoomIn',
+    },
+    hideClass: {
+      popup: 'animate__animated animate__fadeOutUp',
+    },
+    customClass: {
+      popup: 'rounded-xl shadow-lg border border-gray-200/50 dark:border-gray-700/50',
+      confirmButton: 'px-6 py-3 text-sm font-semibold rounded-lg transition-all duration-200',
+      cancelButton: 'px-6 py-3 text-sm font-semibold rounded-lg transition-all duration-200',
+      title: 'text-xl font-bold',
+      htmlContainer: 'text-base',
+    },
+  }
+}
 
 const emit = defineEmits(['cancel', 'save'])
 
@@ -303,7 +347,8 @@ const props = defineProps({
 })
 
 function onCancel() {
-    Object.keys(props.errors).forEach(key => {
+  // Bersihkan error saat modal ditutup
+  Object.keys(props.errors).forEach(key => {
     delete props.errors[key]
   })
   emit('cancel')
@@ -352,12 +397,40 @@ async function onSave() {
     return
   }
 
-  // Jika tidak ada error, simpan data
-  // Bersihkan error sebelum menyimpan
-  Object.keys(props.errors).forEach(key => {
-    delete props.errors[key]
+  // Jika tidak ada error, tampilkan konfirmasi simpan
+  const theme = getThemeConfig()
+  const defaultConfig = getDefaultConfig()
+  
+  const konfirmasi = await Swal.fire({
+    ...defaultConfig,
+    title: 'Simpan Data?',
+    text: 'Pastikan data guru sudah benar.',
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonColor: theme.confirmButtonColor,
+    cancelButtonColor: theme.cancelButtonColor,
+    confirmButtonText: 'Ya, Simpan',
+    cancelButtonText: 'Batal',
   })
-  emit('save')
+
+  if (konfirmasi.isConfirmed) {
+    // Bersihkan error sebelum menyimpan
+    Object.keys(props.errors).forEach(key => {
+      delete props.errors[key]
+    })
+    emit('save')
+    
+    // Tampilkan notifikasi sukses
+    Swal.fire({
+      ...defaultConfig,
+      icon: 'success',
+      title: 'Data Disimpan!',
+      text: 'Data guru berhasil disimpan.',
+      confirmButtonColor: theme.successButtonColor,
+      timer: 1500,
+      showConfirmButton: false,
+    })
+  }
 }
 </script>
 
