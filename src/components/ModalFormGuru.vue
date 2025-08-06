@@ -290,7 +290,7 @@
 </template>
 
 <script setup>
-import Swal from 'sweetalert2'
+
 
 const emit = defineEmits(['cancel', 'save'])
 
@@ -303,79 +303,61 @@ const props = defineProps({
 })
 
 function onCancel() {
+    Object.keys(props.errors).forEach(key => {
+    delete props.errors[key]
+  })
   emit('cancel')
 }
 
 async function onSave() {
   const f = props.form
+  const errors = {}
 
-  const requiredFields = [
-    { key: 'nip', label: 'NIP' },
-    { key: 'nama_guru', label: 'Nama Lengkap' },
-    { key: 'alamat', label: 'Alamat' },
-    { key: 'tgl_lahir', label: 'Tanggal Lahir' },
-    { key: 'jenis_kelamin', label: 'Jenis Kelamin' },
-    { key: 'no_telp', label: 'No Telepon' },
-    { key: 'email', label: 'Email' },
-  ]
+  // Validasi field yang wajib diisi
+  if (!f.nip || f.nip.toString().trim() === '') {
+    errors.nip = 'NIP wajib diisi'
+  }
+  if (!f.nama_guru || f.nama_guru.toString().trim() === '') {
+    errors.nama_guru = 'Nama Lengkap wajib diisi'
+  }
+  if (!f.alamat || f.alamat.toString().trim() === '') {
+    errors.alamat = 'Alamat wajib diisi'
+  }
+  if (!f.tgl_lahir || f.tgl_lahir.toString().trim() === '') {
+    errors.tgl_lahir = 'Tanggal Lahir wajib diisi'
+  }
+  if (!f.jenis_kelamin || f.jenis_kelamin.toString().trim() === '') {
+    errors.jenis_kelamin = 'Jenis Kelamin wajib diisi'
+  }
+  if (!f.no_telp || f.no_telp.toString().trim() === '') {
+    errors.no_telp = 'No Telepon wajib diisi'
+  }
+  if (!f.email || f.email.toString().trim() === '') {
+    errors.email = 'Email wajib diisi'
+  }
 
-  const missing = requiredFields.filter(field => !f[field.key] || f[field.key].toString().trim() === '')
+  // Validasi format email
+  if (f.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email)) {
+    errors.email = 'Format email tidak valid'
+  }
 
-  if (missing.length > 0) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Data Belum Lengkap!',
-      html: `Kolom berikut wajib diisi:<br><strong>${missing.map(m => m.label).join(', ')}</strong>`,
-      confirmButtonColor: '#ef4444',
-    })
+  // Validasi format nomor telepon
+  if (f.no_telp && !/^\d{10,15}$/.test(f.no_telp)) {
+    errors.no_telp = 'Nomor telepon harus 10-15 digit angka'
+  }
+
+  // Jika ada error, update props.errors dan return
+  if (Object.keys(errors).length > 0) {
+    Object.assign(props.errors, errors)
     return
   }
 
-  // Optional: Validate email format
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-  if (!emailPattern.test(f.email)) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Email Tidak Valid!',
-      text: 'Masukkan email yang benar.',
-      confirmButtonColor: '#ef4444',
-    })
-    return
-  }
-
-  // Optional: Validate phone number
-  if (!/^\d{10,15}$/.test(f.no_telp)) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Nomor Telepon Tidak Valid!',
-      text: 'Gunakan 10-15 digit angka.',
-      confirmButtonColor: '#ef4444',
-    })
-    return
-  }
-
-  const konfirmasi = await Swal.fire({
-    title: 'Simpan Data?',
-    text: 'Pastikan data guru sudah benar.',
-    icon: 'question',
-    showCancelButton: true,
-    confirmButtonColor: '#10b981',
-    cancelButtonColor: '#d1d5db',
-    confirmButtonText: 'Ya, Simpan',
-    cancelButtonText: 'Batal',
+  // Jika tidak ada error, simpan data
+  // Bersihkan error sebelum menyimpan
+  Object.keys(props.errors).forEach(key => {
+    delete props.errors[key]
   })
-
-  if (konfirmasi.isConfirmed) {
-    emit('save')
-    Swal.fire({
-      icon: 'success',
-      title: 'Data Disimpan!',
-      text: 'Data guru berhasil disimpan.',
-      confirmButtonColor: '#10b981',
-      timer: 1500,
-      showConfirmButton: false,
-    })
-  }
+  emit('save')
 }
 </script>
 

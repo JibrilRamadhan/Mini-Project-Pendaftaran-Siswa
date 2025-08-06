@@ -322,6 +322,101 @@
 
 <script setup>
 import Swal from 'sweetalert2'
+
+// Fungsi untuk mendeteksi mode gelap
+function isDarkMode() {
+  return document.documentElement.classList.contains('dark')
+}
+
+// Konfigurasi tema yang konsisten
+const getThemeConfig = () => {
+  const dark = isDarkMode()
+  return {
+    background: dark ? '#1e1e2f' : '#ffffff',
+    color: dark ? '#f1f5f9' : '#1f2937',
+    iconColor: dark ? '#facc15' : '#f59e0b',
+    confirmButtonColor: '#6366f1', // Indigo
+    cancelButtonColor: '#6b7280', // Gray
+    dangerButtonColor: '#ef4444', // Red
+    successButtonColor: '#10b981', // Emerald
+    warningButtonColor: '#f59e0b', // Amber
+    infoButtonColor: '#3b82f6', // Blue
+  }
+}
+
+// Konfigurasi default untuk semua SweetAlert
+const getDefaultConfig = () => {
+  const theme = getThemeConfig()
+  return {
+    background: theme.background,
+    color: theme.color,
+    iconColor: theme.iconColor,
+    showClass: {
+      popup: 'animate__animated animate__zoomIn',
+    },
+    hideClass: {
+      popup: 'animate__animated animate__fadeOutUp',
+    },
+    customClass: {
+      popup: 'rounded-xl shadow-lg border border-gray-200/50 dark:border-gray-700/50',
+      confirmButton: 'px-6 py-3 text-sm font-semibold rounded-lg transition-all duration-200',
+      cancelButton: 'px-6 py-3 text-sm font-semibold rounded-lg transition-all duration-200',
+      title: 'text-xl font-bold',
+      htmlContainer: 'text-base',
+    },
+  }
+}
+
+// Fungsi untuk SweetAlert error
+const errorAlert = async (title = 'Gagal!', text = '', options = {}) => {
+  const theme = getThemeConfig()
+  const defaultConfig = getDefaultConfig()
+  
+  return await Swal.fire({
+    ...defaultConfig,
+    icon: 'error',
+    title,
+    text,
+    confirmButtonColor: theme.dangerButtonColor,
+    ...options,
+  })
+}
+
+// Fungsi untuk SweetAlert konfirmasi simpan
+const saveConfirmAlert = async (options = {}) => {
+  const theme = getThemeConfig()
+  const defaultConfig = getDefaultConfig()
+  
+  return await Swal.fire({
+    ...defaultConfig,
+    title: 'Simpan Data?',
+    text: 'Pastikan data sudah benar.',
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonColor: theme.confirmButtonColor,
+    cancelButtonColor: theme.cancelButtonColor,
+    confirmButtonText: 'Ya, Simpan',
+    cancelButtonText: 'Batal',
+    ...options,
+  })
+}
+
+// Fungsi untuk SweetAlert sukses
+const successAlert = async (title = 'Berhasil!', text = '', options = {}) => {
+  const theme = getThemeConfig()
+  const defaultConfig = getDefaultConfig()
+  
+  return await Swal.fire({
+    ...defaultConfig,
+    icon: 'success',
+    title,
+    text,
+    confirmButtonColor: theme.successButtonColor,
+    timer: 1500,
+    showConfirmButton: false,
+    ...options,
+  })
+}
 const emit = defineEmits(['cancel', 'save'])
 
 const props = defineProps({
@@ -357,36 +452,15 @@ async function onSave() {
   })
 
   if (errors.length > 0) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Gagal Menyimpan',
-      html: `Field berikut wajib diisi:<br><strong>${errors.join(', ')}</strong>`,
-      confirmButtonColor: '#ef4444',
-    })
+    errorAlert('Gagal Menyimpan', `Field berikut wajib diisi:<br><strong>${errors.join(', ')}</strong>`)
     return
   }
 
-  const konfirmasi = await Swal.fire({
-    title: 'Simpan Data?',
-    text: 'Pastikan data siswa sudah benar.',
-    icon: 'question',
-    showCancelButton: true,
-    confirmButtonColor: '#6366f1',
-    cancelButtonColor: '#d1d5db',
-    confirmButtonText: 'Ya, Simpan',
-    cancelButtonText: 'Batal',
-  })
+  const konfirmasi = await saveConfirmAlert()
 
   if (konfirmasi.isConfirmed) {
     emit('save')
-    Swal.fire({
-      icon: 'success',
-      title: 'Berhasil',
-      text: 'Data siswa berhasil disimpan!',
-      confirmButtonColor: '#6366f1',
-      timer: 1500,
-      showConfirmButton: false,
-    })
+    successAlert('Berhasil', 'Data siswa berhasil disimpan!')
   }
 }
 
