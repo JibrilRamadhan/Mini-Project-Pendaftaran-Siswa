@@ -292,6 +292,50 @@
 <script setup>
 import Swal from 'sweetalert2'
 
+// Fungsi untuk mendeteksi mode gelap
+function isDarkMode() {
+  return document.documentElement.classList.contains('dark')
+}
+
+// Konfigurasi tema yang konsisten
+const getThemeConfig = () => {
+  const dark = isDarkMode()
+  return {
+    background: dark ? '#1e1e2f' : '#ffffff',
+    color: dark ? '#f1f5f9' : '#1f2937',
+    iconColor: dark ? '#facc15' : '#f59e0b',
+    confirmButtonColor: '#6366f1', // Indigo
+    cancelButtonColor: '#6b7280', // Gray
+    dangerButtonColor: '#ef4444', // Red
+    successButtonColor: '#10b981', // Emerald
+    warningButtonColor: '#f59e0b', // Amber
+    infoButtonColor: '#3b82f6', // Blue
+  }
+}
+
+// Konfigurasi default untuk semua SweetAlert
+const getDefaultConfig = () => {
+  const theme = getThemeConfig()
+  return {
+    background: theme.background,
+    color: theme.color,
+    iconColor: theme.iconColor,
+    showClass: {
+      popup: 'animate__animated animate__zoomIn',
+    },
+    hideClass: {
+      popup: 'animate__animated animate__fadeOutUp',
+    },
+    customClass: {
+      popup: 'rounded-xl shadow-lg border border-gray-200/50 dark:border-gray-700/50',
+      confirmButton: 'px-6 py-3 text-sm font-semibold rounded-lg transition-all duration-200',
+      cancelButton: 'px-6 py-3 text-sm font-semibold rounded-lg transition-all duration-200',
+      title: 'text-xl font-bold',
+      htmlContainer: 'text-base',
+    },
+  }
+}
+
 const emit = defineEmits(['cancel', 'save'])
 
 const props = defineProps({
@@ -303,75 +347,86 @@ const props = defineProps({
 })
 
 function onCancel() {
+  // Bersihkan error saat modal ditutup
+  Object.keys(props.errors).forEach(key => {
+    delete props.errors[key]
+  })
   emit('cancel')
 }
 
 async function onSave() {
   const f = props.form
+  const errors = {}
 
-  const requiredFields = [
-    { key: 'nip', label: 'NIP' },
-    { key: 'nama_guru', label: 'Nama Lengkap' },
-    { key: 'alamat', label: 'Alamat' },
-    { key: 'tgl_lahir', label: 'Tanggal Lahir' },
-    { key: 'jenis_kelamin', label: 'Jenis Kelamin' },
-    { key: 'no_telp', label: 'No Telepon' },
-    { key: 'email', label: 'Email' },
-  ]
+  // Validasi field yang wajib diisi
+  if (!f.nip || f.nip.toString().trim() === '') {
+    errors.nip = 'NIP wajib diisi'
+  }
+  if (!f.nama_guru || f.nama_guru.toString().trim() === '') {
+    errors.nama_guru = 'Nama Lengkap wajib diisi'
+  }
+  if (!f.alamat || f.alamat.toString().trim() === '') {
+    errors.alamat = 'Alamat wajib diisi'
+  }
+  if (!f.tgl_lahir || f.tgl_lahir.toString().trim() === '') {
+    errors.tgl_lahir = 'Tanggal Lahir wajib diisi'
+  }
+  if (!f.jenis_kelamin || f.jenis_kelamin.toString().trim() === '') {
+    errors.jenis_kelamin = 'Jenis Kelamin wajib diisi'
+  }
+  if (!f.no_telp || f.no_telp.toString().trim() === '') {
+    errors.no_telp = 'No Telepon wajib diisi'
+  }
+  if (!f.email || f.email.toString().trim() === '') {
+    errors.email = 'Email wajib diisi'
+  }
 
-  const missing = requiredFields.filter(field => !f[field.key] || f[field.key].toString().trim() === '')
+  // Validasi format email
+  if (f.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email)) {
+    errors.email = 'Format email tidak valid'
+  }
 
-  if (missing.length > 0) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Data Belum Lengkap!',
-      html: `Kolom berikut wajib diisi:<br><strong>${missing.map(m => m.label).join(', ')}</strong>`,
-      confirmButtonColor: '#ef4444',
-    })
+  // Validasi format nomor telepon
+  if (f.no_telp && !/^\d{10,15}$/.test(f.no_telp)) {
+    errors.no_telp = 'Nomor telepon harus 10-15 digit angka'
+  }
+
+  // Jika ada error, update props.errors dan return
+  if (Object.keys(errors).length > 0) {
+    Object.assign(props.errors, errors)
     return
   }
 
-  // Optional: Validate email format
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-  if (!emailPattern.test(f.email)) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Email Tidak Valid!',
-      text: 'Masukkan email yang benar.',
-      confirmButtonColor: '#ef4444',
-    })
-    return
-  }
-
-  // Optional: Validate phone number
-  if (!/^\d{10,15}$/.test(f.no_telp)) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Nomor Telepon Tidak Valid!',
-      text: 'Gunakan 10-15 digit angka.',
-      confirmButtonColor: '#ef4444',
-    })
-    return
-  }
-
+  // Jika tidak ada error, tampilkan konfirmasi simpan
+  const theme = getThemeConfig()
+  const defaultConfig = getDefaultConfig()
+  
   const konfirmasi = await Swal.fire({
+    ...defaultConfig,
     title: 'Simpan Data?',
     text: 'Pastikan data guru sudah benar.',
     icon: 'question',
     showCancelButton: true,
-    confirmButtonColor: '#10b981',
-    cancelButtonColor: '#d1d5db',
+    confirmButtonColor: theme.confirmButtonColor,
+    cancelButtonColor: theme.cancelButtonColor,
     confirmButtonText: 'Ya, Simpan',
     cancelButtonText: 'Batal',
   })
 
   if (konfirmasi.isConfirmed) {
+    // Bersihkan error sebelum menyimpan
+    Object.keys(props.errors).forEach(key => {
+      delete props.errors[key]
+    })
     emit('save')
+    
+    // Tampilkan notifikasi sukses
     Swal.fire({
+      ...defaultConfig,
       icon: 'success',
       title: 'Data Disimpan!',
       text: 'Data guru berhasil disimpan.',
-      confirmButtonColor: '#10b981',
+      confirmButtonColor: theme.successButtonColor,
       timer: 1500,
       showConfirmButton: false,
     })

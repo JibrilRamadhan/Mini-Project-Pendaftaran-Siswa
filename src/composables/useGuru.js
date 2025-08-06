@@ -19,10 +19,17 @@ export default function useGuru() {
     email: '',
   })
 
+  function clearErrors() {
+    Object.keys(errors.value).forEach(key => {
+      delete errors.value[key]
+    })
+  }
+
   function tambahBaru() {
     mode.value = 'tambah'
     readonly.value = false
     showForm.value = true
+    clearErrors() // Bersihkan error saat membuka form
     Object.assign(form.value, {
       nama_guru: '',
       nip: '',
@@ -38,6 +45,7 @@ export default function useGuru() {
     mode.value = 'edit'
     readonly.value = false
     showForm.value = true
+    clearErrors() // Bersihkan error saat membuka form
     Object.assign(form.value, { ...item })
   }
 
@@ -45,6 +53,7 @@ export default function useGuru() {
     mode.value = 'edit'
     readonly.value = true
     showForm.value = true
+    clearErrors() // Bersihkan error saat membuka form
     Object.assign(form.value, { ...item })
   }
 
@@ -62,10 +71,12 @@ export default function useGuru() {
       const index = data.value.findIndex((i) => i.id_guru === form.value.id_guru)
       if (index !== -1) data.value[index] = { ...form.value }
     }
+    clearErrors() // Bersihkan error saat berhasil simpan
     showForm.value = false
   }
 
   function batal() {
+    clearErrors() // Bersihkan error saat form dibatalkan
     showForm.value = false
   }
 
@@ -93,5 +104,6 @@ export default function useGuru() {
     batal,
     pilihItem,
     clearSelected,
+    clearErrors,
   }
 }
