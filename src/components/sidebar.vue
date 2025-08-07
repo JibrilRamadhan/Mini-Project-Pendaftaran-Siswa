@@ -117,11 +117,91 @@
 
 <script setup>
 import { useRouter } from 'vue-router'
-import Swal from 'sweetalert2'
 import { ref, onMounted } from 'vue'
 import useStorageReset from '@/composables/useStorageReset'
 
 const { resetAllData } = useStorageReset()
+import Swal from 'sweetalert2'
+
+// Fungsi untuk mendeteksi mode gelap
+function isDarkMode() {
+  return document.documentElement.classList.contains('dark')
+}
+
+// Konfigurasi tema yang konsisten
+const getThemeConfig = () => {
+  const dark = isDarkMode()
+  return {
+    background: dark ? '#1e1e2f' : '#ffffff',
+    color: dark ? '#f1f5f9' : '#1f2937',
+    iconColor: dark ? '#facc15' : '#f59e0b',
+    confirmButtonColor: '#6366f1', // Indigo
+    cancelButtonColor: '#6b7280', // Gray
+    dangerButtonColor: '#ef4444', // Red
+    successButtonColor: '#10b981', // Emerald
+    warningButtonColor: '#f59e0b', // Amber
+    infoButtonColor: '#3b82f6', // Blue
+  }
+}
+
+// Konfigurasi default untuk semua SweetAlert
+const getDefaultConfig = () => {
+  const theme = getThemeConfig()
+  return {
+    background: theme.background,
+    color: theme.color,
+    iconColor: theme.iconColor,
+    showClass: {
+      popup: 'animate__animated animate__zoomIn',
+    },
+    hideClass: {
+      popup: 'animate__animated animate__fadeOutUp',
+    },
+    customClass: {
+      popup: 'rounded-xl shadow-lg border border-gray-200/50 dark:border-gray-700/50',
+      confirmButton: 'px-6 py-3 text-sm font-semibold rounded-lg transition-all duration-200',
+      cancelButton: 'px-6 py-3 text-sm font-semibold rounded-lg transition-all duration-200',
+      title: 'text-xl font-bold',
+      htmlContainer: 'text-base',
+    },
+  }
+}
+
+// Fungsi untuk SweetAlert sukses
+const successAlert = async (title = 'Berhasil!', text = '', options = {}) => {
+  const theme = getThemeConfig()
+  const defaultConfig = getDefaultConfig()
+  
+  return await Swal.fire({
+    ...defaultConfig,
+    icon: 'success',
+    title,
+    text,
+    confirmButtonColor: theme.successButtonColor,
+    timer: 1500,
+    showConfirmButton: false,
+    ...options,
+  })
+}
+
+// Fungsi untuk SweetAlert logout
+const logoutConfirmAlert = async (options = {}) => {
+  const theme = getThemeConfig()
+  const defaultConfig = getDefaultConfig()
+  
+  return await Swal.fire({
+    ...defaultConfig,
+    title: 'Yakin ingin logout?',
+    text: 'Sesi kamu akan diakhiri.',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: theme.dangerButtonColor,
+    cancelButtonColor: theme.cancelButtonColor,
+    confirmButtonText: 'Ya, Logout',
+    cancelButtonText: 'Batal',
+    ...options,
+  })
+}
 
 const isDark = ref(window.matchMedia('(prefers-color-scheme: dark)').matches)
 const router = useRouter()
@@ -152,52 +232,14 @@ const toggleTheme = () => {
   }
 }
 
-const logout = () => {
-  Swal.fire({
-    title: 'Yakin ingin logout?',
-    text: 'Sesi kamu akan diakhiri.',
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#e3342f',
-    cancelButtonColor: '#6c757d',
-    confirmButtonText: 'Ya, Logout',
-    cancelButtonText: 'Batal',
-    background: isDark.value ? '#1e1e2f' : '#ffffff',
-    color: isDark.value ? '#f1f5f9' : '#1f2937',
-    iconColor: isDark.value ? '#facc15' : '#f59e0b',
-    showClass: {
-      popup: 'animate__animated animate__zoomIn',
-    },
-    hideClass: {
-      popup: 'animate__animated animate__fadeOutUp',
-    },
-    customClass: {
-      popup: 'rounded-xl shadow-lg',
-      confirmButton: 'px-4 py-2 text-sm',
-      cancelButton: 'px-4 py-2 text-sm',
-    },
-  }).then((result) => {
-    if (result.isConfirmed) {
-      localStorage.removeItem('user')
-      Swal.fire({
-        title: 'Logout berhasil!',
-        text: 'Sampai jumpa 👋',
-        icon: 'success',
-        timer: 1500,
-        showConfirmButton: false,
-        background: isDark.value ? '#1e1e2f' : '#ffffff',
-        color: isDark.value ? '#f1f5f9' : '#1f2937',
-        showClass: {
-          popup: 'animate__animated animate__fadeInDown',
-        },
-        hideClass: {
-          popup: 'animate__animated animate__fadeOutUp',
-        },
-      }).then(() => {
-        router.push('/')
-      })
-    }
-  })
+const logout = async () => {
+  const result = await logoutConfirmAlert()
+  
+  if (result.isConfirmed) {
+    localStorage.removeItem('user')
+    await successAlert('Logout berhasil!', 'Sampai jumpa 👋')
+    router.push('/')
+  }
 }
 
 async function konfirmasiReset() {

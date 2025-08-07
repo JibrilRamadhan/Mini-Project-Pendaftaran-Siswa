@@ -7,10 +7,10 @@ const STORAGE_KEY = 'guruList'
 // ✅ Konversi id_guru dari localStorage ke Number
 const initial = localStorage.getItem(STORAGE_KEY)
 const data = ref(
-  (initial ? JSON.parse(initial) : [...guruJson]).map(g => ({
+  (initial ? JSON.parse(initial) : [...guruJson]).map((g) => ({
     ...g,
     id_guru: Number(g.id_guru),
-  }))
+  })),
 )
 
 export default function useGuru() {
@@ -66,23 +66,20 @@ export default function useGuru() {
   }
 
   function simpan() {
-  form.value.id_guru = Number(form.value.id_guru)
+    form.value.id_guru = Number(form.value.id_guru)
 
-  if (mode.value === 'tambah') {
-    const newId = Date.now()
-    form.value.id_guru = newId
+    if (mode.value === 'tambah') {
+      const newId = Date.now()
+      form.value.id_guru = newId
 
-    data.value.push({ ...form.value })
-  } else if (mode.value === 'edit') {
-    const index = data.value.findIndex(
-      (i) => Number(i.id_guru) === Number(form.value.id_guru)
-    )
-    if (index !== -1) data.value[index] = { ...form.value }
+      data.value.push({ ...form.value })
+    } else if (mode.value === 'edit') {
+      const index = data.value.findIndex((i) => Number(i.id_guru) === Number(form.value.id_guru))
+      if (index !== -1) data.value[index] = { ...form.value }
+    }
+
+    showForm.value = false
   }
-
-  showForm.value = false
-}
-
 
   function batal() {
     showForm.value = false
@@ -97,12 +94,16 @@ export default function useGuru() {
   }
 
   // Simpan ke localStorage setiap perubahan data
-  watch(data, (newValue) => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(newValue))
-  }, { deep: true })
+  watch(
+    data,
+    (newValue) => {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(newValue))
+    },
+    { deep: true },
+  )
 
   function resetData() {
-    data.value = [...guruJson].map(g => ({
+    data.value = [...guruJson].map((g) => ({
       ...g,
       id_guru: Number(g.id_guru),
     }))
