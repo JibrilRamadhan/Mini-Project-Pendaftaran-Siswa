@@ -1,8 +1,19 @@
-import { ref } from 'vue'
+// composables/useGuru.js
+import { ref, watch } from 'vue'
 import guruJson from '../stores/guru.json'
 
+const STORAGE_KEY = 'guruList'
+
+// ✅ Konversi id_guru dari localStorage ke Number
+const initial = localStorage.getItem(STORAGE_KEY)
+const data = ref(
+  (initial ? JSON.parse(initial) : [...guruJson]).map((g) => ({
+    ...g,
+    id_guru: Number(g.id_guru),
+  })),
+)
+
 export default function useGuru() {
-  const data = ref([...guruJson])
   const showForm = ref(false)
   const mode = ref('tambah')
   const readonly = ref(false)
@@ -10,6 +21,7 @@ export default function useGuru() {
   const errors = ref({})
 
   const form = ref({
+    id_guru: '',
     nama_guru: '',
     nip: '',
     jenis_kelamin: '',
@@ -19,18 +31,12 @@ export default function useGuru() {
     email: '',
   })
 
-  function clearErrors() {
-    Object.keys(errors.value).forEach(key => {
-      delete errors.value[key]
-    })
-  }
-
   function tambahBaru() {
     mode.value = 'tambah'
     readonly.value = false
     showForm.value = true
-    clearErrors() // Bersihkan error saat membuka form
     Object.assign(form.value, {
+      id_guru: '',
       nama_guru: '',
       nip: '',
       jenis_kelamin: '',
@@ -45,7 +51,6 @@ export default function useGuru() {
     mode.value = 'edit'
     readonly.value = false
     showForm.value = true
-    clearErrors() // Bersihkan error saat membuka form
     Object.assign(form.value, { ...item })
   }
 
@@ -53,30 +58,30 @@ export default function useGuru() {
     mode.value = 'edit'
     readonly.value = true
     showForm.value = true
-    clearErrors() // Bersihkan error saat membuka form
     Object.assign(form.value, { ...item })
   }
 
   function hapusItem(id) {
-    data.value = data.value.filter((guru) => guru.id_guru !== id)
+    data.value = data.value.filter((guru) => Number(guru.id_guru) !== Number(id))
   }
 
   function simpan() {
+    form.value.id_guru = Number(form.value.id_guru)
+
     if (mode.value === 'tambah') {
-      data.value.push({
-        id_guru: Date.now(),
-        ...form.value,
-      })
+      const newId = Date.now()
+      form.value.id_guru = newId
+
+      data.value.push({ ...form.value })
     } else if (mode.value === 'edit') {
-      const index = data.value.findIndex((i) => i.id_guru === form.value.id_guru)
+      const index = data.value.findIndex((i) => Number(i.id_guru) === Number(form.value.id_guru))
       if (index !== -1) data.value[index] = { ...form.value }
     }
-    clearErrors() // Bersihkan error saat berhasil simpan
+
     showForm.value = false
   }
 
   function batal() {
-    clearErrors() // Bersihkan error saat form dibatalkan
     showForm.value = false
   }
 
@@ -86,6 +91,23 @@ export default function useGuru() {
 
   function clearSelected() {
     selectedItem.value = null
+  }
+
+  // Simpan ke localStorage setiap perubahan data
+  watch(
+    data,
+    (newValue) => {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(newValue))
+    },
+    { deep: true },
+  )
+
+  function resetData() {
+    data.value = [...guruJson].map((g) => ({
+      ...g,
+      id_guru: Number(g.id_guru),
+    }))
+    localStorage.removeItem(STORAGE_KEY)
   }
 
   return {
@@ -104,6 +126,8 @@ export default function useGuru() {
     batal,
     pilihItem,
     clearSelected,
-    clearErrors,
+    resetData,
   }
 }
+
+export { data as guruList }

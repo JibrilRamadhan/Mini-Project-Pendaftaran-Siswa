@@ -66,6 +66,7 @@
             <span>Jam Pelajaran</span>
           </router-link>
         </li>
+        
         <li class="mt-6">
           <button
             @click="toggleTheme"
@@ -74,6 +75,16 @@
             <i class="fas fa-adjust text-blue-500 text-glow group-hover:scale-110"></i>
             <span>{{ isDark ? 'Light Mode' : 'Dark Mode' }}</span>
           </button>
+        </li>
+          <!-- Tombol Reset -->
+          <li>
+          <a
+            @click="konfirmasiReset"
+            class="flex items-center gap-3 p-2 rounded-xl text-red-600 hover:bg-red-900/50 hover:text-white transition-all duration-300 group cursor-pointer"
+          >
+            <i class="ri-refresh-line text-lg text-glow group-hover:scale-110"></i>
+            <span>Reset Semua Data</span>
+          </a>
         </li>
         <li>
           <a
@@ -98,6 +109,7 @@
             />
           </audio>
         </li>
+        
       </ul>
     </div>
   </aside>
@@ -106,6 +118,9 @@
 <script setup>
 import { useRouter } from 'vue-router'
 import { ref, onMounted } from 'vue'
+import useStorageReset from '@/composables/useStorageReset'
+
+const { resetAllData } = useStorageReset()
 import Swal from 'sweetalert2'
 
 // Fungsi untuk mendeteksi mode gelap
@@ -227,6 +242,34 @@ const logout = async () => {
   }
 }
 
+async function konfirmasiReset() {
+  const result = await Swal.fire({
+    title: 'Reset Semua Data?',
+    text: 'Semua data lokal akan dikembalikan ke data awal (JSON). Lanjutkan?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#e11d48',
+    cancelButtonColor: '#6b7280',
+    confirmButtonText: 'Ya, Reset!',
+    cancelButtonText: 'Batal',
+  })
+
+  if (result.isConfirmed) {
+    resetAllData()
+    Swal.fire({
+      title: 'Berhasil!',
+      text: 'Semua data telah direset.',
+      icon: 'success',
+      timer: 2000,
+      showConfirmButton: false,
+    })
+
+    // Refresh halaman
+    window.location.reload()
+  }
+}
+
+
 onMounted(() => {
   if (isDark.value) {
     document.documentElement.classList.add('dark')
@@ -242,6 +285,10 @@ onMounted(() => {
 #default-sidebar {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+}
+
+button:hover i {
+  color: white;
 }
 
 .text-glow {

@@ -1,9 +1,14 @@
-import { ref, reactive } from 'vue'
+// composables/useMapel.js
+import { ref, watch } from 'vue'
 import mapelJson from '../stores/mapel.json'
 import guruJson from '../stores/guru.json'
 
+const STORAGE_KEY = 'mapelList'
+
+const initial = localStorage.getItem(STORAGE_KEY)
+const data = ref(initial ? JSON.parse(initial) : [...mapelJson]) // reaktif global
+
 export default function useMapel() {
-  const data = ref([...mapelJson])
   const guruList = guruJson.map(guru => guru.nama_guru)
 
   const showForm = ref(false)
@@ -11,9 +16,7 @@ export default function useMapel() {
   const readonly = ref(false)
   const selectedItem = ref(null)
   const errors = ref({})
-
-  // ✅ Gunakan reactive agar v-model bisa sinkron
-  const form = reactive(getDefaultForm())
+  const form = ref(getDefaultForm())
 
   function getDefaultForm() {
     return {
@@ -27,21 +30,21 @@ export default function useMapel() {
   function tambahBaru() {
     mode.value = 'add'
     readonly.value = false
-    Object.assign(form, getDefaultForm()) // reset form
+    form.value = getDefaultForm()
     showForm.value = true
   }
 
   function editItem(item) {
     mode.value = 'edit'
     readonly.value = false
-    Object.assign(form, item) // isi form dengan data yang dipilih
+    form.value = { ...item }
     showForm.value = true
   }
 
   function lihatItem(item) {
     mode.value = 'edit'
     readonly.value = true
-    Object.assign(form, item)
+    form.value = { ...item }
     showForm.value = true
   }
 
@@ -52,22 +55,18 @@ export default function useMapel() {
   function simpan() {
     errors.value = {}
 
-    // Validasi manual
-    if (!form.nama_mapel?.trim()) errors.value.nama_mapel = 'Nama mapel wajib diisi'
-    if (!form.kode_mapel?.trim()) errors.value.kode_mapel = 'Kode mapel wajib diisi'
-    if (!form.id_guru) errors.value.id_guru = 'Guru wajib dipilih'
+    if (!form.value.nama_mapel) errors.value.nama_mapel = 'Nama mapel wajib diisi'
+    if (!form.value.kode_mapel) errors.value.kode_mapel = 'Kode mapel wajib diisi'
+    if (!form.value.id_guru) errors.value.id_guru = 'Guru wajib dipilih'
 
-    // Jika ada error, hentikan simpan
     if (Object.keys(errors.value).length > 0) return
 
     if (mode.value === 'add') {
-      form.id_mapel = data.value.length + 1
-      data.value.push({ ...form })
+      form.value.id_mapel = data.value.length + 1
+      data.value.push({ ...form.value })
     } else {
-      const index = data.value.findIndex(item => item.id_mapel === form.id_mapel)
-      if (index !== -1) {
-        data.value[index] = { ...form }
-      }
+      const index = data.value.findIndex(item => item.id_mapel === form.value.id_mapel)
+      if (index !== -1) data.value[index] = { ...form.value }
     }
 
     showForm.value = false
@@ -75,7 +74,7 @@ export default function useMapel() {
 
   function batal() {
     showForm.value = false
-    Object.assign(form, getDefaultForm()) // reset semua field
+    form.value = getDefaultForm()
     errors.value = {}
   }
 
@@ -85,6 +84,17 @@ export default function useMapel() {
 
   function clearSelected() {
     selectedItem.value = null
+  }
+
+  // ✅ Simpan ke localStorage setiap perubahan data
+  watch(data, (newValue) => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(newValue))
+  }, { deep: true })
+
+  // ✅ Fungsi Reset (bisa dipanggil dari reset global)
+  function resetData() {
+    data.value = [...mapelJson]
+    localStorage.removeItem(STORAGE_KEY)
   }
 
   return {
@@ -104,5 +114,9 @@ export default function useMapel() {
     batal,
     pilihItem,
     clearSelected,
+    resetData,
   }
 }
+
+// Opsional: ekspor global data agar bisa dipakai di luar
+export { data as mapelList }
