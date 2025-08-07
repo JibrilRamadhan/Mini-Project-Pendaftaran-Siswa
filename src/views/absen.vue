@@ -112,7 +112,7 @@
                   <!-- <p class="text-sky-100 text-sm">Siswa Terdaftar</p> -->
                   <p class="text-2xl font-bold">{{ tableData.length }} Siswa</p>
                 </div>
-                <i class="ri-user-check-line text-3xl text-sky-200"></i>
+                <i class="ri-user-check-line text-3xl text-sky-200"> </i>
               </div>
             </div>
           </div>
