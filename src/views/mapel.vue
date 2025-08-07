@@ -20,7 +20,7 @@ const {
   simpan,
   batal,
   pilihItem,
-  clearSelected
+  clearSelected,
 } = useMapel()
 
 const actionRef = ref(null)

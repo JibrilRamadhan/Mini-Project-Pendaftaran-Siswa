@@ -66,7 +66,7 @@
               <input
                 type="date"
                 v-model="selectedTanggal"
-                class="w-full px-4 py-3 bg-white/80 dark:bg-gray-800 dark:text-white   border border-sky-200 dark:border-sky-700 rounded-xl shadow-lg backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent transition-all duration-300"
+                class="w-full px-4 py-3 bg-white/80 dark:bg-gray-800 dark:text-white border border-sky-200 dark:border-sky-700 rounded-xl shadow-lg backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent transition-all duration-300"
               />
               <div
                 class="absolute inset-0 bg-gradient-to-r from-sky-500/10 to-blue-500/10 rounded-xl pointer-events-none"
