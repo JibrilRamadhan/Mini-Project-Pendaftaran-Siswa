@@ -45,7 +45,7 @@
                 class="absolute inset-0 bg-gradient-to-r from-sky-400 to-blue-400 rounded-2xl blur opacity-75 group-hover:opacity-100 transition duration-300"
               ></div>
               <div class="relative flex items-center space-x-2">
-                <i class="ri-add-line text-xl"></i>
+                <i class="ri-user-add-line mr-2"></i> 
                 <span>Tambah Siswa</span>
               </div>
             </button>
@@ -109,8 +109,8 @@
             <div class="bg-gradient-to-r from-sky-500 to-blue-600 rounded-xl p-3 text-white">
               <div class="flex items-center justify-between">
                 <div>
-                  <p class="text-sky-100 text-sm">Siswa Terdaftar</p>
-                  <p class="text-2xl font-bold">{{ tableData.length }}</p>
+                  <!-- <p class="text-sky-100 text-sm">Siswa Terdaftar</p> -->
+                  <p class="text-2xl font-bold">{{ tableData.length }} Siswa</p>
                 </div>
                 <i class="ri-user-check-line text-3xl text-sky-200"></i>
               </div>
@@ -119,8 +119,8 @@
         </div>
       </div>
 
-      <!-- CLASS INFO CARD -->
-      <div
+      <!-- CLASS INFO CARD LAMA--> 
+      <!-- <div
         v-if="selectedKelasId && selectedTanggal"
         class="backdrop-blur-xl bg-white/80 dark:bg-gray-900/80 rounded-2xl shadow-2xl border border-white/30 dark:border-gray-700/30 p-6 mb-8"
       >
@@ -140,8 +140,8 @@
                 Wali Kelas: {{ getNamaGuru(getWaliKelas(selectedKelasId)) }}
               </p>
             </div>
-            <div class="text-right">
-              <p class="text-sm text-gray-500 dark:text-gray-400">Tanggal</p>
+            <div class="text-left">
+              <p class="text-sm text-gray-500 dark:text-gray-400">Tanggal Absensi</p>
               <p class="text-lg font-bold text-gray-900 dark:text-gray-100">{{ formatTanggal(selectedTanggal) }}</p>
             </div>
           </div>
@@ -166,7 +166,103 @@
             </button>
           </div>
         </div>
+      </div> -->
+      <div
+  v-if="selectedKelasId && selectedTanggal"
+  class="backdrop-blur-xl bg-white/90 dark:bg-gray-900/80 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-6 mb-8"
+>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+    <!-- Info Kelas -->
+    <div class="flex items-center space-x-4">
+      <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-sky-400 to-blue-500 flex items-center justify-center">
+        <i class="ri-school-line text-2xl text-white"></i>
       </div>
+      <div>
+        <h3 class="text-lg font-semibold text-gray-800 dark:text-white">
+          {{ getNamaKelas(selectedKelasId) }}
+        </h3>
+        <p class="text-sm text-gray-500 dark:text-gray-400 flex items-center">
+          <i class="ri-user-star-line mr-1"></i>
+          Wali Kelas: {{ getNamaGuru(getWaliKelas(selectedKelasId)) }}
+        </p>
+        <p class="text-sm text-gray-500 dark:text-gray-400 flex items-center mt-1">
+          <i class="ri-calendar-line mr-1"></i>
+          Tanggal Absensi:
+          <span class="font-semibold ml-1 text-gray-800 dark:text-gray-100">{{ formatTanggal(selectedTanggal) }}</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Aksi -->
+    <div class="flex justify-end space-x-3">
+      <button
+        v-if="tableData.length > 0 && !hasCompleteAbsensi"
+        @click="generateAbsensiAwal()"
+        class="px-5 py-2.5 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white rounded-lg font-medium shadow-md transition-transform transform hover:scale-105"
+      >
+        <i class="ri-check-double-line mr-2"></i>
+        Generate Absensi
+      </button>
+
+      <button
+        v-if="hasCompleteAbsensi"
+        @click="exportAbsensi()"
+        class="px-5 py-2.5 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white rounded-lg font-medium shadow-md transition-transform transform hover:scale-105"
+      >
+        <i class="ri-file-download-line mr-2"></i>
+        Export Data
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Summary Cards -->
+      <div v-if="tableData.length > 0" class="grid grid-cols-1 md:grid-cols-4 gap-6 mt-8 mb-8">
+  <!-- Card Hadir -->
+  <div class="backdrop-blur-xl bg-white/80 dark:bg-gray-900/80 rounded-2xl shadow-xl border border-white/30 dark:border-gray-700/30 p-6">
+    <div class="flex items-center justify-between">
+      <div>
+        <p class="text-gray-600 dark:text-gray-400 text-sm">Hadir</p>
+        <p class="text-2xl font-bold text-green-600">{{ getStatusCount('Hadir') }}</p>
+      </div>
+      <i class="ri-checkbox-circle-fill text-3xl text-green-500"></i>
+    </div>
+  </div>
+
+  <!-- Card Izin -->
+  <div class="backdrop-blur-xl bg-white/80 dark:bg-gray-900/80 rounded-2xl shadow-xl border border-white/30 dark:border-gray-700/30 p-6">
+    <div class="flex items-center justify-between">
+      <div>
+        <p class="text-gray-600 dark:text-gray-400 text-sm">Izin</p>
+        <p class="text-2xl font-bold text-yellow-600">{{ getStatusCount('Izin') }}</p>
+      </div>
+      <i class="ri-information-fill text-3xl text-yellow-500"></i>
+    </div>
+  </div>
+
+  <!-- Card Sakit -->
+  <div class="backdrop-blur-xl bg-white/80 dark:bg-gray-900/80 rounded-2xl shadow-xl border border-white/30 dark:border-gray-700/30 p-6">
+    <div class="flex items-center justify-between">
+      <div>
+        <p class="text-gray-600 dark:text-gray-400 text-sm">Sakit</p>
+        <p class="text-2xl font-bold text-blue-600">{{ getStatusCount('Sakit') }}</p>
+      </div>
+      <i class="ri-heart-pulse-fill text-3xl text-blue-500"></i>
+    </div>
+  </div>
+
+  <!-- Card Alpha -->
+  <div class="backdrop-blur-xl bg-white/80 dark:bg-gray-900/80 rounded-2xl shadow-xl border border-white/30 dark:border-gray-700/30 p-6">
+    <div class="flex items-center justify-between">
+      <div>
+        <p class="text-gray-600 dark:text-gray-400 text-sm">Alpha</p>
+        <p class="text-2xl font-bold text-red-600">{{ getStatusCount('Alpha') }}</p>
+      </div>
+      <i class="ri-close-circle-fill text-3xl text-red-500"></i>
+    </div>
+  </div>
+</div>
+
 
       <!-- TABLE CONTAINER -->
       <div
@@ -318,46 +414,6 @@
           <p class="text-gray-500 dark:text-gray-500 mb-6">
             Untuk memulai absensi, silakan pilih tanggal dan kelas di bagian filter di atas
           </p>
-        </div>
-      </div>
-
-      <!-- Summary Cards -->
-      <div v-if="tableData.length > 0" class="grid grid-cols-1 md:grid-cols-4 gap-6 mt-8">
-        <div class="backdrop-blur-xl bg-white/80 dark:bg-gray-900/80 rounded-2xl shadow-xl border border-white/30 dark:border-gray-700/30 p-6">
-          <div class="flex items-center justify-between">
-            <div>
-              <p class="text-gray-600 dark:text-gray-400 text-sm">Hadir</p>
-              <p class="text-2xl font-bold text-green-600">{{ getStatusCount('Hadir') }}</p>
-            </div>
-            <i class="ri-checkbox-circle-fill text-3xl text-green-500"></i>
-          </div>
-        </div>
-        <div class="backdrop-blur-xl bg-white/80 dark:bg-gray-900/80 rounded-2xl shadow-xl border border-white/30 dark:border-gray-700/30 p-6">
-          <div class="flex items-center justify-between">
-            <div>
-              <p class="text-gray-600 dark:text-gray-400 text-sm">Izin</p>
-              <p class="text-2xl font-bold text-yellow-600">{{ getStatusCount('Izin') }}</p>
-            </div>
-            <i class="ri-information-fill text-3xl text-yellow-500"></i>
-          </div>
-        </div>
-        <div class="backdrop-blur-xl bg-white/80 dark:bg-gray-900/80 rounded-2xl shadow-xl border border-white/30 dark:border-gray-700/30 p-6">
-          <div class="flex items-center justify-between">
-            <div>
-              <p class="text-gray-600 dark:text-gray-400 text-sm">Sakit</p>
-              <p class="text-2xl font-bold text-blue-600">{{ getStatusCount('Sakit') }}</p>
-            </div>
-            <i class="ri-heart-pulse-fill text-3xl text-blue-500"></i>
-          </div>
-        </div>
-        <div class="backdrop-blur-xl bg-white/80 dark:bg-gray-900/80 rounded-2xl shadow-xl border border-white/30 dark:border-gray-700/30 p-6">
-          <div class="flex items-center justify-between">
-            <div>
-              <p class="text-gray-600 dark:text-gray-400 text-sm">Alpha</p>
-              <p class="text-2xl font-bold text-red-600">{{ getStatusCount('Alpha') }}</p>
-            </div>
-            <i class="ri-close-circle-fill text-3xl text-red-500"></i>
-          </div>
         </div>
       </div>
     </div>
