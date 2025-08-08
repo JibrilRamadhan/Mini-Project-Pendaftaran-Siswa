@@ -80,9 +80,9 @@
           <li>
           <a
             @click="konfirmasiReset"
-            class="flex items-center gap-3 p-2 rounded-xl text-red-600 hover:bg-red-900/50 hover:text-white transition-all duration-300 group cursor-pointer"
+            class="w-full flex items-center -ml-1 gap-3 p-2 rounded-xl text-red-600 hover:bg-red-900/50 hover:text-white transition-all duration-300 group cursor-pointer"
           >
-            <i class="ri-refresh-line text-lg text-glow group-hover:scale-110"></i>
+            <i class="ri-refresh-line text-lg text-glow group-hover:scale-110 w-5 text-center"></i>
             <span>Reset Semua Data</span>
           </a>
         </li>
