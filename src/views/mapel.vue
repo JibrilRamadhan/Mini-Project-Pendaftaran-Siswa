@@ -26,10 +26,15 @@ const {
 const actionRef = ref(null)
 
 // Pakai useSearch untuk pencarian di nama_mapel dan kode_mapel
-const { query: searchQuery, filtered: filteredData } = useSearch(data, ['nama_mapel', 'kode_mapel'], guruList)
+const { query: searchQuery, filtered: filteredData } = useSearch(
+  data,
+  ['nama_mapel', 'kode_mapel'],
+  guruList,
+)
 
-
-// Untuk pencarian guru, tambahkan logic di filteredData jika perlu
+function getNamaGuru(id) {
+  return guruList.value.find((g) => g.id_guru === id)?.nama_guru || ''
+}
 
 function handleClickOutside(event) {
   if (
@@ -48,111 +53,10 @@ onMounted(() => {
 onBeforeUnmount(() => {
   document.removeEventListener('click', handleClickOutside)
 })
-
-import Swal from 'sweetalert2'
-
-function isDarkMode() {
-  return document.documentElement.classList.contains('dark')
-}
-
-async function handleSave() {
-  // Ambil dan trim setiap nilai
-  const nama = form.nama_mapel?.trim()
-  const kode = form.kode_mapel?.trim()
-  const guru = form.id_guru
-
-  const missingFields = []
-  if (!nama) missingFields.push('Nama Mapel')
-  if (!kode) missingFields.push('Kode Mapel')
-  if (!guru) missingFields.push('Guru Pengajar')
-
-  // Kalau ada yang kosong, munculkan peringatan
-  if (missingFields.length > 0) {
-    await Swal.fire({
-      icon: 'warning',
-      title: 'Form Belum Lengkap!',
-      html: `Silakan isi:<br><b>${missingFields.join(', ')}</b>`,
-      background: isDarkMode() ? '#1f2937' : '#fff',
-      color: isDarkMode() ? '#f9fafb' : '#000',
-    })
-    return
-  }
-
-  // Konfirmasi sebelum simpan
-  const result = await Swal.fire({
-    title: mode.value === 'add' ? 'Tambah Data?' : 'Perbarui Data?',
-    text: 'Apakah kamu yakin ingin menyimpan data ini?',
-    icon: 'question',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Ya, Simpan!',
-    cancelButtonText: 'Batal',
-    background: isDarkMode() ? '#1f2937' : '#fff',
-    color: isDarkMode() ? '#f9fafb' : '#000',
-  })
-
-  // Jika disetujui, lakukan simpan
-  if (result.isConfirmed) {
-    // Update isi form agar tidak mengandung spasi
-    form.nama_mapel = nama
-    form.kode_mapel = kode
-
-    await simpan()
-
-    // Kalau tidak ada error, munculkan notifikasi sukses
-    if (!showForm.value && Object.keys(errors.value).length === 0) {
-      await Swal.fire({
-        icon: 'success',
-        title: 'Berhasil!',
-        text: mode.value === 'add'
-          ? 'Data berhasil ditambahkan.'
-          : 'Data berhasil diperbarui.',
-        timer: 2000,
-        showConfirmButton: false,
-        background: isDarkMode() ? '#1f2937' : '#fff',
-        color: isDarkMode() ? '#f9fafb' : '#000',
-      })
-    }
-  }
-}
-
-
-async function confirmDelete(item) {
-  const result = await Swal.fire({
-    title: 'Yakin ingin menghapus?',
-    text: `Mapel "${item.nama_mapel}" akan dihapus secara permanen!`,
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#e3342f',
-    cancelButtonColor: '#6c757d',
-    confirmButtonText: 'Ya, hapus!',
-    cancelButtonText: 'Batal',
-    background: isDarkMode() ? '#1f2937' : '#fff',
-    color: isDarkMode() ? '#f9fafb' : '#000',
-  })
-
-  if (result.isConfirmed) {
-    hapusItem(item.id_mapel)
-    clearSelected()
-    Swal.fire({
-      title: 'Berhasil!',
-      text: 'Data berhasil dihapus.',
-      icon: 'success',
-      timer: 2000,
-      showConfirmButton: false,
-      background: isDarkMode() ? '#1f2937' : '#fff',
-      color: isDarkMode() ? '#f9fafb' : '#000',
-    })
-  }
-}
-
 </script>
 
 <template>
-  <div
-    class="min-h-screen  dark:from-gray-900 dark:via-emerald-900 dark:to-teal-950 p-5"
-  >
+  <div class="min-h-scr een dark:from-gray-900 dark:via-emerald-900 dark:to-teal-950 p-5">
     <div class="max-w-7xl mx-auto">
       <!-- HEADER SECTION WITH GLASS EFFECT -->
       <div
@@ -221,7 +125,9 @@ async function confirmDelete(item) {
         class="backdrop-blur-xl bg-white/80 dark:bg-gray-900/80 rounded-3xl shadow-2xl border border-white/30 dark:border-gray-700/30 overflow-hidden"
       >
         <!-- Table Header with Gradient -->
-        <div class="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 p-6 flex justify-between items-center">
+        <div
+          class="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 p-6 flex justify-between items-center"
+        >
           <h3 class="text-2xl font-bold text-white flex items-center">
             <i class="ri-book-open-line mr-3"></i>
             Daftar Mata Pelajaran
@@ -324,11 +230,11 @@ async function confirmDelete(item) {
                     <div
                       class="w-8 h-8 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xs mr-3"
                     >
-                      {{ guruList[item.id_guru - 1]?.charAt(0).toUpperCase() }}
+                      {{ getNamaGuru(item.id_guru).charAt(0).toUpperCase() }}
                     </div>
                     <div>
                       <div class="text-sm font-medium text-gray-900 dark:text-gray-100">
-                        {{ guruList[item.id_guru - 1] }}
+                        {{ getNamaGuru(item.id_guru) }}
                       </div>
                       <div class="text-xs text-gray-500 dark:text-gray-400">Guru Pengajar</div>
                     </div>
@@ -387,8 +293,12 @@ async function confirmDelete(item) {
                 {{ selectedItem.nama_mapel.charAt(0).toUpperCase() }}
               </div>
               <div>
-                <h4 class="font-bold text-gray-900 dark:text-gray-100">{{ selectedItem.nama_mapel }}</h4>
-                <p class="text-sm text-gray-600 dark:text-gray-400">{{ selectedItem.kode_mapel }}</p>
+                <h4 class="font-bold text-gray-900 dark:text-gray-100">
+                  {{ selectedItem.nama_mapel }}
+                </h4>
+                <p class="text-sm text-gray-600 dark:text-gray-400">
+                  {{ selectedItem.kode_mapel }}
+                </p>
               </div>
             </div>
           </div>
@@ -412,8 +322,7 @@ async function confirmDelete(item) {
             </button>
 
             <button
-              @click="confirmDelete(selectedItem)"
-
+              @click="hapusItem(selectedItem.id_mapel)"
               class="group flex items-center space-x-3 px-6 py-4 bg-gradient-to-r from-red-500 to-rose-600 hover:from-red-600 hover:to-rose-700 text-white rounded-2xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 font-semibold min-w-[160px]"
             >
               <i class="ri-delete-bin-line text-xl"></i>
@@ -431,7 +340,6 @@ async function confirmDelete(item) {
         </div>
       </transition>
     </div>
-    
 
     <!-- MODAL -->
     <ModalFormMapel
@@ -442,8 +350,7 @@ async function confirmDelete(item) {
       :errors="errors"
       :guruList="guruList"
       @cancel="batal"
-      @save="handleSave"
-
+      @save="simpan"
     />
   </div>
 </template>

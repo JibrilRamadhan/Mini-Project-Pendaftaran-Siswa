@@ -20,7 +20,7 @@
                     ? 'ri-eye-line'
                     : mode === 'edit'
                       ? 'ri-edit-line'
-                      : 'ri-book-add-line'
+                      : 'ri-book-add-line',
                 ]"
               ></i>
             </div>
@@ -59,7 +59,9 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <!-- Nama Mapel -->
           <div class="space-y-2">
-            <label class="flex items-center space-x-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
+            <label
+              class="flex items-center space-x-2 text-sm font-semibold text-gray-700 dark:text-gray-300"
+            >
               <i class="ri-book-line text-indigo-600"></i>
               <span>Nama Mata Pelajaran</span>
               <span class="text-red-500">*</span>
@@ -72,7 +74,7 @@
                 class="w-full px-4 py-3 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-gray-100 placeholder-gray-400"
                 :class="[
                   readonly ? 'cursor-not-allowed opacity-75' : 'hover:border-indigo-300',
-                  errors.nama_mapel ? 'border-red-500 focus:ring-red-500' : ''
+                  errors.nama_mapel ? 'border-red-500 focus:ring-red-500' : '',
                 ]"
                 placeholder="Masukkan nama mata pelajaran"
               />
@@ -85,7 +87,9 @@
 
           <!-- Kode Mapel -->
           <div class="space-y-2">
-            <label class="flex items-center space-x-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
+            <label
+              class="flex items-center space-x-2 text-sm font-semibold text-gray-700 dark:text-gray-300"
+            >
               <i class="ri-hashtag text-indigo-600"></i>
               <span>Kode Mata Pelajaran</span>
               <span class="text-red-500">*</span>
@@ -98,7 +102,7 @@
                 class="w-full px-4 py-3 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-gray-100 placeholder-gray-400"
                 :class="[
                   readonly ? 'cursor-not-allowed opacity-75' : 'hover:border-indigo-300',
-                  errors.kode_mapel ? 'border-red-500 focus:ring-red-500' : ''
+                  errors.kode_mapel ? 'border-red-500 focus:ring-red-500' : '',
                 ]"
                 placeholder="Contoh: MTK, BIN, IPA"
               />
@@ -111,7 +115,9 @@
 
           <!-- Guru Pengampu -->
           <div class="lg:col-span-2 space-y-2">
-            <label class="flex items-center space-x-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
+            <label
+              class="flex items-center space-x-2 text-sm font-semibold text-gray-700 dark:text-gray-300"
+            >
               <i class="ri-user-star-line text-indigo-600"></i>
               <span>Guru Pengajar</span>
               <span class="text-red-500">*</span>
@@ -123,23 +129,24 @@
                 class="w-full px-4 py-3 bg-white/50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-gray-100 appearance-none"
                 :class="[
                   readonly ? 'cursor-not-allowed opacity-75' : 'hover:border-indigo-300',
-                  errors.id_guru ? 'border-red-500 focus:ring-red-500' : ''
+                  errors.id_guru ? 'border-red-500 focus:ring-red-500' : '',
                 ]"
               >
                 <option disabled value="" class="text-gray-400">Pilih guru pengajar</option>
-                <option 
-                  v-for="(guru, index) in guruList" 
-                  :value="index + 1" 
-                  :key="index"
+                <option
+                  v-for="guru in guruList"
+                  :key="guru.id_guru"
+                  :value="guru.id_guru"
                   class="text-gray-900 dark:text-gray-100"
                 >
-                  {{ guru }}
+                  {{ guru.nama_guru }}
                 </option>
               </select>
               <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
                 <i class="ri-arrow-down-s-line text-gray-400"></i>
               </div>
             </div>
+
             <p v-if="errors.id_guru" class="text-red-500 text-sm flex items-center">
               <i class="ri-error-warning-line mr-1"></i>
               {{ errors.id_guru }}
@@ -148,7 +155,9 @@
         </div>
 
         <!-- Action Buttons -->
-        <div class="flex justify-end items-center mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 space-x-4">
+        <div
+          class="flex justify-end items-center mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 space-x-4"
+        >
           <button
             @click="onCancel"
             class="px-6 py-3 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-xl font-semibold transition-all duration-200 flex items-center space-x-2"
@@ -156,7 +165,7 @@
             <i class="ri-close-line"></i>
             <span>{{ readonly ? 'Tutup' : 'Batal' }}</span>
           </button>
-          
+
           <button
             v-if="!readonly"
             @click="onSave"
@@ -178,9 +187,18 @@ const props = defineProps({
   show: Boolean,
   mode: String,
   readonly: Boolean,
-  form: Object,
-  errors: Object,
-  guruList: Array,
+  form: {
+    type: Object,
+    required: true,
+  },
+  errors: {
+    type: Object,
+    required: true,
+  },
+  guruList: {
+    type: Array,
+    required: true,
+  },
 })
 
 function onCancel() {
