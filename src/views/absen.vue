@@ -456,9 +456,6 @@ const hasCompleteAbsensi = computed(() => {
   return tableData.value.length > 0 && tableData.value.every(data => data.has_absen && data.status)
 })
 
-
-
-
 // Status styling functions
 const getActiveStatusStyle = (status) => {
   const styles = {
