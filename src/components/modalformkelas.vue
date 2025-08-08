@@ -73,6 +73,7 @@ async function pilihSiswaUntukKelas(siswa) {
     })
     return
   }
+  
 
   const confirmResult = await Swal.fire({
     title: 'Konfirmasi Penambahan Siswa',
@@ -90,7 +91,8 @@ async function pilihSiswaUntukKelas(siswa) {
     },
   })
 
-  if (!confirmResult.isConfirmed) return
+  if (!confirmResult.isConfirmed) return;
+
 
   const result = props.tambahSiswa({
     nama: siswa.nama,
@@ -784,7 +786,6 @@ async function onSave() {
                       </div>
                     </div>
                   </TransitionGroup>
-
                   <div v-if="filteredSiswa.length === 0" class="text-center py-16">
                     <div
                       class="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-600 flex items-center justify-center"
