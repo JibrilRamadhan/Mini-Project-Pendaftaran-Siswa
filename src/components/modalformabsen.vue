@@ -144,7 +144,7 @@
                         class="px-4 py-2 bg-gray-200 text-gray-400 rounded-lg font-medium flex items-center space-x-2 mx-auto cursor-not-allowed"
                       >
                         <i class="ri-error-warning-line"></i>
-                        <span>Belum ada di absensi</span>
+                        <span>Belum Di Tambahkan</span>
                       </span>
                       
                     </template>
@@ -169,14 +169,14 @@
                         class="px-4 py-2 bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white rounded-lg font-medium transition-all duration-200 transform hover:scale-105 flex items-center space-x-2 mx-auto"
                       >
                         <i class="ri-user-add-line"></i>
-                        <span>Tambah</span>
+                        <span>Tambah Siswa</span>
                       </button>
                       <span
                         v-else
                         class="px-4 py-2 bg-gray-300 text-gray-500 rounded-lg font-medium flex items-center space-x-2 mx-auto cursor-not-allowed"
                       >
                         <i class="ri-check-line"></i>
-                        <span>Siswa Sudah ada di absensi</span>
+                        <span>Sudah Di Tambahkan</span>
                       </span>
                     </template>
 
