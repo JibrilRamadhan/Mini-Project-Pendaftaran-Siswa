@@ -201,30 +201,12 @@
               <span class="text-red-500">*</span>
             </label>
 
-            <div v-if="readonly">
+            <div>
               <p
                 class="px-4 py-3 bg-gray-100 dark:bg-gray-800 rounded-xl text-gray-800 dark:text-gray-100"
               >
                 {{ getNamaGuru(form.id_guru) }}
               </p>
-            </div>
-
-            <div class="relative" v-else>
-              <select
-                v-model="form.id_guru"
-                class="w-full px-4 py-3 bg-white/50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-gray-100 appearance-none"
-                :class="[
-                  errors.id_guru ? 'border-red-500 focus:ring-red-500' : 'hover:border-violet-300',
-                ]"
-              >
-                <option disabled value="">Pilih Guru</option>
-                <option v-for="guru in guruList" :key="guru.id_guru" :value="guru.id_guru">
-                  {{ guru.nama_guru }}
-                </option>
-              </select>
-              <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
-                <i class="ri-arrow-down-s-line text-gray-400"></i>
-              </div>
             </div>
 
             <p v-if="errors.id_guru" class="text-red-500 text-sm flex items-center">
@@ -334,11 +316,15 @@
       </div>
     </div>
   </div>
-  
 </template>
 
 <script setup>
+import { watch } from 'vue'
 import Swal from 'sweetalert2'
+import useMapel from '@/composables/useMapel'
+import useGuru from '@/composables/useGuru'
+import useKelas from '@/composables/useKelas'
+
 const emit = defineEmits(['cancel', 'save'])
 
 const props = defineProps({
@@ -348,31 +334,40 @@ const props = defineProps({
   form: Object,
   errors: Object,
   hariList: Array,
-  mapelList: Array,
-  guruList: Array,
-  kelasList: Array,
 })
 
+// Gunakan composable
+const { data: mapelList } = useMapel()
+const { data: guruList } = useGuru()
+const { data: kelasList } = useKelas()
+
+// Auto-set id_guru dari mapel
+watch(
+  () => props.form.id_mapel,
+  (id_mapel) => {
+    const mapel = mapelList.value.find((m) => m.id_mapel === id_mapel)
+    props.form.id_guru = mapel ? mapel.id_guru : ''
+  },
+)
+
+// Helper untuk nama
 function getNamaMapel(id) {
-  const mapel = props.mapelList.find(m => m.id_mapel === id)
+  const mapel = mapelList.value.find((m) => m.id_mapel === id)
   return mapel ? mapel.nama_mapel : '-'
 }
-
 function getNamaGuru(id) {
-  const guru = props.guruList.find(g => g.id_guru === id)
+  const guru = guruList.value.find((g) => g.id_guru === id)
   return guru ? guru.nama_guru : '-'
 }
-
 function getNamaKelas(id) {
-  const kelas = props.kelasList.find(k => k.id === id)
+  const kelas = kelasList.value.find((k) => k.id === id)
   return kelas ? kelas.nama_kelas : '-'
 }
 
-
+// Event
 function onCancel() {
   emit('cancel')
 }
-
 function onSave() {
   Swal.fire({
     title: 'Simpan Data?',
@@ -396,8 +391,8 @@ function onSave() {
     }
   })
 }
-
 </script>
+
 
 <style scoped>
 /* Remove default select arrow in some browsers */

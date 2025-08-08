@@ -1,9 +1,14 @@
-import { ref } from 'vue'
+// composables/useMapel.js
+import { ref, watch } from 'vue'
 import mapelJson from '../stores/mapel.json'
 import guruJson from '../stores/guru.json'
 
+const STORAGE_KEY = 'mapelList'
+
+const initial = localStorage.getItem(STORAGE_KEY)
+const data = ref(initial ? JSON.parse(initial) : [...mapelJson]) // reaktif global
+
 export default function useMapel() {
-  const data = ref([...mapelJson])
   const guruList = guruJson.map(guru => guru.nama_guru)
 
   const showForm = ref(false)
@@ -81,6 +86,17 @@ export default function useMapel() {
     selectedItem.value = null
   }
 
+  // ✅ Simpan ke localStorage setiap perubahan data
+  watch(data, (newValue) => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(newValue))
+  }, { deep: true })
+
+  // ✅ Fungsi Reset (bisa dipanggil dari reset global)
+  function resetData() {
+    data.value = [...mapelJson]
+    localStorage.removeItem(STORAGE_KEY)
+  }
+
   return {
     data,
     showForm,
@@ -98,5 +114,9 @@ export default function useMapel() {
     batal,
     pilihItem,
     clearSelected,
+    resetData,
   }
 }
+
+// Opsional: ekspor global data agar bisa dipakai di luar
+export { data as mapelList }

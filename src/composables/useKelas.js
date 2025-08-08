@@ -1,9 +1,15 @@
 import { ref, computed, watch, nextTick } from 'vue'
-import kelasData from '../stores/kelas.json'
-import siswaData from '../stores/siswa.json'
+import kelasJson from '../stores/kelas.json'
+import siswaJson from '../stores/siswa.json'
 
-const data = ref([...kelasData])
-const siswaDataRef = ref([...siswaData])
+const KELAS_KEY = 'kelasList'
+const SISWA_KEY = 'siswaList'
+
+const kelasStorage = localStorage.getItem(KELAS_KEY)
+const siswaStorage = localStorage.getItem(SISWA_KEY)
+
+const data = ref(kelasStorage ? JSON.parse(kelasStorage) : [...kelasJson])
+const siswaDataRef = ref(siswaStorage ? JSON.parse(siswaStorage) : [...siswaJson])
 
 const showForm = ref(false)
 const mode = ref('')
@@ -21,13 +27,12 @@ const form = ref({
 const errors = ref({})
 
 const siswaDiKelas = computed(() => {
-  console.log('selectedItem for siswaDiKelas:', selectedItem.value)
-  console.log('all siswa:', siswaDataRef.value)
   if (!selectedItem.value) return []
- return siswaDataRef.value.filter((siswa) => siswa?.kelas_id === selectedItem.value.id_kelas || siswa?.kelas_id === selectedItem.value.id)
+  return siswaDataRef.value.filter((siswa) =>
+    siswa.kelas_id === selectedItem.value.id
+  )
 })
 
-// === ACTION ===
 function resetForm() {
   form.value = {
     id: null,
@@ -47,18 +52,31 @@ function tambahBaru() {
 }
 
 function editItem(item) {
-  form.value = { ...item }
+  if (!item) return
+  form.value = {
+    id: item.id,
+    nama_kelas: item.nama_kelas || '',
+    kode_kelas: item.kode_kelas || '',
+    kapasitas: Number(item.kapasitas || 0),
+    id_guru: Number(item.id_guru ?? null),
+  }
   mode.value = 'edit'
   readonly.value = false
   showForm.value = true
-  selectedItem.value = item
+  selectedItem.value = { ...item }
 }
 
 function lihatItem(item) {
-  console.log('✅ lihatItem dipanggil dengan item:', item)
+  if (!item) return
   selectedItem.value = item
   nextTick(() => {
-    form.value = { ...item }
+    form.value = {
+      id: item.id,
+      nama_kelas: item.nama_kelas || '',
+      kode_kelas: item.kode_kelas || '',
+      kapasitas: Number(item.kapasitas || 0),
+      id_guru: Number(item.id_guru ?? null),
+    }
     mode.value = 'lihat'
     readonly.value = true
     showForm.value = true
@@ -68,20 +86,28 @@ function lihatItem(item) {
 function simpan() {
   errors.value = {}
 
-  if (!form.value.nama_kelas) errors.value.nama_kelas = 'Nama kelas wajib diisi'
-  if (!form.value.kode_kelas) errors.value.kode_kelas = 'Kode kelas wajib diisi'
-  if (!form.value.kapasitas || form.value.kapasitas <= 0)
-    errors.value.kapasitas = 'Kapasitas wajib diisi'
-  if (!form.value.id_guru) errors.value.id_guru = 'Wali kelas wajib diisi'
+  // Validasi
+  const { nama_kelas, kode_kelas, kapasitas, id_guru } = form.value
+
+  if (!nama_kelas) errors.value.nama_kelas = 'Nama kelas wajib diisi'
+  if (!kode_kelas) errors.value.kode_kelas = 'Kode kelas wajib diisi'
+  if (!kapasitas || kapasitas <= 0) errors.value.kapasitas = 'Kapasitas wajib diisi'
+  if (id_guru === null || id_guru === undefined || id_guru === '') errors.value.id_guru = 'Wali kelas wajib dipilih'
 
   if (Object.keys(errors.value).length > 0) return
 
+  const newData = {
+    ...form.value,
+    id: mode.value === 'tambah' ? Date.now() : form.value.id,
+    kapasitas: Number(kapasitas),
+    id_guru: Number(id_guru),
+  }
+
   if (mode.value === 'tambah') {
-    form.value.id = Date.now()
-    data.value.push({ ...form.value })
+    data.value.push(newData)
   } else {
-    const index = data.value.findIndex((item) => item.id === form.value.id)
-    if (index !== -1) data.value[index] = { ...form.value }
+    const index = data.value.findIndex((item) => Number(item.id) === Number(form.value.id))
+    if (index !== -1) data.value[index] = newData
   }
 
   showForm.value = false
@@ -90,11 +116,10 @@ function simpan() {
 
 function hapusItem(id) {
   if (!confirm('Yakin ingin menghapus kelas ini?')) return
-
   data.value = data.value.filter((item) => item.id !== id)
   siswaDataRef.value = siswaDataRef.value.map((siswa) => {
     if (siswa.kelas_id === id) {
-      return { ...siswa, kelas_id: null } // lepas siswa dari kelas
+      return { ...siswa, kelas_id: null }
     }
     return siswa
   })
@@ -113,37 +138,35 @@ function clearSelected() {
   selectedItem.value = null
 }
 
-/**
- * Tambah siswa ke kelas berdasarkan ID siswa (bukan hanya nama).
- * Digunakan ketika siswa dipilih dari daftar siswa yang belum punya kelas.
- */
 function tambahSiswa({ id, kelas_id }) {
   const siswa = siswaDataRef.value.find((s) => s.id === id)
   const kelas = data.value.find((k) => k.id === kelas_id)
 
-  if (!kelas) {
-    return { success: false, message: 'Kelas tidak ditemukan' }
-  }
-  if (!siswa) {
-    return { success: false, message: 'Siswa tidak ditemukan' }
-  }
-  if (siswa.kelas_id) {
-    return { success: false, message: 'Siswa sudah terdaftar di kelas lain' }
-  }
+  if (!kelas) return { success: false, message: 'Kelas tidak ditemukan' }
+  if (!siswa) return { success: false, message: 'Siswa tidak ditemukan' }
+  if (siswa.kelas_id) return { success: false, message: 'Siswa sudah terdaftar di kelas lain' }
 
   const siswaKelas = siswaDataRef.value.filter((s) => s.kelas_id === kelas_id)
-  if (siswaKelas.length >= kelas.kapasitas) {
-    return { success: false, message: 'Kapasitas kelas sudah penuh' }
-  }
+  if (siswaKelas.length >= kelas.kapasitas) return { success: false, message: 'Kapasitas kelas sudah penuh' }
 
   siswa.kelas_id = kelas_id
   return { success: true }
 }
 
-watch(selectedItem, () => {
-  console.log('🔍 selectedItem:', selectedItem.value)
-  console.log('📚 siswaDiKelas:', siswaDiKelas.value)
-})
+watch(data, (val) => {
+  localStorage.setItem(KELAS_KEY, JSON.stringify(val))
+}, { deep: true })
+
+watch(siswaDataRef, (val) => {
+  localStorage.setItem(SISWA_KEY, JSON.stringify(val))
+}, { deep: true })
+
+function resetData() {
+  data.value = [...kelasJson]
+  siswaDataRef.value = [...siswaJson]
+  localStorage.removeItem(KELAS_KEY)
+  localStorage.removeItem(SISWA_KEY)
+}
 
 export default function useKelas() {
   return {
@@ -164,6 +187,8 @@ export default function useKelas() {
     pilihItem,
     clearSelected,
     tambahSiswa,
+    resetData,
   }
 }
- 
+
+export { siswaDataRef as siswaList }

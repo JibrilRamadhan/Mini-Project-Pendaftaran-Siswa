@@ -1,11 +1,14 @@
-// useSiswa.js (Final dengan jurusan dan penempatan otomatis)
-import { ref,computed } from 'vue'
+// composables/useSiswa.js
+import { ref, computed, watch } from 'vue'
 import siswaJson from '@/stores/siswa.json'
 import kelasJson from '@/stores/kelas.json'
 
+const STORAGE_KEY = 'siswaList'
+
+const stored = localStorage.getItem(STORAGE_KEY)
+const data = ref(stored ? JSON.parse(stored) : [...siswaJson]) // ✅ Load dari localStorage atau fallback JSON
+
 export default function useSiswa() {
-  
-  const data = ref([...siswaJson])
   const kelas = ref([...kelasJson])
   const showForm = ref(false)
   const mode = ref('add')
@@ -18,95 +21,87 @@ export default function useSiswa() {
     jk: '',
     no_tlp: '',
     nama_wali: '',
-    kelas_id: ''
+    kelas_id: '',
   })
   const errors = ref({})
   const selectedItem = ref(null)
 
-   // Pagination
-   const currentPage = ref(1)
-   const itemsPerPage = ref(10) // Bisa diubah sesuai kebutuhan
- 
-   const totalPages = computed(() => Math.ceil(data.value.length / itemsPerPage.value))
- 
-   const paginatedData = computed(() => {
-     const start = (currentPage.value - 1) * itemsPerPage.value
-     return data.value.slice(start, start + itemsPerPage.value)
-   })
- 
-   // Pagination functions
-   function goToPage(page) {
-     if (page >= 1 && page <= totalPages.value) {
-       currentPage.value = page
-       selectedItem.value = null // Clear selection when changing page
-     }
-   }
- 
-   function nextPage() {
-     if (currentPage.value < totalPages.value) {
-       currentPage.value++
-       selectedItem.value = null
-     }
-   }
- 
-   function prevPage() {
-     if (currentPage.value > 1) {
-       currentPage.value--
-       selectedItem.value = null
-     }
-   }
- 
-   function changeItemsPerPage(newItemsPerPage) {
-     itemsPerPage.value = newItemsPerPage
-     currentPage.value = 1 // Reset to first page
-     selectedItem.value = null
-   }
- 
-   // Computed untuk info pagination
-   const paginationInfo = computed(() => {
-     const start = (currentPage.value - 1) * itemsPerPage.value + 1
-     const end = Math.min(currentPage.value * itemsPerPage.value, data.value.length)
-     return {
-       start,
-       end,
-       total: data.value.length
-     }
-   })
- 
-   // Generate page numbers untuk pagination
-   const pageNumbers = computed(() => {
-     const pages = []
-     const total = totalPages.value
-     const current = currentPage.value
- 
-     if (total <= 7) {
-       // Jika total halaman <= 7, tampilkan semua
-       for (let i = 1; i <= total; i++) {
-         pages.push(i)
-       }
-     } else {
-       // Jika total halaman > 7, tampilkan dengan ellipsis
-       if (current <= 4) {
-         // Di awal
-         for (let i = 1; i <= 5; i++) pages.push(i)
-         pages.push('...')
-         pages.push(total)
-       } else if (current >= total - 3) {
-         // Di akhir
-         pages.push(1)
-         pages.push('...')
-         for (let i = total - 4; i <= total; i++) pages.push(i)
-       } else {
-         // Di tengah
-         pages.push(1)
-         pages.push('...')
-         for (let i = current - 1; i <= current + 1; i++) pages.push(i)
-         pages.push('...')
-         pages.push(total)
-       }
-     }
-     return pages
-   })
+  // Pagination
+  const currentPage = ref(1)
+  const itemsPerPage = ref(10)
+
+  const totalPages = computed(() => Math.ceil(data.value.length / itemsPerPage.value))
+
+  const paginatedData = computed(() => {
+    const start = (currentPage.value - 1) * itemsPerPage.value
+    return data.value.slice(start, start + itemsPerPage.value)
+  })
+
+  function goToPage(page) {
+    if (page >= 1 && page <= totalPages.value) {
+      currentPage.value = page
+      selectedItem.value = null
+    }
+  }
+
+  function nextPage() {
+    if (currentPage.value < totalPages.value) {
+      currentPage.value++
+      selectedItem.value = null
+    }
+  }
+
+  function prevPage() {
+    if (currentPage.value > 1) {
+      currentPage.value--
+      selectedItem.value = null
+    }
+  }
+
+  function changeItemsPerPage(newItemsPerPage) {
+    itemsPerPage.value = newItemsPerPage
+    currentPage.value = 1
+    selectedItem.value = null
+  }
+
+  const paginationInfo = computed(() => {
+    const start = (currentPage.value - 1) * itemsPerPage.value + 1
+    const end = Math.min(currentPage.value * itemsPerPage.value, data.value.length)
+    return {
+      start,
+      end,
+      total: data.value.length,
+    }
+  })
+
+  const pageNumbers = computed(() => {
+    const pages = []
+    const total = totalPages.value
+    const current = currentPage.value
+
+    if (total <= 7) {
+      for (let i = 1; i <= total; i++) {
+        pages.push(i)
+      }
+    } else {
+      if (current <= 4) {
+        for (let i = 1; i <= 5; i++) pages.push(i)
+        pages.push('...')
+        pages.push(total)
+      } else if (current >= total - 3) {
+        pages.push(1)
+        pages.push('...')
+        for (let i = total - 4; i <= total; i++) pages.push(i)
+      } else {
+        pages.push(1)
+        pages.push('...')
+        for (let i = current - 1; i <= current + 1; i++) pages.push(i)
+        pages.push('...')
+        pages.push(total)
+      }
+    }
+    return pages
+  })
 
   function tambahBaru() {
     mode.value = 'add'
@@ -118,17 +113,14 @@ export default function useSiswa() {
       jk: '',
       no_tlp: '',
       nama_wali: '',
-      kelas_id: ''
+      kelas_id: '',
     }
     errors.value = {}
     readonly.value = false
     showForm.value = true
-  newSiswaNama.value = ''
-  errorTambah.value = ''
-  showAddForm.value = false
   }
 
-  function editItem(item) {   
+  function editItem(item) {
     mode.value = 'edit'
     form.value = { ...item }
     errors.value = {}
@@ -147,7 +139,7 @@ export default function useSiswa() {
   function hapusItem(id) {
     const konfirmasi = confirm('Yakin ingin menghapus data ini?')
     if (konfirmasi) {
-      data.value = data.value.filter(item => item.id !== id)
+      data.value = data.value.filter((item) => item.id !== id)
     }
   }
 
@@ -177,7 +169,7 @@ export default function useSiswa() {
       const newTotalPages = Math.ceil(data.value.length / itemsPerPage.value)
       currentPage.value = newTotalPages
     } else {
-      const index = data.value.findIndex(item => item.id === f.id)
+      const index = data.value.findIndex((item) => item.id === f.id)
       if (index !== -1) {
         data.value[index] = { ...f }
       }
@@ -200,20 +192,32 @@ export default function useSiswa() {
   }
 
   function getNamaKelas(kelas_id) {
-    const kelas = kelasData.find(k => k.id === kelas_id)
-    return kelas ? kelas.nama_kelas : 'Tidak Diketahui'
+    const kelasItem = kelas.value.find((k) => k.id === kelas_id)
+    return kelasItem ? kelasItem.nama_kelas : 'Tidak Diketahui'
+  }
+
+  // ✅ Simpan ke localStorage saat data berubah
+  watch(data, (val) => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(val))
+  }, { deep: true })
+
+  // ✅ Reset ke data awal dari JSON
+  function resetData() {
+    data.value = [...siswaJson]
+    localStorage.removeItem(STORAGE_KEY)
   }
 
   return {
-    kelas,
+    // Data
     data,
-    showForm,
-    mode,
-    readonly,
+    kelas,
     form,
     errors,
     selectedItem,
-    
+    readonly,
+    showForm,
+    mode,
+
     // Pagination
     paginatedData,
     currentPage,
@@ -225,8 +229,8 @@ export default function useSiswa() {
     nextPage,
     prevPage,
     changeItemsPerPage,
-    
-    // Functions
+
+    // Logic
     lihatItem,
     tambahBaru,
     editItem,
@@ -236,5 +240,9 @@ export default function useSiswa() {
     pilihItem,
     clearSelected,
     getNamaKelas,
+    resetData,
   }
 }
+
+// (Opsional) Ekspor data untuk digunakan di luar
+export { data as siswaList }

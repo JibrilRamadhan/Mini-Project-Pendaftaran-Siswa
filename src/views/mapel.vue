@@ -20,13 +20,14 @@ const {
   simpan,
   batal,
   pilihItem,
-  clearSelected
+  clearSelected,
 } = useMapel()
 
 const actionRef = ref(null)
 
 // Pakai useSearch untuk pencarian di nama_mapel dan kode_mapel
-const { query: searchQuery, filtered: filteredData } = useSearch(data, ['nama_mapel', 'kode_mapel'])
+const { query: searchQuery, filtered: filteredData } = useSearch(data, ['nama_mapel', 'kode_mapel'], guruList)
+
 
 // Untuk pencarian guru, tambahkan logic di filteredData jika perlu
 
@@ -47,6 +48,105 @@ onMounted(() => {
 onBeforeUnmount(() => {
   document.removeEventListener('click', handleClickOutside)
 })
+
+import Swal from 'sweetalert2'
+
+function isDarkMode() {
+  return document.documentElement.classList.contains('dark')
+}
+
+async function handleSave() {
+  // Ambil dan trim setiap nilai
+  const nama = form.nama_mapel?.trim()
+  const kode = form.kode_mapel?.trim()
+  const guru = form.id_guru
+
+  const missingFields = []
+  if (!nama) missingFields.push('Nama Mapel')
+  if (!kode) missingFields.push('Kode Mapel')
+  if (!guru) missingFields.push('Guru Pengajar')
+
+  // Kalau ada yang kosong, munculkan peringatan
+  if (missingFields.length > 0) {
+    await Swal.fire({
+      icon: 'warning',
+      title: 'Form Belum Lengkap!',
+      html: `Silakan isi:<br><b>${missingFields.join(', ')}</b>`,
+      background: isDarkMode() ? '#1f2937' : '#fff',
+      color: isDarkMode() ? '#f9fafb' : '#000',
+    })
+    return
+  }
+
+  // Konfirmasi sebelum simpan
+  const result = await Swal.fire({
+    title: mode.value === 'add' ? 'Tambah Data?' : 'Perbarui Data?',
+    text: 'Apakah kamu yakin ingin menyimpan data ini?',
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Ya, Simpan!',
+    cancelButtonText: 'Batal',
+    background: isDarkMode() ? '#1f2937' : '#fff',
+    color: isDarkMode() ? '#f9fafb' : '#000',
+  })
+
+  // Jika disetujui, lakukan simpan
+  if (result.isConfirmed) {
+    // Update isi form agar tidak mengandung spasi
+    form.nama_mapel = nama
+    form.kode_mapel = kode
+
+    await simpan()
+
+    // Kalau tidak ada error, munculkan notifikasi sukses
+    if (!showForm.value && Object.keys(errors.value).length === 0) {
+      await Swal.fire({
+        icon: 'success',
+        title: 'Berhasil!',
+        text: mode.value === 'add'
+          ? 'Data berhasil ditambahkan.'
+          : 'Data berhasil diperbarui.',
+        timer: 2000,
+        showConfirmButton: false,
+        background: isDarkMode() ? '#1f2937' : '#fff',
+        color: isDarkMode() ? '#f9fafb' : '#000',
+      })
+    }
+  }
+}
+
+
+async function confirmDelete(item) {
+  const result = await Swal.fire({
+    title: 'Yakin ingin menghapus?',
+    text: `Mapel "${item.nama_mapel}" akan dihapus secara permanen!`,
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#e3342f',
+    cancelButtonColor: '#6c757d',
+    confirmButtonText: 'Ya, hapus!',
+    cancelButtonText: 'Batal',
+    background: isDarkMode() ? '#1f2937' : '#fff',
+    color: isDarkMode() ? '#f9fafb' : '#000',
+  })
+
+  if (result.isConfirmed) {
+    hapusItem(item.id_mapel)
+    clearSelected()
+    Swal.fire({
+      title: 'Berhasil!',
+      text: 'Data berhasil dihapus.',
+      icon: 'success',
+      timer: 2000,
+      showConfirmButton: false,
+      background: isDarkMode() ? '#1f2937' : '#fff',
+      color: isDarkMode() ? '#f9fafb' : '#000',
+    })
+  }
+}
+
 </script>
 
 <template>
@@ -312,7 +412,8 @@ onBeforeUnmount(() => {
             </button>
 
             <button
-              @click="(hapusItem(selectedItem.id_mapel), clearSelected())"
+              @click="confirmDelete(selectedItem)"
+
               class="group flex items-center space-x-3 px-6 py-4 bg-gradient-to-r from-red-500 to-rose-600 hover:from-red-600 hover:to-rose-700 text-white rounded-2xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 font-semibold min-w-[160px]"
             >
               <i class="ri-delete-bin-line text-xl"></i>
@@ -330,6 +431,7 @@ onBeforeUnmount(() => {
         </div>
       </transition>
     </div>
+    
 
     <!-- MODAL -->
     <ModalFormMapel
@@ -340,7 +442,8 @@ onBeforeUnmount(() => {
       :errors="errors"
       :guruList="guruList"
       @cancel="batal"
-      @save="simpan"
+      @save="handleSave"
+
     />
   </div>
 </template>

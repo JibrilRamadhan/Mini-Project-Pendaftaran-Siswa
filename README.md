@@ -1,33 +1,28 @@
-# project-mini-pendaftaran-siswa
+# Mini Project Pendaftaran Siswa
 
-This template should help get you started developing with Vue 3 in Vite.
+Aplikasi manajemen data siswa dengan antarmuka modern dan responsif.
 
-## Recommended IDE Setup
+## Fitur
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- Manajemen data siswa, guru, kelas, mata pelajaran, dan absensi
+- Antarmuka modern dengan tema gelap/terang
+- Validasi form yang komprehensif
+- Notifikasi yang konsisten dengan tema aplikasi
 
-## Type Support for `.vue` Imports in TS
+## Instalasi
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
+```bash
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+## Menjalankan Aplikasi
 
-```sh
+```bash
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+## Build untuk Production
 
-```sh
+```bash
 npm run build
 ```

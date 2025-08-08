@@ -12,6 +12,7 @@
         <div class="flex items-center justify-between">
           <div class="flex items-center space-x-4">
             <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+              <i class="ri-book-line text-white text-2xl"></i>
               <i
                 :class="[
                   'text-2xl text-white',

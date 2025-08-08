@@ -1,16 +1,18 @@
 // composables/useJamPelajaran.js
 import { ref } from 'vue'
+
 import Swal from 'sweetalert2'
 import dataJson from '@/stores/jam-pelajaran.json'
-import mapelJson from '@/stores/mapel.json'
-import guruJson from '@/stores/guru.json'
-import kelasJson from '@/stores/kelas.json'
+import useMapel from './useMapel'
+import useGuru from './useGuru'
+import useKelas from './useKelas'
+  
 
 export default function useJamPelajaran() {
   const data = ref([...dataJson])
-  const mapelList = ref([...mapelJson])
-  const guruList = ref([...guruJson])
-  const kelasList = ref([...kelasJson])
+  const { data: mapelList } = useMapel()
+  const { data: guruList } = useGuru()
+  const { data: kelasList } = useKelas()
 
   const showForm = ref(false)
   const mode = ref('add')

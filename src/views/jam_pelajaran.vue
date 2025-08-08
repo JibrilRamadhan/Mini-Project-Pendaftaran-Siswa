@@ -403,12 +403,10 @@ onBeforeUnmount(() => {
       :form="form"
       :errors="errors"
       :hariList="hariList"
-      :mapelList="mapelList"
-      :guruList="guruList"
-      :kelasList="kelasList"
       @cancel="batal"
       @save="simpan"
-    />
+/>
+
   </div>
 </template>
 

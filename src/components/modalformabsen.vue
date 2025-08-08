@@ -55,7 +55,7 @@
             class="w-full px-4 py-3 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-gray-100 appearance-none"
           >
             <option value="">-- Semua Kelas --</option>
-            <option v-for="kelas in kelasList" :key="kelas.id_kelas" :value="kelas.id_kelas">
+            <option v-for="kelas in kelasList" :key="kelas.id" :value="kelas.id">
               {{ kelas.nama_kelas }}
             </option>
           </select>
@@ -126,7 +126,7 @@
                     <span
                       class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-sky-100 text-sky-800 dark:bg-sky-900 dark:text-sky-200"
                     >
-                      {{ getNamaKelas(siswa.kelas_id || siswa.id_kelas) || 'Tidak diketahui' }}
+                      {{ getNamaKelas(siswa.kelas_id || siswa.id) || 'Tidak diketahui' }}
                     </span>
                   </td>
                   <td class="px-6 py-4 text-center">
@@ -139,14 +139,14 @@
                         <i class="ri-check-line"></i>
                         <span>Ditambahkan</span>
                       </span>
-                      <button
-                        v-else
-                        @click="tambahSiswa(siswa)"
-                        class="px-4 py-2 bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white rounded-lg font-medium transition-all duration-200 transform hover:scale-105 flex items-center space-x-2 mx-auto"
+                      <span
+                      v-else
+                        class="px-4 py-2 bg-gray-200 text-gray-400 rounded-lg font-medium flex items-center space-x-2 mx-auto cursor-not-allowed"
                       >
-                        <i class="ri-user-add-line"></i>
-                        <span>Tambah</span>
-                      </button>
+                        <i class="ri-error-warning-line"></i>
+                        <span>Belum ada di absensi</span>
+                      </span>
+                      
                     </template>
 
                     <!-- Jika siswa tidak dalam kelas yang dipilih, disable tombol -->
@@ -161,22 +161,36 @@
                   </td>
 
                   <td class="px-6 py-4 text-center">
-                    <button
-                      v-if="isInCurrentAbsensi(siswa.id)"
-                      @click="tambahSiswa(siswa)"
-                      class="px-4 py-2 bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white rounded-lg font-medium transition-all duration-200 transform hover:scale-105 flex items-center space-x-2 mx-auto"
-                    >
-                      <i class="ri-user-add-line"></i>
-                      <span>Tambah</span>
-                    </button>
-                    <span
-                      v-else
-                      class="px-4 py-2 bg-gray-300 text-gray-500 rounded-lg font-medium flex items-center space-x-2 mx-auto cursor-not-allowed"
-                    >
-                      <i class="ri-check-line"></i>
-                      <span>Ditambahkan</span>
-                    </span>
+                    <template v-if="isSiswaDalamKelasDipilih(siswa)">
+                      <!-- Siswa dari kelas absensi -->
+                      <button
+                        v-if="!isInCurrentAbsensi(siswa.id)"
+                        @click="tambahSiswa(siswa)"
+                        class="px-4 py-2 bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white rounded-lg font-medium transition-all duration-200 transform hover:scale-105 flex items-center space-x-2 mx-auto"
+                      >
+                        <i class="ri-user-add-line"></i>
+                        <span>Tambah</span>
+                      </button>
+                      <span
+                        v-else
+                        class="px-4 py-2 bg-gray-300 text-gray-500 rounded-lg font-medium flex items-center space-x-2 mx-auto cursor-not-allowed"
+                      >
+                        <i class="ri-check-line"></i>
+                        <span>Siswa Sudah ada di absensi</span>
+                      </span>
+                    </template>
+
+                    <template v-else>
+                      <!-- Siswa dari kelas lain -->
+                      <span
+                        class="px-4 py-2 bg-gray-200 text-gray-400 rounded-lg font-medium flex items-center space-x-2 mx-auto cursor-not-allowed"
+                      >
+                        <i class="ri-error-warning-line"></i>
+                        <span>Bukan dari kelas ini</span>
+                      </span>
+                    </template>
                   </td>
+
                 </tr>
                 <tr v-if="Array.isArray(filteredSiswa) && filteredSiswa.length === 0">
                   <td colspan="5" class="px-6 py-12 text-center text-gray-500 dark:text-gray-400">
@@ -260,6 +274,7 @@ const isInCurrentAbsensi = (siswaId) => {
 }
 
 const tambahSiswa = (siswa) => {
+  console.log(siswa.id)
   const kelasId = getSelectedKelasId()
 
   if (!isInCurrentAbsensi(siswa.id)) {
@@ -276,9 +291,10 @@ const tambahSiswa = (siswa) => {
     })
   }
 }
+
 const isSiswaDalamKelasDipilih = (siswa) => {
-  const kelasId = getSelectedKelasId()
-  return siswa.kelas_id === kelasId
+  const kelasAbsensi = Number(selectedKelasId.value) // fix: selalu patok ke absensi
+  return siswa.kelas_id === kelasAbsensi
 }
 
 // ✅ Update filter otomatis jika kelas diganti
