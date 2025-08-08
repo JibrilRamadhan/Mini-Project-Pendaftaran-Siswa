@@ -18,8 +18,8 @@ const absens = ref(storedAbsensi ? JSON.parse(storedAbsensi) : [...absenJson])
 const siswaDataRef = ref(storedSiswa ? JSON.parse(storedSiswa) : [...siswaJson])
 const kelasList = ref(storedKelas ? JSON.parse(storedKelas) : [...kelasJson])
 
-const selectedKelasId = ref(null)
-const selectedTanggal = ref('')
+const selectedKelasId = ref(1)
+const selectedTanggal = ref('2025-07-01')
 const showForm = ref(false)
 const selectedItem = ref(null)
 
@@ -40,21 +40,21 @@ const filteredAbsensi = computed(() => {
 const tableData = computed(() => {
   if (!selectedTanggal.value || !selectedKelasId.value) return []
 
-  return siswaByKelas.value.map((siswa) => {
-    const absensi = filteredAbsensi.value.find((a) => a.id_siswa === siswa.id)
-
+  return filteredAbsensi.value.map(absen => {
+    const siswa = siswaDataRef.value.find(s => s.id === absen.id_siswa)
     return {
-      id_siswa: siswa.id,
-      nama_siswa: siswa.nama,
-      nisn: siswa.nisn,
-      id_kelas: Number(selectedKelasId.value),
-      tanggal: selectedTanggal.value,
-      status: absensi?.status || '',
-      absen_id: absensi?.id || null,
-      has_absen: !!absensi,
+      id_siswa: siswa?.id || null,
+      nama_siswa: siswa?.nama || '',
+      nisn: siswa?.nisn || '',
+      id_kelas: absen.id_kelas,
+      tanggal: absen.tanggal,
+      status: absen.status,
+      absen_id: absen.id,
+      has_absen: true
     }
   })
 })
+
 
 function generateAbsensiAwal() {
   if (!selectedTanggal.value || !selectedKelasId.value) {
@@ -122,7 +122,7 @@ function tambahSiswaKeAbsensi(siswa) {
 
   const newAbsensi = {
     id: Date.now(),
-    id_siswa: siswa.id,
+    id_siswa: siswa.id_siswa,
     id_kelas: kelasId,
     id_wali: getWaliKelas(kelasId),
     tanggal,
@@ -134,17 +134,22 @@ function tambahSiswaKeAbsensi(siswa) {
 
 function hapusSiswaDariAbsensi(idSiswa) {
   if (!confirm('Yakin ingin menghapus siswa dari absensi?')) return
+  console.log(tableData.value)
 
   const index = absens.value.findIndex(
     (a) =>
       a.tanggal === selectedTanggal.value &&
       a.id_kelas === Number(selectedKelasId.value) &&
-      a.id_siswa === idSiswa
+      a.id_siswa === Number(idSiswa) // pastikan tipe sama
   )
+
+  console.log("Index yang ditemukan:", index)
 
   if (index !== -1) {
     absens.value.splice(index, 1)
+  } else {
   }
+  console.log(tableData.value)
 }
 
 function bukaForm(item = null) {
